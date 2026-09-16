@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
-using Mathematics.Ballistics.Entities.Data;
+using MathForge.Ballistics.Entities.Data;
 
-namespace Mathematics.Ballistics.Entities;
+namespace MathForge.Ballistics.Entities.Objects;
 
 public class World
 {

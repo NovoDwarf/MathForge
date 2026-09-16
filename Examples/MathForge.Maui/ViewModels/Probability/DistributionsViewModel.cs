@@ -1,14 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
 using LocalizationResourceManager.Maui;
-using Mathematics.Core.Attributes;
-using Mathematics.Core.Base.Entities;
+using MathForge.Core.Attributes;
+using MathForge.Core.Base.Entities;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Algorithms.Services;
+using MathForge.Maui.Views.Common;
 using Microsoft.Extensions.Logging;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Algorithms.Services;
-using NovoDwarf.Mathematics.App.Views.Common;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Probability;
+namespace MathForge.Maui.ViewModels.Probability;
 
 public partial class DistributionsViewModel : BaseViewModel
 {

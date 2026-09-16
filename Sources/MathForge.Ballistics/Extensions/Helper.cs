@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Mathematics.Ballistics;
+namespace MathForge.Ballistics.Extensions;
 
 public static class VectorExtensions
 {
@@ -9,6 +9,7 @@ public static class VectorExtensions
 		public Vector3 Normalized()
 		{
 			var len = vector.Length();
+			
 			return len != 0 
 				? new Vector3(vector.X / len, vector.Y / len, vector.Z / len) 
 				: new Vector3();

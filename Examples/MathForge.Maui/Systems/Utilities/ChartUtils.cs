@@ -1,6 +1,6 @@
 ﻿using LiveChartsCore;
 
-namespace NovoDwarf.Mathematics.App.Systems.Utilities;
+namespace MathForge.Maui.Systems.Utilities;
 
 public class ChartUtils
 {

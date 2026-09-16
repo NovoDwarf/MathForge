@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Application.Handlers;
+﻿using MathForge.Maui.Systems.Application.Handlers;
 
-namespace NovoDwarf.Mathematics.App;
+namespace MathForge.Maui;
 
 public partial class AppShell : Shell
 {

@@ -1,8 +1,7 @@
 ﻿using SkiaSharp;
-using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
 
-namespace NovoDwarf.Mathematics.App.Views.Graphics;
+namespace MathForge.Maui.Views.Graphics;
 
 public partial class GridCanvas : SKCanvasView
 {

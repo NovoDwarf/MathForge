@@ -2,8 +2,8 @@
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-	xmlns:common="using:NovoDwarf.Mathematics.App.Views.Common"
-	x:Class="NovoDwarf.Mathematics.App.Views.Common.TreeNodeView"
+	xmlns:common="using:MathForge.Maui.Views.Common"
+	x:Class="MathForge.Maui.Views.Common.TreeNodeView"
 	x:DataType="common:TreeNodeViewModel">
 	
     <Grid>

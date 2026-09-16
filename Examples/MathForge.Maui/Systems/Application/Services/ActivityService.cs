@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
-using NovoDwarf.Mathematics.App.Systems.Application.Constants;
+using MathForge.Maui.Systems.Application.Constants;
 
-namespace NovoDwarf.Mathematics.App.Systems.Application.Services;
+namespace MathForge.Maui.Systems.Application.Services;
 
 public class ActivityEntry
 {

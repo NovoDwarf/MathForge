@@ -1,6 +1,6 @@
 ﻿using SkiaSharp;
 
-namespace NovoDwarf.Mathematics.App.Views.Graphics;
+namespace MathForge.Maui.Views.Graphics;
 
 public class GridModel
 {

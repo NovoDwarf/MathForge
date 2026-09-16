@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
+using MathForge.Maui.Core.ViewModels;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
+namespace MathForge.Maui.ViewModels.Utilities.Tools;
 
 public partial class CodeGeneratorViewModel : BaseViewModel
 {

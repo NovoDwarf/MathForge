@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
-using Mathematics.Core.Base.Entities;
-using Mathematics.Probability.Distributions.Univariate.Discrete.Finite;
+using MathForge.Core.Base.Entities;
+using MathForge.Probability.Distributions.Univariate.Discrete.Finite;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Mathematics.DependencyInjection;
@@ -21,7 +21,7 @@ public static class MathematicsExtensions
 
 			var implTypes = assembly
 				.GetTypes()
-				.Where(t => t is { IsAbstract: false, IsInterface: false } && IsAssignableToGeneric(t, baseType));
+				.Where(t => t is { IsAbstract: false, IsInterface: false } && IServiceCollection.IsAssignableToGeneric(t, baseType));
 
 			foreach (var type in implTypes)
 				services.AddTransient(type);

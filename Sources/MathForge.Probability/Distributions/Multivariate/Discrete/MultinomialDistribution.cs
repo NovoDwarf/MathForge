@@ -1,6 +1,6 @@
-﻿using Mathematics.Core.Attributes;
+﻿using MathForge.Core.Attributes;
 
-namespace Mathematics.Probability.Distributions.Multivariate.Discrete;
+namespace MathForge.Probability.Distributions.Multivariate.Discrete;
 
 [Categories("Distributions", "Multivariate", "Discrete")]
 public partial class MultinomialDistribution

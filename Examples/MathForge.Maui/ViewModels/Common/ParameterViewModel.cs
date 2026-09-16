@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
+using MathForge.Maui.Core.ViewModels;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Common;
+namespace MathForge.Maui.ViewModels.Common;
 
 public sealed partial class ParameterViewModel : BaseViewModel
 {

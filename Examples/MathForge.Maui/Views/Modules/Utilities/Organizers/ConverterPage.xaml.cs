@@ -1,8 +1,8 @@
-﻿using NovoDwarf.Mathematics.App.Core.Views;
-using NovoDwarf.Mathematics.App.Systems.Application.Constants;
-using NovoDwarf.Mathematics.App.ViewModels.Utilities.Organizers;
+﻿using MathForge.Maui.Core.Views;
+using MathForge.Maui.Systems.Application.Constants;
+using MathForge.Maui.ViewModels.Utilities.Organizers;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Utilities.Organizers;
+namespace MathForge.Maui.Views.Modules.Utilities.Organizers;
 
 public partial class ConverterPage : MemorablePage
 {

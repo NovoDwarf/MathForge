@@ -1,8 +1,8 @@
-﻿using NovoDwarf.Mathematics.App.Core.ViewModels;
+﻿using MathForge.Maui.Core.ViewModels;
 using SkiaSharp;
 using SKPaintSurfaceEventArgs = SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Games;
+namespace MathForge.Maui.Views.Modules.Games;
 
 public partial class SlidingTilePuzzleViewModel : BaseViewModel
 {

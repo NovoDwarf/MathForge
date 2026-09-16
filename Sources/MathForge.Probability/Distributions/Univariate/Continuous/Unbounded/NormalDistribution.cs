@@ -1,10 +1,10 @@
-﻿using Mathematics.Core.Attributes;
-using Mathematics.Core.Base.Entities;
-using Mathematics.Core.Utilities;
-using Mathematics.Numerical.Simple;
-using Mathematics.Probability.Randoms;
+﻿using Mathematics.Numerical.Simple;
+using MathForge.Core.Attributes;
+using MathForge.Core.Base.Entities;
+using MathForge.Core.Utilities;
+using MathForge.Probability.Randoms;
 
-namespace Mathematics.Probability.Distributions.Univariate.Continuous.Unbounded;
+namespace MathForge.Probability.Distributions.Univariate.Continuous.Unbounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Unbounded")]
 public partial class NormalDistribution : Distribution
@@ -62,15 +62,11 @@ public partial class NormalDistribution : Distribution
 		if (p <= 0 || p >= 1)
 			throw new ArgumentOutOfRangeException(nameof(p), "Probability must be between 0 and 1");
 
-		// Аппроксимация обратной функции нормального распределения
-		// Используем приближение Мора (Morr)
 		return p < 0.5 ? _mean - _stdDev * InverseNormalCDF(1 - p) : _mean + _stdDev * InverseNormalCDF(p);
 	}
 
 	private static double InverseNormalCDF(double p)
 	{
-		// Аппроксимация обратной функции нормального распределения
-		// Peter J. Acklam's algorithm
 		if (p <= 0 || p >= 1)
 			throw new ArgumentOutOfRangeException(nameof(p));
 
@@ -93,26 +89,23 @@ public partial class NormalDistribution : Distribution
 
 		if (p < 0.02425)
 		{
-			// Rational approximation for lower region
 			q = Math.Sqrt(-2 * Math.Log(p));
 			return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
 				   ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
 		}
-		else if (p > 0.97575)
+
+		if (p > 0.97575)
 		{
-			// Rational approximation for upper region
 			q = Math.Sqrt(-2 * Math.Log(1 - p));
 			return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
-					((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+			       ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
 		}
-		else
-		{
-			// Rational approximation for central region
-			q = p - 0.5;
-			r = q * q;
-			return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
-				   (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
-		}
+
+		q = p - 0.5;
+		r = q * q;
+		
+		return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
+		       (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
 	}
 
 	public override string ToString() => $"Normal Distribution [Mean = {_mean}, StdDev = {_stdDev}]";

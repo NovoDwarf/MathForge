@@ -1,8 +1,6 @@
-﻿using Android.App;
-using Android.Content.PM;
-using AndroidX.AppCompat.App;
+﻿using Android.Content.PM;
 
-namespace NovoDwarf.Mathematics.App;
+namespace MathForge.Maui.Platforms.Android;
 
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop,
 	ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode |

@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
+using MathForge.Maui.Core.ViewModels;
 
-namespace NovoDwarf.Mathematics.App.Views.Common;
+namespace MathForge.Maui.Views.Common;
 
 public enum TreeNodeKind
 {

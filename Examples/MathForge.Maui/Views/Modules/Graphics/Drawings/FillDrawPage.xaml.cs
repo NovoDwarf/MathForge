@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Views.Modules.Graphics.Drawings;
+﻿namespace MathForge.Maui.Views.Modules.Graphics.Drawings;
 
 public partial class FillDrawPage : ContentPage
 {

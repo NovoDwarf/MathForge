@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Algorithms.Entities;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Algorithms.Entities;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
+namespace MathForge.Maui.ViewModels.Utilities.Tools;
 
 public partial class CashCalculatorViewModel : BaseViewModel
 {

@@ -1,6 +1,6 @@
-﻿using BarometerData = NovoDwarf.Mathematics.App.Systems.Sensors.DTOs.BarometerData;
+﻿using BarometerData = MathForge.Maui.Systems.Sensors.DTOs.BarometerData;
 
-namespace NovoDwarf.Mathematics.App.Systems.Sensors.Processing;
+namespace MathForge.Maui.Systems.Sensors.Processing;
 
 public sealed class BarometerProcessingService
 {

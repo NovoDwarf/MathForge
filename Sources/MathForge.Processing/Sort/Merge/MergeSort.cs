@@ -1,6 +1,6 @@
-﻿using Mathematics.Core.Base.Entities;
+﻿using MathForge.Core.Base.Entities;
 
-namespace Mathematics.Processing.Sorting.Merge;
+namespace MathForge.Processing.Sort.Merge;
 
 public class MergeSort<T> : Sorting<T>
 	where T : IComparable<T>

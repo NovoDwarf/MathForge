@@ -1,11 +1,11 @@
 ﻿<ContentPage 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:utilities="using:NovoDwarf.Mathematics.App.ViewModels.Utilities"
-    xmlns:loc="clr-namespace:NovoDwarf.Mathematics.App.Resources.Localizations"
-    xmlns:commonModels="clr-namespace:NovoDwarf.Mathematics.App.ViewModels.Common"
-    xmlns:common="clr-namespace:NovoDwarf.Mathematics.App.Views.Common"
-    x:Class="NovoDwarf.Mathematics.App.Views.Modules.UtilityPage" 
+    xmlns:utilities="using:MathForge.Maui.ViewModels.Utilities"
+    xmlns:loc="clr-namespace:MathForge.Maui.Resources.Localizations"
+    xmlns:commonModels="clr-namespace:MathForge.Maui.ViewModels.Common"
+    xmlns:common="clr-namespace:MathForge.Maui.Views.Common"
+    x:Class="MathForge.Maui.Views.Modules.UtilityPage" 
     x:DataType="utilities:UtilityViewModel"
     Title="Утилиты">
     

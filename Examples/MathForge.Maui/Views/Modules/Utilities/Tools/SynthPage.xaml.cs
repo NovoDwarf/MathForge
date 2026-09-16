@@ -1,7 +1,7 @@
-﻿using NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
-using NovoDwarf.Mathematics.App.Views.Graphics;
+﻿using MathForge.Maui.ViewModels.Utilities.Tools;
+using MathForge.Maui.Views.Graphics;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Utilities.Tools;
+namespace MathForge.Maui.Views.Modules.Utilities.Tools;
 
 public partial class SynthPage : ContentPage
 {

@@ -1,7 +1,7 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Application.Constants;
-using NovoDwarf.Mathematics.App.ViewModels.Pages;
+﻿using MathForge.Maui.Systems.Application.Constants;
+using MathForge.Maui.ViewModels.Pages;
 
-namespace NovoDwarf.Mathematics.App.Views;
+namespace MathForge.Maui.Views;
 
 public partial class SettingsPage : ContentPage
 {

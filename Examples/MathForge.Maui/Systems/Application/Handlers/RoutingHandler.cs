@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using NovoDwarf.Mathematics.App.Systems.Application.Services;
+using MathForge.Maui.Systems.Application.Services;
 
-namespace NovoDwarf.Mathematics.App.Systems.Application.Handlers;
+namespace MathForge.Maui.Systems.Application.Handlers;
 
 public static class RoutingHandler
 {

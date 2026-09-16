@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace NovoDwarf.Mathematics.App.Systems.Utilities;
+namespace MathForge.Maui.Systems.Utilities;
 
 public static class StreamUtils
 {

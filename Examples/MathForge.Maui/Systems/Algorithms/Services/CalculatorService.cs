@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using NCalc;
 
-namespace NovoDwarf.Mathematics.App.Systems.Algorithms.Services;
+namespace MathForge.Maui.Systems.Algorithms.Services;
 
 public sealed partial class CalculatorService
 {

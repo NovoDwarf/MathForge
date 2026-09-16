@@ -1,7 +1,7 @@
-﻿using Mathematics.Core.Extensions;
+﻿using MathForge.Core.Extensions;
 using Utilities.Extensions;
 
-namespace Mathematics.Core.Utilities;
+namespace MathForge.Core.Utilities;
 
 public static class StatsUtils
 {

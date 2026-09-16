@@ -1,6 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace NovoDwarf.Mathematics.App.Core.ViewModels;
+namespace MathForge.Maui.Core.ViewModels;
 
 public partial class BaseViewModel : ObservableObject
 {

@@ -1,13 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using LocalizationResourceManager.Maui;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Resources.Localizations;
-using NovoDwarf.Mathematics.App.Systems.Application.Services;
-using NovoDwarf.Mathematics.App.ViewModels.Common;
-using NovoDwarf.Mathematics.App.Views.Modules.Games;
-using Utilities.Extensions;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Resources.Localizations;
+using MathForge.Maui.Systems.Application.Services;
+using MathForge.Maui.ViewModels.Common;
+using MathForge.Maui.Views.Modules.Games;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Games;
+namespace MathForge.Maui.ViewModels.Games;
 
 public class GamesViewModel : BaseViewModel
 {

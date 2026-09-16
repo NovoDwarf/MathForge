@@ -1,11 +1,11 @@
 ﻿using System.Numerics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Hosting.Services;
-using NovoDwarf.Mathematics.App.Systems.Sensors.Services;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Hosting.Services;
+using MathForge.Maui.Systems.Sensors.Services;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
+namespace MathForge.Maui.ViewModels.Utilities.Tools;
 
 public sealed record LevelState(
     double BubbleX,

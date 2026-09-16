@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Systems.Measurements.Domain;
+﻿namespace MathForge.Maui.Systems.Measurements.Domain;
 
 
 public sealed class Prefix

@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Core.Enums.Drawing;
+﻿namespace MathForge.Core.Enums.Drawing;
 
 public enum ColorSchemeType
 {

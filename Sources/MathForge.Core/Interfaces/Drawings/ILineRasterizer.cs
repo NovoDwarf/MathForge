@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Mathematics.Core.Interfaces.Drawings;
+namespace MathForge.Core.Interfaces.Drawings;
 
 public interface ILineRasterizer
 {

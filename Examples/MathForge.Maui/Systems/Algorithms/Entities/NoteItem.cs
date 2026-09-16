@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace NovoDwarf.Mathematics.App.Systems.Algorithms.Entities;
+namespace MathForge.Maui.Systems.Algorithms.Entities;
 
 public class NoteItem : ObservableObject
 {

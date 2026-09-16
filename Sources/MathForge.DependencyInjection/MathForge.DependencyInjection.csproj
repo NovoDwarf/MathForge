@@ -4,7 +4,6 @@
         <TargetFramework>net11.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>Mathematics.DependencyInjection</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MathForge.Core\MathForge.Core.csproj" />
+      <ProjectReference Include="..\MathForge.Probability\MathForge.Probability.csproj" />
       <ProjectReference Include="..\NovoDwarf.Mathematics.Core\NovoDwarf.Mathematics.Core.csproj" />
       <ProjectReference Include="..\NovoDwarf.Mathematics.Probability\NovoDwarf.Mathematics.Probability.csproj" />
     </ItemGroup>

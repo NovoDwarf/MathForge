@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Core.Interfaces.Noises;
+﻿namespace MathForge.Core.Interfaces.Noises;
 
 public interface INoise1D<T>
 {

@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Core.Base.Entities;
+﻿namespace MathForge.Core.Base.Entities;
 
 public abstract class Cipher<T> : Entity
 {

@@ -1,8 +1,8 @@
-﻿using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Application.Constants;
-using NovoDwarf.Mathematics.App.Systems.Sensors.Services;
+﻿using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Application.Constants;
+using MathForge.Maui.Systems.Sensors.Services;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Sensors;
+namespace MathForge.Maui.ViewModels.Utilities.Sensors;
 
 public class MagnetometerViewModel : BaseViewModel
 {

@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Core.Attributes;
+﻿namespace MathForge.Core.Attributes;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class CategoriesAttribute : Attribute
@@ -7,9 +7,6 @@ public sealed class CategoriesAttribute : Attribute
 
 	public CategoriesAttribute(params string[] paths)
 	{
-		Path = paths
-			.Where(p => !string.IsNullOrEmpty(p))
-			.Select(p => $"Category_{p}_Name")
-			.ToArray();
+		Path = [.. paths.Where(p => !string.IsNullOrEmpty(p)).Select(p => $"Category_{p}_Name")];
 	}
 }

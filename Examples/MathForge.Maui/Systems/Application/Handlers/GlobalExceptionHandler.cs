@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Systems.Application.Handlers;
+﻿namespace MathForge.Maui.Systems.Application.Handlers;
 
 public static class GlobalExceptionHandler
 {

@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Systems.Sensors.ValueObjects;
+﻿namespace MathForge.Maui.Systems.Sensors.ValueObjects;
 
 public sealed class MinMaxTracker
 {

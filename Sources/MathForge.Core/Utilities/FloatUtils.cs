@@ -1,6 +1,6 @@
-﻿namespace Mathematics.Core.Utilities;
+﻿using System.Numerics;
 
-using System.Numerics;
+namespace MathForge.Core.Utilities;
 
 public static class NumericUtils<T> where T : INumber<T>
 {

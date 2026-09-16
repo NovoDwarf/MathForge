@@ -1,7 +1,7 @@
-﻿using Mathematics.Core.Utilities;
-using Mathematics.Numerical.Transforms;
+﻿using Mathematics.Numerical.Transforms;
+using MathForge.Core.Utilities;
 
-namespace Mathematics.Probability.Randoms;
+namespace MathForge.Probability.Randoms;
 
 /// <summary>
 /// A collection of utility methods for random number generation.

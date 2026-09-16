@@ -1,4 +1,4 @@
-namespace Mathematics.Core.Base.Entities;
+namespace MathForge.Core.Base.Entities;
 
 /// <summary>
 /// Base class for all distributions.

@@ -7,21 +7,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>NovoDwarf</Authors>
         <TargetFramework>net11.0</TargetFramework>
-        <RootNamespace>Mathematics.Core</RootNamespace>
     </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DocumentationFile>bin\Debug\Mathematics.xml</DocumentationFile>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DocumentationFile>bin\Release\Mathematics.xml</DocumentationFile>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\NovoDwarf.Utilities\NovoDwarf.Utilities.csproj" />
-      <ProjectReference Include="..\NovoDwarf.Mathematics.SourceGenerators\NovoDwarf.Mathematics.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Update="Resources\Probability.Resources.resx">
@@ -66,6 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="NovoDwarf.Utilities" Version="1.0.0" />
       <PackageReference Include="System.Drawing.Common" Version="11.0.0-preview.5.26302.115" />
     </ItemGroup>
 

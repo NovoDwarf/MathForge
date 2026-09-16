@@ -1,6 +1,6 @@
-﻿using Mathematics.Core.Attributes;
+﻿using MathForge.Core.Attributes;
 
-namespace Mathematics.Probability.Distributions.Circular.Univariate;
+namespace MathForge.Probability.Distributions.Circular.Univariate;
 
 [Categories("Distributions", "Circular", "Univariate")]
 public class CircularUniformDistribution

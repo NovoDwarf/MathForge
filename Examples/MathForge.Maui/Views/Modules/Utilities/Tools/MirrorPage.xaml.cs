@@ -1,7 +1,7 @@
 ﻿using Camera.MAUI;
-using NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
+using MathForge.Maui.ViewModels.Utilities.Tools;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Utilities.Tools;
+namespace MathForge.Maui.Views.Modules.Utilities.Tools;
 
 public partial class MirrorPage : ContentPage
 {

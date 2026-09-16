@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
-using Mathematics.Core.Interfaces.Drawings;
+using MathForge.Core.Interfaces.Drawings;
 
 namespace Mathematics.Graphics.Drawings.Circles;
 

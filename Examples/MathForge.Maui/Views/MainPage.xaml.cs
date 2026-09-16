@@ -1,8 +1,8 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Application.Constants;
-using NovoDwarf.Mathematics.App.Systems.Hosting.Interfaces;
-using NovoDwarf.Mathematics.App.ViewModels.Pages;
+﻿using MathForge.Maui.Systems.Application.Constants;
+using MathForge.Maui.Systems.Hosting.Interfaces;
+using MathForge.Maui.ViewModels.Pages;
 
-namespace NovoDwarf.Mathematics.App.Views;
+namespace MathForge.Maui.Views;
 
 public partial class MainPage : ContentPage, ILightPage
 {

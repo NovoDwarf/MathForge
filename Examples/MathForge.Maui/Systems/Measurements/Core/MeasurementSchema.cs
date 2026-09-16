@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Measurements.DTOs;
+﻿using MathForge.Maui.Systems.Measurements.DTOs;
 
-namespace NovoDwarf.Mathematics.App.Systems.Measurements.Core;
+namespace MathForge.Maui.Systems.Measurements.Core;
 
 public sealed class MeasurementSchema
 {

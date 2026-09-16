@@ -1,8 +1,8 @@
-﻿using Mathematics.Core.Base.Entities;
-using Mathematics.Probability.Distributions.Univariate.Discrete.Finite;
-using NovoDwarf.Mathematics.App.Views.Modules.Probability.Distributions;
+﻿using MathForge.Core.Base.Entities;
+using MathForge.Maui.Views.Modules.Probability.Distributions;
+using MathForge.Probability.Distributions.Univariate.Discrete.Finite;
 
-namespace NovoDwarf.Mathematics.App.Systems.Algorithms.Services;
+namespace MathForge.Maui.Systems.Algorithms.Services;
 
 public sealed class DistributionService 
 {
@@ -47,7 +47,7 @@ public sealed class DistributionService
 			if (_viewModels.ContainsKey(distType))
 				continue;
 
-			var vmType = typeof(global::NovoDwarf.Mathematics.App.ViewModels.Probability.Distributions.DistributionViewModel<>)
+			var vmType = typeof(global::MathForge.Maui.ViewModels.Probability.Distributions.DistributionViewModel<>)
 				.MakeGenericType(distType);
 
 			var viewModel = Activator.CreateInstance(vmType, distribution);

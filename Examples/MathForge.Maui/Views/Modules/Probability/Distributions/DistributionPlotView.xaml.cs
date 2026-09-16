@@ -1,7 +1,7 @@
-﻿using Mathematics.Core.Base.Entities;
-using NovoDwarf.Mathematics.App.ViewModels.Probability.Distributions;
+﻿using MathForge.Core.Base.Entities;
+using MathForge.Maui.ViewModels.Probability.Distributions;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Probability.Distributions;
+namespace MathForge.Maui.Views.Modules.Probability.Distributions;
 
 public partial class DistributionPlotView : ContentView
 {

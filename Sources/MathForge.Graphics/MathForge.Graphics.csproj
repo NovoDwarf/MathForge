@@ -7,7 +7,6 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>NovoDwarf</Authors>
-        <RootNamespace>Mathematics.Graphics</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\NovoDwarf.Mathematics.Core\NovoDwarf.Mathematics.Core.csproj" />
+      <ProjectReference Include="..\MathForge.Core\MathForge.Core.csproj" />
     </ItemGroup>
 
 </Project>

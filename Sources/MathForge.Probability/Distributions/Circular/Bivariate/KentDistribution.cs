@@ -1,6 +1,6 @@
-﻿using Mathematics.Core.Attributes;
+﻿using MathForge.Core.Attributes;
 
-namespace Mathematics.Probability.Distributions.Circular.Bivariate;
+namespace MathForge.Probability.Distributions.Circular.Bivariate;
 
 [Categories("Distributions", "Circular", "Bivariate")]
 public class KentDistribution

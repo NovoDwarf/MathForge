@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
-using Mathematics.Core.Base.Graphics;
-using Mathematics.Core.Interfaces.Drawings;
+using MathForge.Core.Base.Graphics;
+using MathForge.Core.Interfaces.Drawings;
 
 namespace Mathematics.Graphics.Drawings.Clippers;
 

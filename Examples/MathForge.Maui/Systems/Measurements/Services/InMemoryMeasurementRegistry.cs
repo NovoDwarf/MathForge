@@ -1,8 +1,8 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Measurements.Domain;
-using NovoDwarf.Mathematics.App.Systems.Measurements.Interfaces;
+﻿using MathForge.Maui.Systems.Measurements.Domain;
+using MathForge.Maui.Systems.Measurements.Interfaces;
 using Serilog;
 
-namespace NovoDwarf.Mathematics.App.Systems.Measurements.Services;
+namespace MathForge.Maui.Systems.Measurements.Services;
 
 public sealed class InMemoryMeasurementRegistry : IMeasurementRegistry
 {

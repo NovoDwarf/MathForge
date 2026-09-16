@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Ballistics.Entities.Data;
+﻿namespace MathForge.Ballistics.Entities.Data;
 
 public class ProjectileData
 {

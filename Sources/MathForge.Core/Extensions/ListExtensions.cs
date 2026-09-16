@@ -1,6 +1,6 @@
 ﻿using Utilities.Extensions;
 
-namespace Mathematics.Core.Extensions;
+namespace MathForge.Core.Extensions;
 
 public static class ListExtensions
 {

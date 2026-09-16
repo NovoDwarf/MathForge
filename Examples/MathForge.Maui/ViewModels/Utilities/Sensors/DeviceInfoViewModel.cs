@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
+using MathForge.Maui.Core.ViewModels;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Sensors;
+namespace MathForge.Maui.ViewModels.Utilities.Sensors;
 
 public class DeviceInfoViewModel : BaseViewModel
 {

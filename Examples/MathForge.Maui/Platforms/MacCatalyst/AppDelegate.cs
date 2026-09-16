@@ -1,6 +1,4 @@
-﻿using Foundation;
-
-namespace NovoDwarf.Mathematics.App;
+﻿namespace MathForge.Maui.Platforms.MacCatalyst;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

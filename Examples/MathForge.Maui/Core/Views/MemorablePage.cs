@@ -1,7 +1,7 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Application.Services;
-using NovoDwarf.Mathematics.App.Systems.Hosting.Services;
+﻿using MathForge.Maui.Systems.Application.Services;
+using MathForge.Maui.Systems.Hosting.Services;
 
-namespace NovoDwarf.Mathematics.App.Core.Views;
+namespace MathForge.Maui.Core.Views;
 
 public abstract class MemorablePage : NavigationPage, IStateable
 {

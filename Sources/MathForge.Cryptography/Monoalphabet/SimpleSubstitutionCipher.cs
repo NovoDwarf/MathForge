@@ -1,6 +1,6 @@
-﻿using Mathematics.Core.Base.Entities;
+﻿using MathForge.Core.Base.Entities;
 
-namespace Mathematics.Cryptography.Monoalphabet;
+namespace MathForge.Cryptography.Monoalphabet;
 
 public class SimpleSubstitutionCipher : Cipher<byte[]>
 {

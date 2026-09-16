@@ -1,4 +1,6 @@
-﻿namespace NovoDwarf.Mathematics.App;
+﻿using Application = Microsoft.Maui.Controls.Application;
+
+namespace MathForge.Maui;
 
 public partial class App : Application
 {

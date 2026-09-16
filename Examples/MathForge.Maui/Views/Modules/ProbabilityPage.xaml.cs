@@ -1,7 +1,7 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Hosting.Interfaces;
-using NovoDwarf.Mathematics.App.ViewModels.Probability;
+﻿using MathForge.Maui.Systems.Hosting.Interfaces;
+using MathForge.Maui.ViewModels.Probability;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules;
+namespace MathForge.Maui.Views.Modules;
 
 public partial class ProbabilityPage : ContentPage, ILightPage
 {

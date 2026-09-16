@@ -7,10 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NovoDwarf.Mathematics.App.Resources.Localizations {
-    using System;
-    
-    
+namespace MathForge.Maui.Resources.Localizations {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -38,7 +35,7 @@ namespace NovoDwarf.Mathematics.App.Resources.Localizations {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NovoDwarf.Mathematics.App.Resources.Localizations.Components.Resources", typeof(Components_Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MathForge.Maui.Resources.Localizations.Components.Resources", typeof(Components_Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

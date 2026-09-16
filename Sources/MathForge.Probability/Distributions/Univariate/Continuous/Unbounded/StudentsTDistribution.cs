@@ -1,9 +1,9 @@
-﻿using Mathematics.Core.Attributes;
-using Mathematics.Core.Base.Entities;
-using Mathematics.Numerical.Simple;
+﻿using Mathematics.Numerical.Simple;
 using Mathematics.Numerical.Transforms;
+using MathForge.Core.Attributes;
+using MathForge.Core.Base.Entities;
 
-namespace Mathematics.Probability.Distributions.Univariate.Continuous.Unbounded;
+namespace MathForge.Probability.Distributions.Univariate.Continuous.Unbounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Unbounded")]
 public partial class StudentsTDistribution : Distribution

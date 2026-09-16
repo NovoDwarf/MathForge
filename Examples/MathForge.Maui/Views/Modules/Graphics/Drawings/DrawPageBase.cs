@@ -1,7 +1,7 @@
-using NovoDwarf.Mathematics.App.Views.Graphics;
+using MathForge.Maui.Views.Graphics;
 using SkiaSharp;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Graphics.Drawings;
+namespace MathForge.Maui.Views.Modules.Graphics.Drawings;
 
 public abstract partial class DrawPageBase : ContentPage
 {

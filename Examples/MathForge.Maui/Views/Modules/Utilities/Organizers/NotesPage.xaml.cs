@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.ViewModels.Utilities.Organizers;
+﻿using MathForge.Maui.ViewModels.Utilities.Organizers;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Utilities.Organizers;
+namespace MathForge.Maui.Views.Modules.Utilities.Organizers;
 
 public partial class NotesPage : ContentPage
 {

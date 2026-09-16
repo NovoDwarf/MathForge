@@ -1,8 +1,8 @@
-﻿using Mathematics.Core.Attributes;
-using Mathematics.Core.Base.Entities;
-using Mathematics.Core.Utilities;
+﻿using MathForge.Core.Attributes;
+using MathForge.Core.Base.Entities;
+using MathForge.Core.Utilities;
 
-namespace Mathematics.Probability.Distributions.Univariate.Continuous.Bounded;
+namespace MathForge.Probability.Distributions.Univariate.Continuous.Bounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Bounded")]
 public partial class TriangularDistribution : Distribution

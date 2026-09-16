@@ -2,14 +2,14 @@
 using Camera.MAUI;
 using CommunityToolkit.Maui;
 using LiveChartsCore.SkiaSharpView.Maui;
+using MathForge.Maui.Systems.Application.Extensions;
+using MathForge.Maui.Systems.Measurements.Services;
 using MemoryToolkit.Maui;
-using NovoDwarf.Mathematics.App.Systems.Application.Extensions;
-using NovoDwarf.Mathematics.App.Systems.Measurements.Services;
 using Plugin.Maui.Audio;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using ZXing.Net.Maui.Controls;
 
-namespace NovoDwarf.Mathematics.App;
+namespace MathForge.Maui;
 
 public static class MauiProgram
 {

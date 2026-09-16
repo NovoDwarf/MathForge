@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Measurements.Domain;
+﻿using MathForge.Maui.Systems.Measurements.Domain;
 
-namespace NovoDwarf.Mathematics.App.Systems.Measurements.Interfaces;
+namespace MathForge.Maui.Systems.Measurements.Interfaces;
 
 public interface IMeasurementRegistry
 {

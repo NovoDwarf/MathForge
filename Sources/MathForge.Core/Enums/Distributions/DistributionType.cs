@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Core.Enums.Distributions;
+﻿namespace MathForge.Core.Enums.Distributions;
 
 public enum DistributionType
 {

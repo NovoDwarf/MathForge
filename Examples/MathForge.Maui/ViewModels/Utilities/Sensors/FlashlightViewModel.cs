@@ -1,12 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Sensors.DTOs;
-using NovoDwarf.Mathematics.App.Systems.Sensors.Enums;
-using NovoDwarf.Mathematics.App.Systems.Sensors.Services;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Sensors.DTOs;
+using MathForge.Maui.Systems.Sensors.Enums;
+using MathForge.Maui.Systems.Sensors.Services;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Sensors;
+namespace MathForge.Maui.ViewModels.Utilities.Sensors;
 
 public sealed partial class FlashlightViewModel : BaseViewModel
 {

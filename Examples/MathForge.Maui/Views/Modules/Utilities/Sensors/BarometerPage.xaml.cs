@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.ViewModels.Utilities.Sensors;
+﻿using MathForge.Maui.ViewModels.Utilities.Sensors;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Utilities.Sensors;
+namespace MathForge.Maui.Views.Modules.Utilities.Sensors;
 
 public partial class BarometerPage : ContentPage
 {

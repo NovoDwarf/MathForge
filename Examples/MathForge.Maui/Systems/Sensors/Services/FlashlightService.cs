@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Sensors.Enums;
+﻿using MathForge.Maui.Systems.Sensors.Enums;
 
-namespace NovoDwarf.Mathematics.App.Systems.Sensors.Services;
+namespace MathForge.Maui.Systems.Sensors.Services;
 
 public sealed class FlashlightService
 {

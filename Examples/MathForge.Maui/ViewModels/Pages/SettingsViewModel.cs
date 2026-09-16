@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Application.Entities;
-using NovoDwarf.Mathematics.App.Systems.Application.Services;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Application.Entities;
+using MathForge.Maui.Systems.Application.Services;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Pages;
+namespace MathForge.Maui.ViewModels.Pages;
 
 public sealed partial class SettingsViewModel : BaseViewModel
 {

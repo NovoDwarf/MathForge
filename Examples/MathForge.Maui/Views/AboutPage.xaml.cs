@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Views;
+﻿namespace MathForge.Maui.Views;
 
 public partial class AboutPage : ContentPage
 {

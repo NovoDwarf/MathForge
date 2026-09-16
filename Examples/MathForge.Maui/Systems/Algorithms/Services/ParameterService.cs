@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using LocalizationResourceManager.Maui;
-using Mathematics.Core.Attributes;
-using Mathematics.Core.Resources;
+using MathForge.Core.Attributes;
+using MathForge.Core.Resources;
+using MathForge.Maui.ViewModels.Common;
 using Microsoft.Extensions.Logging;
-using NovoDwarf.Mathematics.App.ViewModels.Common;
 
-namespace NovoDwarf.Mathematics.App.Systems.Algorithms.Services;
+namespace MathForge.Maui.Systems.Algorithms.Services;
 
 public class ParameterService
 {

@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.ViewModels.Numerical;
+﻿namespace MathForge.Maui.ViewModels.Numerical;
 
 public class FunctionViewModel
 {

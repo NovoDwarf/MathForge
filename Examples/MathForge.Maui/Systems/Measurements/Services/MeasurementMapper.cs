@@ -1,7 +1,7 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Measurements.Domain;
-using NovoDwarf.Mathematics.App.Systems.Measurements.DTOs;
+﻿using MathForge.Maui.Systems.Measurements.Domain;
+using MathForge.Maui.Systems.Measurements.DTOs;
 
-namespace NovoDwarf.Mathematics.App.Systems.Measurements.Services;
+namespace MathForge.Maui.Systems.Measurements.Services;
 
 public static class MeasurementMapper
 {

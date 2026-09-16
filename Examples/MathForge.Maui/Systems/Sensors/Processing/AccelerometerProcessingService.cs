@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
-using AccelerometerData = NovoDwarf.Mathematics.App.Systems.Sensors.DTOs.AccelerometerData;
+using AccelerometerData = MathForge.Maui.Systems.Sensors.DTOs.AccelerometerData;
 
-namespace NovoDwarf.Mathematics.App.Systems.Sensors.Processing;
+namespace MathForge.Maui.Systems.Sensors.Processing;
 
 public sealed class AccelerometerProcessingService
 {

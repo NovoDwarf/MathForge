@@ -2,10 +2,10 @@
 
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:common1="using:NovoDwarf.Mathematics.App.ViewModels.Common"
-             xmlns:localizations="clr-namespace:NovoDwarf.Mathematics.App.Resources.Localizations"
+             xmlns:common1="using:MathForge.Maui.ViewModels.Common"
+             xmlns:localizations="clr-namespace:MathForge.Maui.Resources.Localizations"
              x:Name="Root"
-             x:Class="NovoDwarf.Mathematics.App.Views.Common.PreviewTableView" x:DataType="common1:PreviewViewModel">
+             x:Class="MathForge.Maui.Views.Common.PreviewTableView" x:DataType="common1:PreviewViewModel">
 
     <ContentView.Content>
         <Border StrokeShape="RoundRectangle 12" Padding="8">

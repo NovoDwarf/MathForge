@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using Serilog;
 
-namespace NovoDwarf.Mathematics.App.Systems.Utilities;
+namespace MathForge.Maui.Systems.Utilities;
 
 public static class JsonUtils
 {

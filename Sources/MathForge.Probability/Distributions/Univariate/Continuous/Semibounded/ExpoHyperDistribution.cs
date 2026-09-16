@@ -1,8 +1,9 @@
-﻿using Mathematics.Core.Attributes;
-using Mathematics.Core.Base.Entities;
-using Mathematics.Core.Utilities;
+﻿
+using MathForge.Core.Attributes;
+using MathForge.Core.Base.Entities;
+using MathForge.Core.Utilities;
 
-namespace Mathematics.Probability.Distributions.Univariate.Continuous.Semibounded;
+namespace MathForge.Probability.Distributions.Univariate.Continuous.Semibounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Semibounded")]
 public partial class ExpoHyperDistribution : Distribution
@@ -49,10 +50,10 @@ public partial class ExpoHyperDistribution : Distribution
 
     public double CoefficientOfVariation => Math.Sqrt(Variance) / Mean;
     
-    [EntityParameter(typeof(double[]), nameof(Probabilities))]
+    [Core.Attributes.EntityParameter(typeof(double[]), nameof(Probabilities))]
     public double[] Probabilities { get; private set; } = [0.5, 0.5];
     
-    [EntityParameter(typeof(double[]), nameof(Rates))]
+    [Core.Attributes.EntityParameter(typeof(double[]), nameof(Rates))]
     public double[] Rates { get; private set; } = [1.0, 0.1];
     
     private ExpoDistribution[] _components = [new(), new()];

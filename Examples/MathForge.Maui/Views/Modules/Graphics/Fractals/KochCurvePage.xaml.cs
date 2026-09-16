@@ -1,9 +1,8 @@
 ﻿using System.Numerics;
-using Mathematics.Graphics.Fractals.Geometric;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Graphics.Fractals;
+namespace MathForge.Maui.Views.Modules.Graphics.Fractals;
 
 public partial class KochCurvePage : ContentPage
 {

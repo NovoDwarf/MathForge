@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
-using Mathematics.Core.Interfaces.Noises;
 using Mathematics.Graphics.Noises.Fractal;
+using MathForge.Core.Interfaces.Noises;
 
 namespace Mathematics.Graphics.Noises.Gradient;
 

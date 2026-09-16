@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using NovoDwarf.Mathematics.App.Systems.Application.Constants;
-using NovoDwarf.Mathematics.App.Systems.Application.Entities;
+using MathForge.Maui.Systems.Application.Constants;
+using MathForge.Maui.Systems.Application.Entities;
 
-namespace NovoDwarf.Mathematics.App.Systems.Application.Services;
+namespace MathForge.Maui.Systems.Application.Services;
 
 public interface ILocaleService
 {

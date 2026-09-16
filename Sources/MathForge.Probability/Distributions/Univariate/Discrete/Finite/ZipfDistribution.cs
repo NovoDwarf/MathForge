@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Probability.Distributions.Univariate.Discrete.Finite;
+﻿namespace MathForge.Probability.Distributions.Univariate.Discrete.Finite;
 
 public class ZipfDistribution
 {

@@ -1,4 +1,4 @@
-﻿using Mathematics.Core.Utilities;
+﻿using MathForge.Core.Utilities;
 
 namespace Mathematics.Graphics.Noises.Spectral;
 

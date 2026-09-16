@@ -2,8 +2,8 @@
 
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:common1="using:NovoDwarf.Mathematics.App.ViewModels.Common"
-             x:Class="NovoDwarf.Mathematics.App.Views.Common.PreviewSquareView" x:DataType="common1:PreviewViewModel">
+             xmlns:common1="using:MathForge.Maui.ViewModels.Common"
+             x:Class="MathForge.Maui.Views.Common.PreviewSquareView" x:DataType="common1:PreviewViewModel">
     <ContentView.Content>
         <Border StrokeShape="RoundRectangle 12" Padding="16">
             

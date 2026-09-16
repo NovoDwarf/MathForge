@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Mathematics.Ballistics.Entities.Data;
+namespace MathForge.Ballistics.Entities.Data;
 
 public class WorldData
 {

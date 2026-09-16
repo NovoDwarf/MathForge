@@ -4,11 +4,11 @@ using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
-using NovoDwarf.Mathematics.App.Systems.Algorithms.Services;
-using NovoDwarf.Mathematics.App.Systems.Utilities;
+using MathForge.Maui.Systems.Algorithms.Services;
+using MathForge.Maui.Systems.Utilities;
 using Plugin.Maui.Audio;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
+namespace MathForge.Maui.ViewModels.Utilities.Tools;
 
 public partial class SoundGeneratorViewModel : ObservableObject
 {

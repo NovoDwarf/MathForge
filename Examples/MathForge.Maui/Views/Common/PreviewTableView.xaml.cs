@@ -1,8 +1,8 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Application.Services;
-using NovoDwarf.Mathematics.App.Systems.Hosting.Services;
-using NovoDwarf.Mathematics.App.ViewModels.Common;
+﻿using MathForge.Maui.Systems.Application.Services;
+using MathForge.Maui.Systems.Hosting.Services;
+using MathForge.Maui.ViewModels.Common;
 
-namespace NovoDwarf.Mathematics.App.Views.Common;
+namespace MathForge.Maui.Views.Common;
 
 public partial class PreviewTableView : ContentView
 {

@@ -1,10 +1,10 @@
 ﻿<ContentPage 
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:common1="using:NovoDwarf.Mathematics.App.Views.Common"
-	xmlns:modules1="using:NovoDwarf.Mathematics.App.Views.Modules"
-	xmlns:loc="clr-namespace:NovoDwarf.Mathematics.App.Resources.Localizations"
-	x:Class="NovoDwarf.Mathematics.App.Views.ModulesPage"
+	xmlns:common1="using:MathForge.Maui.Views.Common"
+	xmlns:modules1="using:MathForge.Maui.Views.Modules"
+	xmlns:loc="clr-namespace:MathForge.Maui.Resources.Localizations"
+	x:Class="MathForge.Maui.Views.ModulesPage"
 	Title="{x:Static loc:Components_Resources.Title_Modules}">
     
 	<ContentPage.Content>

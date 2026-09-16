@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 using System.Runtime.CompilerServices;
-using Mathematics.Core.Interfaces.Drawings;
+using MathForge.Core.Interfaces.Drawings;
 
 namespace Mathematics.Graphics.Drawings.Lines;
 

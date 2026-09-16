@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Probability.Distributions.Univariate.Discrete.Infinite;
+﻿namespace MathForge.Probability.Distributions.Univariate.Discrete.Infinite;
 
 public class PoissonMixedDistribution
 {

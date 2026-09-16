@@ -1,4 +1,4 @@
-﻿using Mathematics.Core.Interfaces.Noises;
+﻿using MathForge.Core.Interfaces.Noises;
 
 namespace Mathematics.Graphics.Noises.Gradient;
 

@@ -1,7 +1,7 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Application.Constants;
-using NovoDwarf.Mathematics.App.Systems.Hosting.Interfaces;
+﻿using MathForge.Maui.Systems.Application.Constants;
+using MathForge.Maui.Systems.Hosting.Interfaces;
 
-namespace NovoDwarf.Mathematics.App.Views;
+namespace MathForge.Maui.Views;
 
 public partial class ModulesPage : ContentPage, ILightPage
 {

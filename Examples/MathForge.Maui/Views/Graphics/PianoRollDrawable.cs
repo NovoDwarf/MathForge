@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Algorithms.DTOs;
+﻿using MathForge.Maui.Systems.Algorithms.DTOs;
 
-namespace NovoDwarf.Mathematics.App.Views.Graphics;
+namespace MathForge.Maui.Views.Graphics;
 
 public sealed class PianoRollDrawable : IDrawable
 {

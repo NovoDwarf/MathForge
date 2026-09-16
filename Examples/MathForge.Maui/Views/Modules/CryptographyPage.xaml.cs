@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Views.Modules;
+﻿namespace MathForge.Maui.Views.Modules;
 
 public partial class CryptographyPage : ContentPage
 {

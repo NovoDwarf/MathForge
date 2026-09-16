@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
+﻿using MathForge.Maui.ViewModels.Utilities.Tools;
 
-namespace NovoDwarf.Mathematics.App.Systems.Algorithms.Services;
+namespace MathForge.Maui.Systems.Algorithms.Services;
 
 public sealed class RoundingService
 {

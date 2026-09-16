@@ -1,7 +1,7 @@
-﻿using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Views.Graphics;
+﻿using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Views.Graphics;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
+namespace MathForge.Maui.ViewModels.Utilities.Tools;
 
 public class SynthViewModel : BaseViewModel
 {

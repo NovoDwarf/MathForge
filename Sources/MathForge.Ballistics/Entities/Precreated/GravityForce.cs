@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
+using MathForge.Ballistics.Entities.Objects;
 
-namespace Mathematics.Ballistics.Entities.Precreated;
+namespace MathForge.Ballistics.Entities.Precreated;
 
 public class GravityForce
 {

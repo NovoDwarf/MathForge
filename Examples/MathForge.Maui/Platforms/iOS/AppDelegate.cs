@@ -1,7 +1,4 @@
-﻿using Foundation;
-using UIKit;
-
-namespace NovoDwarf.Mathematics.App;
+﻿namespace MathForge.Maui.Platforms.iOS;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

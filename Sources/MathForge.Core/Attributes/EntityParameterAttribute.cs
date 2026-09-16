@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Core.Attributes;
+﻿namespace MathForge.Core.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public class EntityParameterAttribute : Attribute

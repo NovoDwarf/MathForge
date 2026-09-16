@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Mathematics.Core.Base.Graphics;
+namespace MathForge.Core.Base.Graphics;
 
 public class Vertex
 {

@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Systems.Measurements.DTOs;
+﻿namespace MathForge.Maui.Systems.Measurements.DTOs;
 
 public sealed class PrefixDto
 {

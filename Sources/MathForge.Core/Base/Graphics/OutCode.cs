@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Core.Base.Graphics;
+﻿namespace MathForge.Core.Base.Graphics;
 
 [Flags]
 public enum OutCode

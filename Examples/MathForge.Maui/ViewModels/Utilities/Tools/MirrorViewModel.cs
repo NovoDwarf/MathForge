@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Core.ViewModels;
+﻿using MathForge.Maui.Core.ViewModels;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools;
+namespace MathForge.Maui.ViewModels.Utilities.Tools;
 
 public partial class MirrorViewModel : BaseViewModel
 {

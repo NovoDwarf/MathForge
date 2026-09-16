@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Application.Constants;
+﻿using MathForge.Maui.Systems.Application.Constants;
 
-namespace NovoDwarf.Mathematics.App.Views;
+namespace MathForge.Maui.Views;
 
 public partial class DebugPage : ContentPage
 {

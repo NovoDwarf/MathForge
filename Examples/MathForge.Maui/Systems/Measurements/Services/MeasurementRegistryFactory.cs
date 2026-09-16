@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Measurements.Core;
+﻿using MathForge.Maui.Systems.Measurements.Core;
 
-namespace NovoDwarf.Mathematics.App.Systems.Measurements.Services;
+namespace MathForge.Maui.Systems.Measurements.Services;
 
 public static class MeasurementRegistryFactory
 {

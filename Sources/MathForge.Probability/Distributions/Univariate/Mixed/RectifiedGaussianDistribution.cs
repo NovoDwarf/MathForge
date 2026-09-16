@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Probability.Distributions.Univariate.Mixed;
+﻿namespace MathForge.Probability.Distributions.Univariate.Mixed;
 
 public partial class RectifiedGaussianDistribution
 {

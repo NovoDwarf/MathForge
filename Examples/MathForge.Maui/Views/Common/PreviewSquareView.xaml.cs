@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.ViewModels.Common;
+﻿using MathForge.Maui.ViewModels.Common;
 
-namespace NovoDwarf.Mathematics.App.Views.Common;
+namespace MathForge.Maui.Views.Common;
 
 public partial class PreviewSquareView : ContentView
 {

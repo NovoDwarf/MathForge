@@ -1,15 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using LocalizationResourceManager.Maui;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Resources.Localizations;
-using NovoDwarf.Mathematics.App.Systems.Application.Services;
-using NovoDwarf.Mathematics.App.ViewModels.Common;
-using NovoDwarf.Mathematics.App.Views.Modules.Utilities.Organizers;
-using NovoDwarf.Mathematics.App.Views.Modules.Utilities.Sensors;
-using NovoDwarf.Mathematics.App.Views.Modules.Utilities.Tools;
-using Utilities.Extensions;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Resources.Localizations;
+using MathForge.Maui.Systems.Application.Services;
+using MathForge.Maui.ViewModels.Common;
+using MathForge.Maui.Views.Modules.Utilities.Organizers;
+using MathForge.Maui.Views.Modules.Utilities.Sensors;
+using MathForge.Maui.Views.Modules.Utilities.Tools;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities;
+namespace MathForge.Maui.ViewModels.Utilities;
 
 public partial class UtilityViewModel : BaseViewModel
 {

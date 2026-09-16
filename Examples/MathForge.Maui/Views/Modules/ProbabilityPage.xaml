@@ -1,10 +1,10 @@
 ﻿<ContentPage
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:common="using:NovoDwarf.Mathematics.App.Views.Common"
-	xmlns:localizations="using:NovoDwarf.Mathematics.App.Resources.Localizations"
-	xmlns:probability="using:NovoDwarf.Mathematics.App.ViewModels.Probability"
-	x:Class="NovoDwarf.Mathematics.App.Views.Modules.ProbabilityPage" 
+	xmlns:common="using:MathForge.Maui.Views.Common"
+	xmlns:localizations="using:MathForge.Maui.Resources.Localizations"
+	xmlns:probability="using:MathForge.Maui.ViewModels.Probability"
+	x:Class="MathForge.Maui.Views.Modules.ProbabilityPage" 
 	x:DataType="probability:DistributionsViewModel"
 	Title="{x:Static localizations:Components_Resources.Title_Distributions}">
    

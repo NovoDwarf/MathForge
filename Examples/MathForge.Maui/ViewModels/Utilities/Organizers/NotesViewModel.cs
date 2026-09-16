@@ -2,10 +2,10 @@
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Algorithms.Entities;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Algorithms.Entities;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Organizers;
+namespace MathForge.Maui.ViewModels.Utilities.Organizers;
 
 public partial class NotesViewModel : BaseViewModel
 {

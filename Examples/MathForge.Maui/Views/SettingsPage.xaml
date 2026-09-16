@@ -2,9 +2,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:sv="clr-namespace:AiForms.Settings;assembly=SettingsView"
-    xmlns:pages1="using:NovoDwarf.Mathematics.App.ViewModels.Pages"
-    xmlns:loc="using:NovoDwarf.Mathematics.App.Resources.Localizations"
-    x:Class="NovoDwarf.Mathematics.App.Views.SettingsPage"
+    xmlns:pages1="using:MathForge.Maui.ViewModels.Pages"
+    xmlns:loc="using:MathForge.Maui.Resources.Localizations"
+    x:Class="MathForge.Maui.Views.SettingsPage"
     x:DataType="pages1:SettingsViewModel"
     Title="{x:Static loc:Components_Resources.Title_Settings}">
     

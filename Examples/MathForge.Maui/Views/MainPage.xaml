@@ -2,9 +2,9 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages2="using:NovoDwarf.Mathematics.App.ViewModels.Pages"
-             xmlns:localizations="using:NovoDwarf.Mathematics.App.Resources.Localizations"
-             x:Class="NovoDwarf.Mathematics.App.Views.MainPage" 
+             xmlns:pages2="using:MathForge.Maui.ViewModels.Pages"
+             xmlns:localizations="using:MathForge.Maui.Resources.Localizations"
+             x:Class="MathForge.Maui.Views.MainPage" 
              x:DataType="pages2:MainViewModel"
              Title="{x:Static localizations:Components_Resources.Title_Home}">
         <ScrollView>

@@ -4,9 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              xmlns:defaults="clr-namespace:LiveChartsCore.Defaults;assembly=LiveChartsCore"
-             xmlns:tools1="using:NovoDwarf.Mathematics.App.ViewModels.Utilities.Tools"
-             xmlns:localizations="using:NovoDwarf.Mathematics.App.Resources.Localizations"
-             x:Class="NovoDwarf.Mathematics.App.Views.Modules.Utilities.Tools.SoundGeneratorPage" x:DataType="tools1:SoundGeneratorViewModel">
+             xmlns:tools1="using:MathForge.Maui.ViewModels.Utilities.Tools"
+             xmlns:localizations="using:MathForge.Maui.Resources.Localizations"
+             x:Class="MathForge.Maui.Views.Modules.Utilities.Tools.SoundGeneratorPage" x:DataType="tools1:SoundGeneratorViewModel">
 	<ContentPage.Content>
 		<ScrollView>
 			<VerticalStackLayout Padding="20" Spacing="15">

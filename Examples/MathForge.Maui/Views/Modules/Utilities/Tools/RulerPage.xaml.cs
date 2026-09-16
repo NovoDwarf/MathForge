@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Views.Modules.Utilities.Tools;
+﻿namespace MathForge.Maui.Views.Modules.Utilities.Tools;
 
 public partial class RulerPage : ContentPage
 {

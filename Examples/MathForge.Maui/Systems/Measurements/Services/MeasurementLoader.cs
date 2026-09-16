@@ -1,9 +1,9 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Measurements.Core;
-using NovoDwarf.Mathematics.App.Systems.Measurements.DTOs;
-using NovoDwarf.Mathematics.App.Systems.Utilities;
+﻿using MathForge.Maui.Systems.Measurements.Core;
+using MathForge.Maui.Systems.Measurements.DTOs;
+using MathForge.Maui.Systems.Utilities;
 using Serilog;
 
-namespace NovoDwarf.Mathematics.App.Systems.Measurements.Services;
+namespace MathForge.Maui.Systems.Measurements.Services;
 
 public static class MeasurementLoader
 {
@@ -36,7 +36,7 @@ public static class MeasurementLoader
 		{
 			await using var stream = await FileSystem.Current.OpenAppPackageFileAsync(fileName);
 			using var reader = new StreamReader(stream);
-			var st = reader.ReadToEnd();
+			var st = await reader.ReadToEndAsync();
 
 			return st;
 		}

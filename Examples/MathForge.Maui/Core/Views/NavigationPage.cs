@@ -1,6 +1,6 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Application.Services;
+﻿using MathForge.Maui.Systems.Application.Services;
 
-namespace NovoDwarf.Mathematics.App.Core.Views;
+namespace MathForge.Maui.Core.Views;
 
 public abstract class NavigationPage : ContentPage, INavigable
 {

@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Views.Modules.Processing.Sorting;
+﻿namespace MathForge.Maui.Views.Modules.Processing.Sorting;
 
 public partial class SortingView : ContentPage
 {

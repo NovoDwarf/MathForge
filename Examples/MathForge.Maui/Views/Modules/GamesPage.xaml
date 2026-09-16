@@ -2,10 +2,10 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:games="using:NovoDwarf.Mathematics.App.ViewModels.Games"
-             xmlns:commonModels1="using:NovoDwarf.Mathematics.App.ViewModels.Common"
-             xmlns:common1="using:NovoDwarf.Mathematics.App.Views.Common"
-             x:Class="NovoDwarf.Mathematics.App.Views.Modules.GamesPage" 
+             xmlns:games="using:MathForge.Maui.ViewModels.Games"
+             xmlns:commonModels1="using:MathForge.Maui.ViewModels.Common"
+             xmlns:common1="using:MathForge.Maui.Views.Common"
+             x:Class="MathForge.Maui.Views.Modules.GamesPage" 
              x:DataType="games:GamesViewModel"
              Title="Игры">
  <ContentPage.Content>

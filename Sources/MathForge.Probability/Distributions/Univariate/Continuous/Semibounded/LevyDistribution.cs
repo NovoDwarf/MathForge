@@ -1,9 +1,9 @@
-﻿using Mathematics.Core.Attributes;
-using Mathematics.Core.Base.Entities;
-using Mathematics.Numerical.Simple;
+﻿using Mathematics.Numerical.Simple;
 using Mathematics.Numerical.Transforms;
+using MathForge.Core.Attributes;
+using MathForge.Core.Base.Entities;
 
-namespace Mathematics.Probability.Distributions.Univariate.Continuous.Semibounded;
+namespace MathForge.Probability.Distributions.Univariate.Continuous.Semibounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Semibounded")]
 public partial class LevyDistribution : Distribution

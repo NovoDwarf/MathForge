@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
-using NovoDwarf.Mathematics.App.Systems.Sensors.Enums;
+using MathForge.Maui.Systems.Sensors.Enums;
 
-namespace NovoDwarf.Mathematics.App.Systems.Sensors.DTOs;
+namespace MathForge.Maui.Systems.Sensors.DTOs;
 
 public sealed record FlashlightData : IEqualityOperators<FlashlightData, FlashlightData, bool>
 {

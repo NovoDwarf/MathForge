@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Systems.Algorithms.Services;
+﻿namespace MathForge.Maui.Systems.Algorithms.Services;
 
 public enum WaveType
 {

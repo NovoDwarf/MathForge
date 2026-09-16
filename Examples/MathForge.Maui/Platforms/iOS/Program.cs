@@ -1,6 +1,4 @@
-﻿using UIKit;
-
-namespace NovoDwarf.Mathematics.App;
+﻿namespace MathForge.Maui.Platforms.iOS;
 
 public class Program
 {

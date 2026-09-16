@@ -1,6 +1,6 @@
-﻿using Mathematics.Core.Attributes;
+﻿using MathForge.Core.Attributes;
 
-namespace Mathematics.Probability.Distributions.Univariate.Discrete.Infinite;
+namespace MathForge.Probability.Distributions.Univariate.Discrete.Infinite;
 
 [Categories("Distributions", "Univariate", "Discrete", "Infinite")]
 public class DelaporteDistribution

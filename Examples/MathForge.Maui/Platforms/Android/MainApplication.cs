@@ -1,8 +1,6 @@
-﻿using Android.App;
-using Android.Runtime;
-using Application = Android.App.Application;
+﻿using Android.Runtime;
 
-namespace NovoDwarf.Mathematics.App;
+namespace MathForge.Maui.Platforms.Android;
 
 [Application(Label = "Математический органайзер")]
 public class MainApplication : MauiApplication

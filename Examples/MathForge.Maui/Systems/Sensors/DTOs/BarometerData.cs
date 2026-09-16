@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace NovoDwarf.Mathematics.App.Systems.Sensors.DTOs;
+namespace MathForge.Maui.Systems.Sensors.DTOs;
 
 public sealed record BarometerData : IEqualityOperators<BarometerData, BarometerData, bool>
 {

@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Probability.Distributions.Multivariate.Discrete;
+﻿namespace MathForge.Probability.Distributions.Multivariate.Discrete;
 
 public class EwensDistribution
 {

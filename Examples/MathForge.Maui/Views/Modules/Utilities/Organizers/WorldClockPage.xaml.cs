@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Views.Modules.Utilities.Organizers;
+﻿namespace MathForge.Maui.Views.Modules.Utilities.Organizers;
 
 public partial class WorldClockPage : ContentPage
 {

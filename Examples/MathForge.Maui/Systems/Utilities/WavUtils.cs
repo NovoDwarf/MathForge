@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Systems.Utilities;
+﻿namespace MathForge.Maui.Systems.Utilities;
 
 public static class WavUtils
 {

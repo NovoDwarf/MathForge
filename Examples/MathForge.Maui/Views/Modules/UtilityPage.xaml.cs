@@ -1,7 +1,7 @@
-﻿using NovoDwarf.Mathematics.App.Systems.Hosting.Interfaces;
-using NovoDwarf.Mathematics.App.ViewModels.Utilities;
+﻿using MathForge.Maui.Systems.Hosting.Interfaces;
+using MathForge.Maui.ViewModels.Utilities;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules;
+namespace MathForge.Maui.Views.Modules;
 
 public partial class UtilityPage : ContentPage, ILightPage
 {

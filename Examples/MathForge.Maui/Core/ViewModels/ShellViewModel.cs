@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Core.ViewModels;
+﻿namespace MathForge.Maui.Core.ViewModels;
 
 public partial class ShellViewModel : BaseViewModel
 {

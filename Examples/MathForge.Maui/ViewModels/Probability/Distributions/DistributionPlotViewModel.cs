@@ -4,13 +4,13 @@ using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
-using Mathematics.Core.Base.Entities;
+using MathForge.Core.Base.Entities;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Hosting.Services;
+using MathForge.Maui.Views.Modules.Probability.Distributions;
 using Microsoft.Extensions.Logging;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Hosting.Services;
-using NovoDwarf.Mathematics.App.Views.Modules.Probability.Distributions;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Probability.Distributions;
+namespace MathForge.Maui.ViewModels.Probability.Distributions;
 
 public partial class DistributionPlotViewModel : BaseViewModel
 {

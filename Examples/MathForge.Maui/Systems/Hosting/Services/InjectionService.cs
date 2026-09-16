@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace NovoDwarf.Mathematics.App.Systems.Hosting.Services;
+namespace MathForge.Maui.Systems.Hosting.Services;
 
 public sealed class InjectionService
 {

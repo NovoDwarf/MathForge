@@ -4,15 +4,15 @@ using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Application.Constants;
-using NovoDwarf.Mathematics.App.Systems.Sensors.Processing;
-using NovoDwarf.Mathematics.App.Systems.Sensors.Services;
-using NovoDwarf.Mathematics.App.Systems.Sensors.ValueObjects;
-using NovoDwarf.Mathematics.App.Systems.Utilities;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Application.Constants;
+using MathForge.Maui.Systems.Sensors.Processing;
+using MathForge.Maui.Systems.Sensors.Services;
+using MathForge.Maui.Systems.Sensors.ValueObjects;
+using MathForge.Maui.Systems.Utilities;
 using SkiaSharp;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Utilities.Sensors;
+namespace MathForge.Maui.ViewModels.Utilities.Sensors;
 
 public sealed partial class AccelerometerViewModel : BaseViewModel
 {

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace NovoDwarf.Mathematics.App.Systems.Application.Constants;
+namespace MathForge.Maui.Systems.Application.Constants;
 
 public static class PreferenceKeys
 {

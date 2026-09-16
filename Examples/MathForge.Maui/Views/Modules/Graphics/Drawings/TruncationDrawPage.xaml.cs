@@ -1,12 +1,10 @@
 ﻿using System.Numerics;
-using Mathematics.Core.Interfaces.Drawings;
-using Mathematics.Graphics.Drawings.Clippers;
-using NovoDwarf.Mathematics.App.Views.Graphics;
+using MathForge.Core.Interfaces.Drawings;
+using MathForge.Maui.Views.Graphics;
 using SkiaSharp;
-using SkiaSharp.Views.Maui;
 using Rect = Mathematics.Core.Base.Graphics.Rect;
 
-namespace NovoDwarf.Mathematics.App.Views.Modules.Graphics.Drawings;
+namespace MathForge.Maui.Views.Modules.Graphics.Drawings;
 
 public partial class TruncationDrawPage : DrawPageBase
 {

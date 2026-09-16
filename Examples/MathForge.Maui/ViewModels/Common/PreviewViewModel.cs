@@ -1,11 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Hosting.Services;
+using MathForge.Maui.Views.Common;
 using Microsoft.Extensions.Logging;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Hosting.Services;
-using NovoDwarf.Mathematics.App.Views.Common;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Common;
+namespace MathForge.Maui.ViewModels.Common;
 
 public partial class PreviewViewModel : BaseViewModel
 {

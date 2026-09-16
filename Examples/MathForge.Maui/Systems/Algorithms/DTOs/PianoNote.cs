@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Systems.Algorithms.DTOs;
+﻿namespace MathForge.Maui.Systems.Algorithms.DTOs;
 
 public readonly record struct PianoNote(
 	int Note,

@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:skiaSharpView="using:LiveChartsCore.SkiaSharpView"
-    xmlns:sensors="using:NovoDwarf.Mathematics.App.ViewModels.Utilities.Sensors"
-    xmlns:loc="using:NovoDwarf.Mathematics.App.Resources.Localizations"
-    xmlns:local="using:NovoDwarf.Mathematics.App.Systems.Application.Constants"
-    x:Class="NovoDwarf.Mathematics.App.Views.Modules.Utilities.Sensors.AccelerometerPage"
+    xmlns:sensors="using:MathForge.Maui.ViewModels.Utilities.Sensors"
+    xmlns:loc="using:MathForge.Maui.Resources.Localizations"
+    xmlns:local="using:MathForge.Maui.Systems.Application.Constants"
+    x:Class="MathForge.Maui.Views.Modules.Utilities.Sensors.AccelerometerPage"
     x:DataType="sensors:AccelerometerViewModel"
     Title="{x:Static loc:Components_Resources.Title_Accelerometer}">
     

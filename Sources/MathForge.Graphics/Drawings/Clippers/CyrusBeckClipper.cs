@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
-using Mathematics.Core.Base.Graphics;
-using Mathematics.Core.Interfaces.Drawings;
+using MathForge.Core.Base.Graphics;
+using MathForge.Core.Interfaces.Drawings;
 
 namespace Mathematics.Graphics.Drawings.Clippers;
 
@@ -10,10 +10,7 @@ public class CyrusBeckClipper : ILineClipper
 	
 	public bool Clip(ref float x0, ref float y0, ref float x1, ref float y1)
 	{
-		var line = new LineSegment(
-			new Vector2(x0, y0),
-			new Vector2(x1, y1)
-		);
+		var line = new LineSegment(new Vector2(x0, y0), new Vector2(x1, y1));
 
 		if (!CyrusBeckClipper.Clip(line, Rect, out var clipped))
 			return false;
@@ -74,6 +71,7 @@ public class CyrusBeckClipper : ILineClipper
 			}
 
 			var t = numerator / denominator;
+			
 			if (denominator < 0)
 				tEnter = Math.Max(tEnter, t);
 			else

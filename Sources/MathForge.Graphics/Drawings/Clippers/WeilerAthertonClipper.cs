@@ -1,11 +1,11 @@
 ﻿using System.Numerics;
-using Mathematics.Core.Base.Graphics;
+using MathForge.Core.Base.Graphics;
+using MathForge.Core.Interfaces.Drawings;
 
 namespace Mathematics.Graphics.Drawings.Clippers;
 
-public class WeilerAthertonClipper
+public class WeilerAthertonClipper : ILineClipper
 {
-	// Основной метод: возвращает отсечённый многоугольник
 	public static List<Vector2> Clip(List<Vector2> subject, List<Vector2> clip)
 	{
 		var subjectList = CreateVertexList(subject);
@@ -68,15 +68,12 @@ public class WeilerAthertonClipper
 
 				InsertVertex(s1, interSubj);
 				InsertVertex(c1, interClip);
-
-				// Можно здесь определить вход/выход для IsEntry
 			}
 		}
 	}
 
 	private static void InsertVertex(Vertex start, Vertex toInsert)
 	{
-		// Простое вставление после start
 		toInsert.Next = start.Next;
 		toInsert.Prev = start;
 		start.Next.Prev = toInsert;
@@ -87,21 +84,21 @@ public class WeilerAthertonClipper
 	{
 		intersection = new Vector2();
 		
-		var A1 = p2.Y - p1.Y;
-		var B1 = p1.X - p2.X;
-		var C1 = A1 * p1.X + B1 * p1.Y;
+		var a1 = p2.Y - p1.Y;
+		var b1 = p1.X - p2.X;
+		var c1 = a1 * p1.X + b1 * p1.Y;
 
-		var A2 = q2.Y - q1.Y;
-		var B2 = q1.X - q2.X;
-		var C2 = A2 * q1.X + B2 * q1.Y;
+		var a2 = q2.Y - q1.Y;
+		var b2 = q1.X - q2.X;
+		var c2 = a2 * q1.X + b2 * q1.Y;
 
-		var det = A1 * B2 - A2 * B1;
+		var det = a1 * b2 - a2 * b1;
 		
 		if (Math.Abs(det) < 1e-6)
 			return false;
 
-		intersection.X = (B2 * C1 - B1 * C2) / det;
-		intersection.Y = (A1 * C2 - A2 * C1) / det;
+		intersection.X = (b2 * c1 - b1 * c2) / det;
+		intersection.Y = (a1 * c2 - a2 * c1) / det;
 
 		return IsBetween(p1, p2, intersection) && IsBetween(q1, q2, intersection);
 	}
@@ -120,7 +117,6 @@ public class WeilerAthertonClipper
 		{
 			if (!v.IsIntersection)
 				result.Add(v.Position);
-			// Для полного алгоритма нужно реализовать обход пересечений с учётом IsEntry/IsExit
 		}
 
 		return result;

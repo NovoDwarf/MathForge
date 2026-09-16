@@ -1,6 +1,8 @@
 ﻿using System.Numerics;
+using MathForge.Ballistics.Entities.Objects;
+using MathForge.Ballistics.Extensions;
 
-namespace Mathematics.Ballistics.Entities.Precreated;
+namespace MathForge.Ballistics.Entities.Precreated;
 
 public class DragForce : IForce
 {

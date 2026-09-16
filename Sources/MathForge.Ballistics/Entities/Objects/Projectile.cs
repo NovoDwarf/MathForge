@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Mathematics.Ballistics.Entities;
+namespace MathForge.Ballistics.Entities.Objects;
 
 public class Projectile
 {

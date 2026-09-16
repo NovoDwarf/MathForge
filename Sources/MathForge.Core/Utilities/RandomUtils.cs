@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Core.Utilities;
+﻿namespace MathForge.Core.Utilities;
 
 public class RandomUtils
 {

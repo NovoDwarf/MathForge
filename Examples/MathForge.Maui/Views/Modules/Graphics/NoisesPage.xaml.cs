@@ -1,4 +1,4 @@
-﻿namespace NovoDwarf.Mathematics.App.Views.Modules.Graphics;
+﻿namespace MathForge.Maui.Views.Modules.Graphics;
 
 public partial class NoisesPage : ContentPage
 {

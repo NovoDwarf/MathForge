@@ -1,17 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Mathematics.Core.Base.Entities;
-using Mathematics.Core.Resources;
-using Mathematics.Probability.Distributions.Univariate.Discrete.Finite;
+using MathForge.Core.Base.Entities;
+using MathForge.Core.Resources;
+using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Systems.Algorithms.Services;
+using MathForge.Maui.Systems.Hosting.Services;
+using MathForge.Maui.Views.Modules.Probability.Distributions;
+using MathForge.Probability.Distributions.Univariate.Discrete.Finite;
 using Microsoft.Extensions.Logging;
-using NovoDwarf.Mathematics.App.Core.ViewModels;
-using NovoDwarf.Mathematics.App.Systems.Algorithms.Services;
-using NovoDwarf.Mathematics.App.Systems.Hosting.Services;
-using NovoDwarf.Mathematics.App.Views.Modules.Probability.Distributions;
-using ParameterViewModel = NovoDwarf.Mathematics.App.ViewModels.Common.ParameterViewModel;
+using ParameterViewModel = MathForge.Maui.ViewModels.Common.ParameterViewModel;
 
-namespace NovoDwarf.Mathematics.App.ViewModels.Probability.Distributions;
+namespace MathForge.Maui.ViewModels.Probability.Distributions;
 
 public partial class DistributionViewModel : DistributionViewModel<BernoulliDistribution>
 {

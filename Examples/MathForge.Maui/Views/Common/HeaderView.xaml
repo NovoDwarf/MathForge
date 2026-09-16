@@ -2,7 +2,7 @@
 
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NovoDwarf.Mathematics.App.Views.Common.HeaderView" x:Name="Header">
+             x:Class="MathForge.Maui.Views.Common.HeaderView" x:Name="Header">
     <VerticalStackLayout Spacing="4">
         <BoxView HeightRequest="{Binding LineThickness, Source={x:Reference Header}}"
                  BackgroundColor="{Binding LineColor, Source={x:Reference Header}}"

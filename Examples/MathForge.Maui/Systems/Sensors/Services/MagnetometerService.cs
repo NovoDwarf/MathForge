@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace NovoDwarf.Mathematics.App.Systems.Sensors.Services;
+namespace MathForge.Maui.Systems.Sensors.Services;
 
 public class MagnetometerService
 {

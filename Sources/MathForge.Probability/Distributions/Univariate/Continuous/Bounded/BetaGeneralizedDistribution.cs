@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Probability.Distributions.Univariate.Continuous.Bounded;
+﻿namespace MathForge.Probability.Distributions.Univariate.Continuous.Bounded;
 
 public class BetaGeneralizedDistribution
 {

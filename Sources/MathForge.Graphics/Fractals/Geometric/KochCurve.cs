@@ -66,14 +66,12 @@ public class KochCurve
 				continue;
 			}
 
-			// Делим сегмент по правилу Коха
 			var v = b - a;
 
 			var p1 = a + v / 3f;
 			var p3 = a + v * 2f / 3f;
 			var p2 = p1 + Rotate(v / 3f, Angle);
 
-			// Порядок важен для корректного обхода
 			stack.Push((p3, b));
 			stack.Push((p2, p3));
 			stack.Push((p1, p2));
@@ -81,14 +79,8 @@ public class KochCurve
 		}
 	}
 
-	public void DrawAdaptive(
-		Vector2 start,
-		Vector2 end,
-		Func<Vector2, Vector2> worldToScreen,
-		float minPixelLength,
-		Action<Vector2, Vector2> drawLine)
+	public void DrawAdaptive(Vector2 start, Vector2 end, Func<Vector2, Vector2> worldToScreen, float minPixelLength, Action<Vector2, Vector2> drawLine)
 	{
-		// Ограничение глубины стека — страховка
 		const int MaxStackSize = 1 << 16;
 
 		Span<(Vector2 A, Vector2 B)> stack =
@@ -115,7 +107,6 @@ public class KochCurve
 			var p3 = a + v * 2f / 3f;
 			var p2 = p1 + Rotate(v / 3f, Angle);
 
-			// DFS: порядок важен
 			stack[top++] = (p3, b);
 			stack[top++] = (p2, p3);
 			stack[top++] = (p1, p2);

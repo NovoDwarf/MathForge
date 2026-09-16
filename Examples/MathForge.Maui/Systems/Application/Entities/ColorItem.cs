@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace NovoDwarf.Mathematics.App.Systems.Application.Entities;
+namespace MathForge.Maui.Systems.Application.Entities;
 
 public partial class ColorItem : ObservableObject
 {

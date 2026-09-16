@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Mathematics.Core.Utilities;
 using Mathematics.Graphics.Noises.Fractal;
 using Mathematics.Graphics.Permutations;
+using MathForge.Core.Utilities;
 
 namespace Mathematics.Graphics.Noises.Gradient;
 

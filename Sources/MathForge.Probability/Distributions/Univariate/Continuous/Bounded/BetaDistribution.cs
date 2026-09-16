@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Mathematics.Core.Attributes;
-using Mathematics.Core.Base.Entities;
-using Mathematics.Core.Utilities;
 using Mathematics.Numerical.Simple;
-using Mathematics.Probability.Distributions.Univariate.Continuous.Semibounded;
+using MathForge.Core.Attributes;
+using MathForge.Core.Base.Entities;
+using MathForge.Core.Utilities;
+using MathForge.Probability.Distributions.Univariate.Continuous.Semibounded;
 
-namespace Mathematics.Probability.Distributions.Univariate.Continuous.Bounded;
+namespace MathForge.Probability.Distributions.Univariate.Continuous.Bounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Bounded")]
 public partial class BetaDistribution : Distribution

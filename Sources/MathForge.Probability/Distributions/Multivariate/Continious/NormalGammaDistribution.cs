@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Probability.Distributions.Multivariate.Continious;
+﻿namespace MathForge.Probability.Distributions.Multivariate.Continious;
 
 public class NormalGammaDistribution
 {
