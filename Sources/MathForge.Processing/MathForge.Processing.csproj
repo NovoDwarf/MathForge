@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net11.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MathForge.Core\MathForge.Core.csproj" />
+        <PackageReference Include="MathForge.Core" Version="1.0.0" />
     </ItemGroup>
     
 </Project>

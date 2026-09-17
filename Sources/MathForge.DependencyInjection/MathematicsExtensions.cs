@@ -3,7 +3,7 @@ using MathForge.Core.Base.Entities;
 using MathForge.Probability.Distributions.Univariate.Discrete.Finite;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Mathematics.DependencyInjection;
+namespace MathForge.DependencyInjection;
 
 public static class MathematicsExtensions
 {

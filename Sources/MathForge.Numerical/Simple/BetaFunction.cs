@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Numerical.Simple;
+﻿namespace MathForge.Numerical.Simple;
 
 public class BetaFunction
 {

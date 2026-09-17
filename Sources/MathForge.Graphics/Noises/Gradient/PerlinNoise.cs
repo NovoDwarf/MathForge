@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Mathematics.Graphics.Noises.Fractal;
-using Mathematics.Graphics.Permutations;
 using MathForge.Core.Utilities;
+using MathForge.Graphics.Noises.Fractal;
+using MathForge.Graphics.Permutations;
 
-namespace Mathematics.Graphics.Noises.Gradient;
+namespace MathForge.Graphics.Noises.Gradient;
 
 public record PerlinNoiseOptions : NoiseOptionsBase
 {

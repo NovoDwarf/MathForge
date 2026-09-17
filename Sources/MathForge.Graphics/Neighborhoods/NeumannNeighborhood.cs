@@ -1,6 +1,6 @@
-﻿namespace Mathematics.Graphics.Neighborhoods;
+﻿using System.Numerics;
 
-using System.Numerics;
+namespace MathForge.Graphics.Neighborhoods;
 
 public class NeumannNeighborhood : INeighborhood2D, INeighborhood3D
 {

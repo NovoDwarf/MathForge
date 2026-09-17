@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
-using Mathematics.Graphics.Neighborhoods;
+using MathForge.Graphics.Neighborhoods;
 
-namespace Mathematics.Graphics.Drawings.Fillers;
+namespace MathForge.Graphics.Drawings.Fillers;
 
 public class FloodFiller
 {

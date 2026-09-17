@@ -1,6 +1,6 @@
 ﻿using Android.Runtime;
 
-namespace MathForge.Maui.Platforms.Android;
+namespace MathForge.Maui;
 
 [Application(Label = "Математический органайзер")]
 public class MainApplication : MauiApplication

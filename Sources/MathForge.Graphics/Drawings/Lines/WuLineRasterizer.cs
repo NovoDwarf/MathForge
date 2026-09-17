@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using MathForge.Core.Interfaces.Drawings;
 
-namespace Mathematics.Graphics.Drawings.Lines;
+namespace MathForge.Graphics.Drawings.Lines;
 
 public class WuLineRasterizer : ILineRasterizer
 {

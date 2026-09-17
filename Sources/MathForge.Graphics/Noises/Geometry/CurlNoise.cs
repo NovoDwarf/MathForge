@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Graphics.Noises.Geometry;
+﻿namespace MathForge.Graphics.Noises.Geometry;
 
 public class CurlNoise
 {

@@ -1,6 +1,6 @@
 ﻿using Android.Content.PM;
 
-namespace MathForge.Maui.Platforms.Android;
+namespace MathForge.Maui;
 
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop,
 	ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode |

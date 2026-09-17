@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using MathForge.Core.Interfaces.Drawings;
 
-namespace Mathematics.Graphics.Drawings.Circles;
+namespace MathForge.Graphics.Drawings.Circles;
 
 public class WuCircleRasterizer : ICircleRasterizer
 {

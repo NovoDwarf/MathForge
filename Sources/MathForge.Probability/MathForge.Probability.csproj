@@ -1,19 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net11.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Distributions\" />
-      <Folder Include="Statistics\" />
+        <PackageReference Include="MathForge.Core" Version="1.0.0" />
+        <PackageReference Include="MathForge.Numerical" Version="1.0.0" />
     </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\MathForge.Core\MathForge.Core.csproj" />
-      <ProjectReference Include="..\MathForge.Numerical\MathForge.Numerical.csproj" />
-    </ItemGroup>
-
 </Project>

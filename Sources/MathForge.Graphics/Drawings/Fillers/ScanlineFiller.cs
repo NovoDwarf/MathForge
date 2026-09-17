@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Mathematics.Graphics.Drawings.Fillers;
+namespace MathForge.Graphics.Drawings.Fillers;
 
 public class ScanlineFiller
 {

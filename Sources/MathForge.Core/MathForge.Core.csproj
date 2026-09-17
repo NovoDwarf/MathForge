@@ -1,33 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Authors>NovoDwarf</Authors>
-        <TargetFramework>net11.0</TargetFramework>
+        <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
       <EmbeddedResource Update="Resources\Probability.Resources.resx">
         <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>Distribution.Resources.Designer.cs</LastGenOutput>
+        <LastGenOutput>Probability.Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+  
       <EmbeddedResource Update="Resources\Numerical.Resources.resx">
         <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>Functions.Resources.Designer.cs</LastGenOutput>
+        <LastGenOutput>Numerical.Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+  
       <EmbeddedResource Update="Resources\Base.Resources.resx">
         <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>Base.Designer.cs</LastGenOutput>
+        <LastGenOutput>Base.Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+  
       <EmbeddedResource Update="Resources\Parameters.Resources.resx">
         <Generator>PublicResXFileCodeGenerator</Generator>
         <LastGenOutput>Parameters.Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
-
+  
     <ItemGroup>
       <Compile Update="Resources\Probability.Resources.Designer.cs">
         <DesignTime>True</DesignTime>
@@ -53,7 +51,7 @@
 
     <ItemGroup>
       <PackageReference Include="NovoDwarf.Utilities" Version="1.0.0" />
-      <PackageReference Include="System.Drawing.Common" Version="11.0.0-preview.5.26302.115" />
+      <PackageReference Include="System.Drawing.Common" Version="11.0.0-rc.1.26425.128" />
     </ItemGroup>
-
+    
 </Project>

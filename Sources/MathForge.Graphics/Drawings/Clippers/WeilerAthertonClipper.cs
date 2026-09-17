@@ -2,9 +2,9 @@
 using MathForge.Core.Base.Graphics;
 using MathForge.Core.Interfaces.Drawings;
 
-namespace Mathematics.Graphics.Drawings.Clippers;
+namespace MathForge.Graphics.Drawings.Clippers;
 
-public class WeilerAthertonClipper : ILineClipper
+public class WeilerAthertonClipper
 {
 	public static List<Vector2> Clip(List<Vector2> subject, List<Vector2> clip)
 	{

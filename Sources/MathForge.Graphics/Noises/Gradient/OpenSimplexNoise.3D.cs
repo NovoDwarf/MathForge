@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Mathematics.Graphics.Noises.Gradient;
+namespace MathForge.Graphics.Noises.Gradient;
 
 public enum OpenSimplexNoise3DType
 {

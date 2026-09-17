@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Graphics.Noises.Value;
+﻿namespace MathForge.Graphics.Noises.Value;
 
 public class SmoothValueNoise
 {

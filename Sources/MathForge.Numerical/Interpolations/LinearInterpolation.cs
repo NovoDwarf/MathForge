@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Runtime.CompilerServices;
 
-namespace Mathematics.Numerical.Interpolations;
+namespace MathForge.Numerical.Interpolations;
 
 public static class LinearInterpolation
 {

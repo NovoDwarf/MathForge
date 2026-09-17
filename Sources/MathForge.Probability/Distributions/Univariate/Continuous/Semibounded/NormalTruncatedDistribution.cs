@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Mathematics.Numerical.Simple;
-using Mathematics.Numerical.Transforms;
 using MathForge.Core.Attributes;
 using MathForge.Core.Base.Entities;
+using MathForge.Numerical.Simple;
+using MathForge.Numerical.Transforms;
 
 namespace MathForge.Probability.Distributions.Univariate.Continuous.Semibounded
 {

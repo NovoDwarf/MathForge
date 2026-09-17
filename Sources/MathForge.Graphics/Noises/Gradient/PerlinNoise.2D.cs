@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Interfaces.Noises;
 
-namespace Mathematics.Graphics.Noises.Gradient;
+namespace MathForge.Graphics.Noises.Gradient;
 
 public partial class PerlinNoise : INoise2D
 {

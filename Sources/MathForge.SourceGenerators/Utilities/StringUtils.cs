@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Mathematics.SourceGenerators.Utilities;
+namespace MathForge.SourceGenerators.Utilities;
 
 public class StringUtils
 {

@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Mathematics.Graphics.Neighborhoods;
+namespace MathForge.Graphics.Neighborhoods;
 
 public interface INeighborhood3D
 {

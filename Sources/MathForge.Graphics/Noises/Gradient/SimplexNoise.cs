@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Graphics.Noises.Gradient;
+﻿namespace MathForge.Graphics.Noises.Gradient;
 
 public class SimplexNoise
 {

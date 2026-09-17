@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using MathForge.Core.Interfaces.Drawings;
 
-namespace Mathematics.Graphics.Drawings.Lines;
+namespace MathForge.Graphics.Drawings.Lines;
 
 public class DdaLineRasterizer : ILineRasterizer
 {

@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Numerical.Transforms;
+﻿namespace MathForge.Numerical.Transforms;
 
 public static class BoxMullerPolarTransform
 {

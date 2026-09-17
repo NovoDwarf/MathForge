@@ -1,4 +1,4 @@
-﻿namespace MathForge.Maui.Platforms.MacCatalyst;
+﻿namespace MathForge.Maui;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

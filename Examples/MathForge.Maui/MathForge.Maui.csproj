@@ -2,6 +2,7 @@
     <PropertyGroup>
       <DefineConstants>$(DefineConstants);MauiAllowImplicitXmlnsDeclaration</DefineConstants>
       <EnablePreviewFeatures>true</EnablePreviewFeatures>
+      <IsPackable>false</IsPackable>
     </PropertyGroup>
   
     <PropertyGroup>
@@ -12,11 +13,8 @@
         <UseMaui>true</UseMaui>
         <SingleProject>true</SingleProject>
         <EnableUnsafeBlocks>true</EnableUnsafeBlocks>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
         <MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
         <MauiStrictXamlCompilation>true</MauiStrictXamlCompilation>
-        <LangVersion>preview</LangVersion>
         <UseMaterial3>true</UseMaterial3>
       
         <!-- Display name -->
@@ -62,6 +60,9 @@
 
     <ItemGroup>
         <PackageReference Include="AdamE.MemoryToolkit.Maui" Version="2.0.0" />
+        <PackageReference Include="MathForge.Core" Version="1.0.0" />
+        <PackageReference Include="MathForge.Numerical" Version="1.0.0" />
+        <PackageReference Include="MathForge.SourceGenerators" Version="1.0.0" />
         <PackageReference Include="Plugin.Maui.Audio" Version="5.0.0-preview2" />
         <PackageReference Include="AiForms.Maui.SettingsView" Version="9.0.12" />
         <PackageReference Include="Camera.MAUI.ZXing" Version="1.0.0" />
@@ -431,13 +432,7 @@
         <SubType>Designer</SubType>
       </MauiXaml>
     </ItemGroup>
-    
-    <ItemGroup>
-      <Reference Include="SettingsView">
-        <HintPath>C:\Users\kiril\.nuget\packages\aiforms.maui.settingsview\9.0.5-pre\lib\net9.0\SettingsView.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-    
+
     <ItemGroup>
       <AdditionalFiles Include="Views\Common\HeaderView.xaml" />
       <AdditionalFiles Include="Views\Common\ParameterView.xaml" />
@@ -487,13 +482,5 @@
     <ItemGroup>
       <Folder Include="Views\Modules\Numerical\" />
     </ItemGroup>
-    
-    <ItemGroup>
-      <ProjectReference Include="..\..\Sources\MathForge.Probability\MathForge.Probability.csproj" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <ProjectReference Include="..\..\Sources\MathForge.Core\MathForge.Core.csproj" />
-    </ItemGroup>
-
+  
 </Project>

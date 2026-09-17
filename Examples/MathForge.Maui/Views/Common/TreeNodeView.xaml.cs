@@ -116,7 +116,7 @@ public static class TreeBuilder
 			}
 		}
 
-		var leafId = leafTitleRaw; // или отдельный idSelector при необходимости
+		var leafId = leafTitleRaw;
 		var leafTitle = options.Localize?.Invoke(leafTitleRaw) ?? leafTitleRaw;
 		var leafDescription = leafDescriptionRaw != null
 			? options.Localize?.Invoke(leafDescriptionRaw) ?? leafDescriptionRaw

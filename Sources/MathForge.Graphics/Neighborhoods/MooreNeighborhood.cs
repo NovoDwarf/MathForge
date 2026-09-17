@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Mathematics.Graphics.Neighborhoods;
+namespace MathForge.Graphics.Neighborhoods;
 
 public class MooreNeighborhood : INeighborhood2D, INeighborhood3D
 {

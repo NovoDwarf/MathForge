@@ -1,4 +1,4 @@
-﻿namespace Mathematics.SourceGenerators.Utilities;
+﻿namespace MathForge.SourceGenerators.Utilities;
 
 public static class ParseUtils
 {

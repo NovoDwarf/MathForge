@@ -1,5 +1,5 @@
-﻿using Mathematics.Numerical.Transforms;
-using MathForge.Core.Utilities;
+﻿using MathForge.Core.Utilities;
+using MathForge.Numerical.Transforms;
 
 namespace MathForge.Probability.Randoms;
 
@@ -17,7 +17,7 @@ public static class RandomExtensions
 
 		public static double NextNormal(double mean, double stdDev)
 		{
-			return mean + stdDev * NextNormal();
+			return mean + stdDev * RandomUtils.NextNormal();
 		}
 	}
 }

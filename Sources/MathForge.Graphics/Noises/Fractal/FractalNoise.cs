@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using MathForge.Core.Interfaces.Noises;
 
-namespace Mathematics.Graphics.Noises.Fractal;
+namespace MathForge.Graphics.Noises.Fractal;
 
 public record OpenSimplexOptions : NoiseOptionsBase;
 

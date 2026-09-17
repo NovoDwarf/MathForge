@@ -1,6 +1,6 @@
-﻿using Mathematics.Numerical.Simple;
-using MathForge.Core.Attributes;
+﻿using MathForge.Core.Attributes;
 using MathForge.Core.Base.Entities;
+using MathForge.Numerical.Simple;
 
 namespace MathForge.Probability.Distributions.Univariate.Discrete.Infinite
 {

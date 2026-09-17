@@ -2,15 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
-        
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <IsRoslynComponent>true</IsRoslynComponent>
-        <RootNamespace>Mathematics.SourceGenerators</RootNamespace>
     </PropertyGroup>
-
+    
     <ItemGroup>
       <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="5.9.0">
         <PrivateAssets>all</PrivateAssets>

@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Utilities;
 
-namespace Mathematics.Graphics.Noises.Spectral;
+namespace MathForge.Graphics.Noises.Spectral;
 
 public class WhiteNoise
 {

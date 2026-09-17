@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Graphics.Permutations;
+﻿namespace MathForge.Graphics.Permutations;
 
 public class PermutationTable
 {

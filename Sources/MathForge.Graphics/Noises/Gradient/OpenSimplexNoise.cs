@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
-using Mathematics.Graphics.Noises.Fractal;
 using MathForge.Core.Interfaces.Noises;
+using MathForge.Graphics.Noises.Fractal;
 
-namespace Mathematics.Graphics.Noises.Gradient;
+namespace MathForge.Graphics.Noises.Gradient;
 
 /// <summary>
 /// OpenSimplex2 from original repo <see href="https://github.com/KdotJPG/OpenSimplex2/tree/master">OpenSimplex2</see>

@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Graphics.Noises.Hash;
+﻿namespace MathForge.Graphics.Noises.Hash;
 
 public class HashNoise
 {

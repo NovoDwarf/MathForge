@@ -1,4 +1,4 @@
-﻿namespace Mathematics.Graphics.Noises.Cellular;
+﻿namespace MathForge.Graphics.Noises.Cellular;
 
 public class CellularNoise
 {

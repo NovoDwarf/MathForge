@@ -1,7 +1,7 @@
 ﻿using MathForge.Core.Base.Graphics;
 using MathForge.Core.Interfaces.Drawings;
 
-namespace Mathematics.Graphics.Drawings.Clippers;
+namespace MathForge.Graphics.Drawings.Clippers;
 
 public class CohenSutherlandClipper : ILineClipper
 {

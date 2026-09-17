@@ -1,9 +1,9 @@
 ﻿using System.Collections.Immutable;
-using Mathematics.SourceGenerators.Utilities;
+using MathForge.SourceGenerators.Utilities;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Mathematics.SourceGenerators.Generators;
+namespace MathForge.SourceGenerators.Generators;
 
 [Generator]
 public class PropertiesGenerator : IIncrementalGenerator

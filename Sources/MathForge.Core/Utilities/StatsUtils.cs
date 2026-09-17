@@ -1,5 +1,5 @@
 ﻿using MathForge.Core.Extensions;
-using Utilities.Extensions;
+using NovoDwarf.Utilities.Extensions;
 
 namespace MathForge.Core.Utilities;
 
