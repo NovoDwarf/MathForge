@@ -1,91 +1,52 @@
-﻿using System.Numerics;
-using MathForge.Core.Base.Graphics;
-using MathForge.Core.Interfaces.Drawings;
+﻿using MathForge.Graphics.Drawings.Abstractions.Clippers;
+using MathForge.Graphics.Drawings.Entities;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Clippers;
 
-public class SutherlandHodgmanClipper : ILineClipper
+public sealed class SutherlandHodgmanClipper : IPolygonClipper
 {
-	public Rect Rect { get; set; }
-
-	public bool Clip(ref float x0, ref float y0, ref float x1, ref float y1)
+	public IEnumerable<IReadOnlyList<Float2>> Clip(IReadOnlyList<Float2> polygon, Rect clipRegion)
 	{
-		var polygon = new List<Vector2>
-		{
-			new(x0, y0),
-			new(x1, y1)
-		};
+		var output = polygon.ToList();
 
-		var clipped = SutherlandHodgmanClipper.Clip(polygon, Rect);
+		output = ClipAgainstEdge(output, new Float2(clipRegion.MinX, 0f), Float2.Left);
+		output = ClipAgainstEdge(output, new Float2(clipRegion.MaxX, 0f), Float2.Right);
+		output = ClipAgainstEdge(output, new Float2(0f, clipRegion.MinY), Float2.Down);
+		output = ClipAgainstEdge(output, new Float2(0f, clipRegion.MaxY), Float2.Up);
 
-		if (clipped.Count < 2)
-			return false;
-
-		x0 = clipped[0].X;
-		y0 = clipped[0].Y;
-		x1 = clipped[^1].X;
-		y1 = clipped[^1].Y;
-
-		return true;
-	}
-	
-	public static List<Vector2> Clip(List<Vector2> polygon, Rect clipRect)
-	{
-		var outputList = new List<Vector2>(polygon);
-
-		outputList = ClipAgainstEdge(outputList, new Vector2(clipRect.MinX, 0), new Vector2(-1, 0));
-		outputList = ClipAgainstEdge(outputList, new Vector2(clipRect.MaxX, 0), new Vector2(1, 0));
-		outputList = ClipAgainstEdge(outputList, new Vector2(0, clipRect.MinY), new Vector2(0, -1));
-		outputList = ClipAgainstEdge(outputList, new Vector2(0, clipRect.MaxY), new Vector2(0, 1));
-
-		return outputList;
+		return [output];
 	}
 
-	private static List<Vector2> ClipAgainstEdge(List<Vector2> polygon, Vector2 edgePoint, Vector2 edgeNormal)
+	private static List<Float2> ClipAgainstEdge(IReadOnlyList<Float2> polygon, Float2 edgePoint, Float2 edgeNormal)
 	{
-		var output = new List<Vector2>();
-		
+		var output = new List<Float2>();
+
 		if (polygon.Count == 0)
 			return output;
 
-		var prevPoint = polygon[^1];
-		
-		foreach (var currPoint in polygon)
+		var previous = polygon[^1];
+		var previousInside = Float2.IsInside(previous, edgePoint, edgeNormal);
+
+		foreach (var current in polygon)
 		{
-			var currInside = IsInside(currPoint, edgePoint, edgeNormal);
-			var prevInside = IsInside(prevPoint, edgePoint, edgeNormal);
+			var currentInside = Float2.IsInside(current, edgePoint, edgeNormal);
 
-			if (currInside)
+			if (currentInside)
 			{
-				if (!prevInside)
-				{
-					var intersect = ComputeIntersection(prevPoint, currPoint, edgePoint, edgeNormal);
-					output.Add(intersect);
-				}
-				output.Add(currPoint);
+				if (!previousInside) output.Add(Float2.ComputeIntersection(previous, current, edgePoint, edgeNormal));
+
+				output.Add(current);
 			}
-			else if (prevInside)
+			else if (previousInside)
 			{
-				var intersect = ComputeIntersection(prevPoint, currPoint, edgePoint, edgeNormal);
-				output.Add(intersect);
+				output.Add(Float2.ComputeIntersection(previous, current, edgePoint, edgeNormal));
 			}
 
-			prevPoint = currPoint;
+			previous = current;
+			previousInside = currentInside;
 		}
 
 		return output;
-	}
-
-	private static bool IsInside(Vector2 point, Vector2 edgePoint, Vector2 edgeNormal)
-	{
-		var v = point - edgePoint;
-		return Vector2.Dot(v, edgeNormal) >= 0;
-	}
-
-	private static Vector2 ComputeIntersection(Vector2 p1, Vector2 p2, Vector2 edgePoint, Vector2 edgeNormal)
-	{
-		var d = p2 - p1;
-		var t = Vector2.Dot(edgePoint - p1, edgeNormal) / Vector2.Dot(d, edgeNormal);
-		return p1 + t * d;
 	}
 }

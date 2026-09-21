@@ -1,48 +1,49 @@
-﻿using System.Numerics;
+﻿using MathForge.Geometry;
+using MathForge.Graphics.Drawings.Abstractions.Fillers;
 using MathForge.Graphics.Neighborhoods;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Fillers;
 
-public class FloodFiller
+public sealed class FloodFiller : ISeedFiller
 {
-	public static FloodFiller Default => new();
-	
-	private FloodFiller() { }
-	
-	public INeighborhood2D Neighborhood { get; set; } = MooreNeighborhood.Default;
-    
-	public IEnumerable<Vector3> Fill(float startX, float startY, int width, int height, Func<float,float,float,bool> isTarget)
+	private FloodFiller()
 	{
-		var visited = new bool[width, height];
-		var queue = new Queue<Vector3>();
-        
-		queue.Enqueue(new Vector3(startX, startY, 1));
+	}
+
+	public static FloodFiller Default { get; } = new();
+
+	public INeighborhood2D Neighborhood { get; set; } = MooreNeighborhood.Default;
+
+	public IEnumerable<Float3> Fill(Float2 seed, Size2 size, Func<int, int, bool> isTarget)
+	{
+		var visited = new bool[size.Width, size.Height];
+		var queue = new Queue<Float2>();
+
+		queue.Enqueue(seed);
 
 		while (queue.Count > 0)
 		{
-			var p = queue.Dequeue();
-			var x = p.X;
-			var y = p.Y;
+			var point = queue.Dequeue();
 
-			if (x < 0 || x >= width || y < 0 || y >= height) 
+			var x = (int)point.X;
+			var y = (int)point.Y;
+
+			if (x < 0 || x >= size.Width || y < 0 || y >= size.Height)
 				continue;
 
-			if (visited[(int)x, (int)y]) 
+			if (visited[x, y])
 				continue;
 
-			if (!isTarget(x, y, 1)) 
+			if (!isTarget(x, y))
 				continue;
 
-			visited[(int)x, (int)y] = true;
-			yield return new Vector3(x, y, 1);
+			visited[x, y] = true;
+
+			yield return new Float3(x, y, 1f);
 
 			foreach (var offset in Neighborhood.Offsets2D)
-			{
-				var nx = x + (int)offset.X;
-				var ny = y + (int)offset.Y;
-                
-				queue.Enqueue(new Vector3(nx, ny, 1));
-			}
+				queue.Enqueue(point + offset);
 		}
 	}
 }

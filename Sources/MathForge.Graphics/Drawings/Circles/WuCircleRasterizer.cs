@@ -1,53 +1,58 @@
-﻿using System.Numerics;
-using MathForge.Core.Interfaces.Drawings;
+﻿using MathForge.Graphics.Drawings.Abstractions.Rasterizers;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Circles;
 
-public class WuCircleRasterizer : ICircleRasterizer
+public sealed class WuCircleRasterizer : ICircleRasterizer
 {
-	public static WuCircleRasterizer Default { get; } = new();
-	
-	private WuCircleRasterizer() { }
-	
-	public IEnumerable<Vector3> Rasterize(int x0, int y0, int x1, int y1)
+	private WuCircleRasterizer()
 	{
-		float dx = x1 - x0;
-		float dy = y1 - y0;
-		var radius = MathF.Sqrt(dx * dx + dy * dy);
+	}
+
+	public static WuCircleRasterizer Default { get; } = new();
+
+	public IEnumerable<Float3> Rasterize(int centerX, int centerY, int radius)
+	{
+		ArgumentOutOfRangeException.ThrowIfNegative(radius);
+
+		if (radius == 0)
+		{
+			yield return new Float3(centerX, centerY, 1f);
+			yield break;
+		}
 
 		var limit = (int)MathF.Ceiling(radius / MathF.Sqrt(2f));
 
 		for (var x = 0; x <= limit; x++)
 		{
 			var y = MathF.Sqrt(radius * radius - x * x);
-
 			var yi = (int)MathF.Floor(y);
-			var frac = y - yi;
-            
-			foreach (var p in Plot8(x0, y0, x, yi, 1f - frac))
-				yield return p;
+			var fraction = y - yi;
 
-			foreach (var p in Plot8(x0, y0, x, yi + 1, frac))
-				yield return p;
+			foreach (var point in Plot8(centerX, centerY, x, yi, 1f - fraction))
+				yield return point;
+
+			foreach (var point in Plot8(centerX, centerY, x, yi + 1, fraction))
+				yield return point;
 		}
 	}
-    
-	private static IEnumerable<Vector3> Plot8(int cx, int cy, int x, int y, float alpha)
+
+	private static IEnumerable<Float3> Plot8(int centerX, int centerY, int x, int y, float coverage)
 	{
-		if (alpha <= 0f)
+		if (coverage <= 0f)
 			yield break;
 
-		yield return new Vector3(cx + x, cy + y, alpha);
-		yield return new Vector3(cx - x, cy + y, alpha);
-		yield return new Vector3(cx + x, cy - y, alpha);
-		yield return new Vector3(cx - x, cy - y, alpha);
+		yield return new Float3(centerX + x, centerY + y, coverage);
+		yield return new Float3(centerX - x, centerY + y, coverage);
+		yield return new Float3(centerX + x, centerY - y, coverage);
+		yield return new Float3(centerX - x, centerY - y, coverage);
 
-		if (x == y) 
+		if (x == y)
 			yield break;
-        
-		yield return new Vector3(cx + y, cy + x, alpha);
-		yield return new Vector3(cx - y, cy + x, alpha);
-		yield return new Vector3(cx + y, cy - x, alpha);
-		yield return new Vector3(cx - y, cy - x, alpha);
+
+		yield return new Float3(centerX + y, centerY + x, coverage);
+		yield return new Float3(centerX - y, centerY + x, coverage);
+		yield return new Float3(centerX + y, centerY - x, coverage);
+		yield return new Float3(centerX - y, centerY - x, coverage);
 	}
 }

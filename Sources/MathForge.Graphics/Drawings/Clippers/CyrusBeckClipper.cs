@@ -1,90 +1,69 @@
-﻿using System.Numerics;
-using MathForge.Core.Base.Graphics;
-using MathForge.Core.Interfaces.Drawings;
+﻿using MathForge.Graphics.Drawings.Abstractions.Clippers;
+using MathForge.Graphics.Drawings.Entities;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Clippers;
 
-public class CyrusBeckClipper : ILineClipper
+public sealed class CyrusBeckClipper : ILineClipper
 {
-	public Rect Rect { get; set; }
-	
-	public bool Clip(ref float x0, ref float y0, ref float x1, ref float y1)
+	public CyrusBeckClipper(Rect rect)
 	{
-		var line = new LineSegment(new Vector2(x0, y0), new Vector2(x1, y1));
-
-		if (!CyrusBeckClipper.Clip(line, Rect, out var clipped))
-			return false;
-
-		x0 = clipped.Start.X;
-		y0 = clipped.Start.Y;
-		x1 = clipped.End.X;
-		y1 = clipped.End.Y;
-
-		return true;
+		Rect = rect;
 	}
 
-	private static bool Clip(LineSegment line, Rect clipRect, out LineSegment clippedLine)
+	public Rect Rect { get; }
+
+	public bool TryClip(LineSegment line, out LineSegment clipped)
 	{
-		var d = line.End - line.Start;
-		var tEnter = 0.0f;
-		var tLeave = 1.0f;
+		return Clip(line, Rect, out clipped);
+	}
 
-		Vector2[] normals =
+	private static bool Clip(LineSegment line, Rect clipRect, out LineSegment clipped)
+	{
+		var direction = line.End - line.Start;
+
+		var tEnter = 0f;
+		var tLeave = 1f;
+
+		List<Float3> boundaries =
 		[
-			new Vector2(-1, 0),
-			new Vector2(1, 0),
-			new Vector2(0, -1),
-			new Vector2(0, 1)
+			new(line.Start.X, direction.X, clipRect.MinX),
+			new(line.Start.X, direction.X, clipRect.MaxX),
+			new(line.Start.Y, direction.Y, clipRect.MinY),
+			new(line.Start.Y, direction.Y, clipRect.MaxY)
 		];
 
-		float[] p = [clipRect.MinX, clipRect.MaxX, clipRect.MinY, clipRect.MaxY];
-		Vector2[] q =
-		[
-			line.Start - new Vector2(clipRect.MinX, 0),
-			line.Start - new Vector2(clipRect.MaxX, 0),
-			line.Start - new Vector2(0, clipRect.MinY),
-			line.Start - new Vector2(0, clipRect.MaxY)
-		];
-
-		for (var i = 0; i < 4; i++)
+		foreach (var (start, directionComponent, boundary) in boundaries)
 		{
-			float numerator, denominator;
-			if (i < 2)
+			var numerator = boundary - start;
+
+			if (directionComponent == 0f)
 			{
-				numerator = p[i] - line.Start.X;
-				denominator = d.X;
+				if (numerator < 0f)
+				{
+					clipped = default;
+					return false;
+				}
+
+				continue;
 			}
+
+			var t = numerator / directionComponent;
+
+			if (directionComponent < 0f)
+				tEnter = MathF.Max(tEnter, t);
 			else
-			{
-				numerator = p[i] - line.Start.Y;
-				denominator = d.Y;
-			}
+				tLeave = MathF.Min(tLeave, t);
 
-			if (denominator == 0)
-			{
-				if (!(numerator < 0)) 
-					continue;
-				
-				clippedLine = new LineSegment();
-				
-				return false;
-			}
+			if (!(tEnter > tLeave))
+				continue;
 
-			var t = numerator / denominator;
-			
-			if (denominator < 0)
-				tEnter = Math.Max(tEnter, t);
-			else
-				tLeave = Math.Min(tLeave, t);
-		}
-
-		if (tEnter > tLeave)
-		{
-			clippedLine = new LineSegment();
+			clipped = default;
 			return false;
 		}
 
-		clippedLine = new LineSegment(line.Start + tEnter * d, line.Start + tLeave * d);
+		clipped = new LineSegment(line.Start + tEnter * direction, line.Start + tLeave * direction);
+
 		return true;
 	}
 }

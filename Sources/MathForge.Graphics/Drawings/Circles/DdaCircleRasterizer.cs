@@ -1,32 +1,38 @@
-﻿using System.Numerics;
-using MathForge.Core.Interfaces.Drawings;
+﻿using MathForge.Graphics.Drawings.Abstractions.Rasterizers;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Circles;
 
-public class DdaCircleRasterizer : ICircleRasterizer
+public sealed class DdaCircleRasterizer : ICircleRasterizer
 {
-	public static DdaCircleRasterizer Default { get; } = new();
-	
-	private DdaCircleRasterizer() { }
-	
-	public IEnumerable<Vector3> Rasterize(int x0, int y0, int x1, int y1)
+	private DdaCircleRasterizer()
 	{
-		var dx = x1 - x0;
-		var dy = y1 - y0;
-		var r = Math.Sqrt(dx * dx + dy * dy);
+	}
 
-		var steps = (int)Math.Ceiling(2 * Math.PI * r);
+	public static DdaCircleRasterizer Default { get; } = new();
 
-		var dt = 2 * Math.PI / steps;
+	public IEnumerable<Float3> Rasterize(int centerX, int centerY, int radius)
+	{
+		ArgumentOutOfRangeException.ThrowIfNegative(radius);
 
-		for (var i = 0; i <= steps; i++)
+		if (radius == 0)
+		{
+			yield return new Float3(centerX, centerY, 1f);
+			yield break;
+		}
+
+		var circumference = 2d * Math.PI * radius;
+		var steps = (int)Math.Ceiling(circumference);
+		var dt = 2d * Math.PI / steps;
+
+		for (var i = 0; i < steps; i++)
 		{
 			var t = i * dt;
 
-			var x = x0 + r * Math.Cos(t);
-			var y = y0 + r * Math.Sin(t);
+			var x = centerX + radius * Math.Cos(t);
+			var y = centerY + radius * Math.Sin(t);
 
-			yield return new Vector3((float)Math.Round(x), (float)Math.Round(y), 1);
+			yield return new Float3((float)Math.Round(x), (float)Math.Round(y), 1f);
 		}
 	}
 }

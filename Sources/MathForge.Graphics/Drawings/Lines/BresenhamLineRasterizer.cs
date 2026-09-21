@@ -1,44 +1,46 @@
-﻿using System.Numerics;
-using MathForge.Core.Interfaces.Drawings;
+﻿using MathForge.Graphics.Drawings.Abstractions.Rasterizers;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Lines;
 
-public class BresenhamLineRasterizer : ILineRasterizer
+public sealed class BresenhamLineRasterizer : ILineRasterizer
 {
+	private BresenhamLineRasterizer()
+	{
+	}
+
 	public static BresenhamLineRasterizer Default { get; } = new();
 
-	private BresenhamLineRasterizer() { }
-	
-	public IEnumerable<Vector3> Rasterize(int x0, int y0, int x1, int y1)
+	public IEnumerable<Float3> Rasterize(Float2 start, Float2 end)
 	{
-		var dx = Math.Abs(x1 - x0);
-		var dy = Math.Abs(y1 - y0);
-		var sx = x0 < x1 ? 1 : -1;
-		var sy = y0 < y1 ? 1 : -1;
-		var err = dx - dy;
+		var dx = Math.Abs(end.X - start.X);
+		var dy = Math.Abs(end.Y - start.Y);
+		var sx = start.X < end.X ? 1 : -1;
+		var sy = start.Y < end.Y ? 1 : -1;
+		var error = dx - dy;
 
-		int x = x0, y = y0;
+		var point = start;
 
 		while (true)
 		{
-			yield return new Vector3(x, y, 1);
+			yield return new Float3(point.X, point.Y, 1f);
 
-			if (x == x1 && y == y1)
+			if (point == end)
 				break;
 
-			var e2 = 2 * err;
+			var e2 = 2 * error;
 
 			if (e2 > -dy)
 			{
-				err -= dy;
-				x += sx;
+				error -= dy;
+				point = new Float2(point.X + sx, point.Y);
 			}
 
-			if (e2 >= dx) 
-				continue;
-			
-			err += dx;
-			y += sy;
+			if (e2 < dx)
+			{
+				error += dx;
+				point = new Float2(point.X, point.Y + sy);
+			}
 		}
 	}
 }

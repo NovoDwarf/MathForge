@@ -1,32 +1,41 @@
-﻿using System.Numerics;
-using MathForge.Core.Interfaces.Drawings;
+﻿using MathForge.Graphics.Drawings.Abstractions.Rasterizers;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Lines;
 
-public class DdaLineRasterizer : ILineRasterizer
+public sealed class DdaLineRasterizer : ILineRasterizer
 {
-	public static DdaLineRasterizer Default { get; } = new();
-	
-	private DdaLineRasterizer() { }
-	
-	public IEnumerable<Vector3> Rasterize(int x0, int y0, int x1, int y1)
+	private DdaLineRasterizer()
 	{
-		var dx = x1 - x0;
-		var dy = y1 - y0;
-		var steps = Math.Max(Math.Abs(dx), Math.Abs(dy));
+	}
 
-		var xInc = (double)dx / steps;
-		var yInc = (double)dy / steps;
+	public static DdaLineRasterizer Default { get; } = new();
 
-		double x = x0;
-		double y = y0;
+	public IEnumerable<Float3> Rasterize(Float2 start, Float2 end)
+	{
+		var dx = end.X - start.X;
+		var dy = end.Y - start.Y;
+
+		var steps = (int)MathF.Max(MathF.Abs(dx), MathF.Abs(dy));
+
+		if (steps == 0)
+		{
+			yield return new Float3(MathF.Round(start.X), MathF.Round(start.Y), 1f);
+			yield break;
+		}
+
+		var xIncrement = dx / steps;
+		var yIncrement = dy / steps;
+
+		var x = start.X;
+		var y = start.Y;
 
 		for (var i = 0; i <= steps; i++)
 		{
-			yield return new Vector3((float)Math.Round(x), (float)Math.Round(y), 1);
+			yield return new Float3(MathF.Round(x), MathF.Round(y), 1f);
 
-			x += xInc;
-			y += yInc;
+			x += xIncrement;
+			y += yIncrement;
 		}
 	}
 }

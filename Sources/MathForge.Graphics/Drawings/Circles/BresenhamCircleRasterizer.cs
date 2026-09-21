@@ -1,52 +1,55 @@
-﻿using System.Numerics;
-using MathForge.Core.Interfaces.Drawings;
+﻿using MathForge.Graphics.Drawings.Abstractions.Rasterizers;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Circles;
 
-public class BresenhamCircleRasterizer : ICircleRasterizer
+public sealed class BresenhamCircleRasterizer : ICircleRasterizer
 {
-	public static BresenhamCircleRasterizer Default { get; } = new();
-	
-	private BresenhamCircleRasterizer() { }
-	
-	public IEnumerable<Vector3> Rasterize(int x0, int y0, int x1, int y1)
+	private BresenhamCircleRasterizer()
 	{
-		var dx = x1 - x0;
-		var dy = x1 - y0;
-		var r = (int)Math.Round(Math.Sqrt(dx * dx + dy * dy));
+	}
+
+	public static BresenhamCircleRasterizer Default { get; } = new();
+
+	public IEnumerable<Float3> Rasterize(int centerX, int centerY, int radius)
+	{
+		ArgumentOutOfRangeException.ThrowIfNegative(radius);
 
 		var x = 0;
-		var y = r;
-		var err = 1 - r;
+		var y = radius;
+		var error = 1 - radius;
 
 		while (x <= y)
 		{
-			foreach (var p in Plot8(x0, y0, x, y))
-				yield return p;
+			foreach (var point in Plot8(centerX, centerY, x, y)) yield return point;
 
-			if (err < 0)
+			if (error < 0)
 			{
-				err += 2 * x + 3;
+				error += 2 * x + 3;
 			}
 			else
 			{
-				err += 2 * (x - y) + 5;
+				error += 2 * (x - y) + 5;
 				y--;
 			}
 
 			x++;
 		}
 	}
-	
-	private static IEnumerable<Vector3> Plot8(int cx, int cy, int x, int y)
+
+	private static IEnumerable<Float3> Plot8(int cx, int cy, int x, int y)
 	{
-		yield return new Vector3(cx + x, cy + y, 1);
-		yield return new Vector3(cx - x, cy + y, 1);
-		yield return new Vector3(cx + x, cy - y, 1);
-		yield return new Vector3(cx - x, cy - y, 1);
-		yield return new Vector3(cx + y, cy + x, 1);
-		yield return new Vector3(cx - y, cy + x, 1);
-		yield return new Vector3(cx + y, cy - x, 1);
-		yield return new Vector3(cx - y, cy - x, 1);
+		yield return new Float3(cx + x, cy + y, 1f);
+		yield return new Float3(cx - x, cy + y, 1f);
+		yield return new Float3(cx + x, cy - y, 1f);
+		yield return new Float3(cx - x, cy - y, 1f);
+
+		if (x == 0 || x == y)
+			yield break;
+
+		yield return new Float3(cx + y, cy + x, 1f);
+		yield return new Float3(cx - y, cy + x, 1f);
+		yield return new Float3(cx + y, cy - x, 1f);
+		yield return new Float3(cx - y, cy - x, 1f);
 	}
 }

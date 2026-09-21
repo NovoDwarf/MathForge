@@ -1,8 +1,8 @@
-﻿namespace MathForge.Core.Base.Graphics;
+﻿namespace MathForge.Graphics.Drawings.Entities;
 
 [Flags]
 public enum OutCode
-{ 
+{
 	Inside = 0,
 	Left = 1,
 	Right = 2,

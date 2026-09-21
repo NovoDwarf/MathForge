@@ -1,67 +1,79 @@
-﻿using System.Drawing;
-using System.Numerics;
+﻿using MathForge.Geometry;
+using MathForge.Graphics.Drawings.Abstractions.Fillers;
 using MathForge.Graphics.Neighborhoods;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Fillers;
 
-public class SeedFiller
+public sealed class SeedFiller : ISeedFiller
 {
-	public static SeedFiller Default => new();
-
-	private SeedFiller() { }
-	
-	public INeighborhood2D Neighborhood { get; set; } = MooreNeighborhood.Default;
-	
-	public IEnumerable<Vector3> Fill(int startX, int startY, int width, int height, Func<int,int,bool> isTarget)
+	private SeedFiller()
 	{
-		var visited = new bool[width, height];
-		var stack = new Stack<Point>();
-		stack.Push(new Point(startX, startY));
+	}
+
+	public static SeedFiller Default { get; } = new();
+
+	public INeighborhood2D Neighborhood { get; set; } = MooreNeighborhood.Default;
+
+	public IEnumerable<Float3> Fill(Float2 seed, Size2 size, Func<int, int, bool> isTarget)
+	{
+		var visited = new bool[size.Width, size.Height];
+		var stack = new Stack<Float2>();
+
+		stack.Push(seed);
 
 		while (stack.Count > 0)
 		{
-			var p = stack.Pop();
-			var x = p.X;
-			var y = p.Y;
+			var point = stack.Pop();
 
-			if (x < 0 || x >= width || y < 0 || y >= height) 
+			var x = (int)point.X;
+			var y = (int)point.Y;
+
+			if (x < 0 || x >= size.Width || y < 0 || y >= size.Height)
 				continue;
 
-			if (visited[x, y]) 
+			if (visited[x, y])
 				continue;
 
-			if (!isTarget(x, y)) 
+			if (!isTarget(x, y))
 				continue;
 
 			var xLeft = x;
-			var xRight = x;
 
 			while (xLeft >= 0 && !visited[xLeft, y] && isTarget(xLeft, y))
 				xLeft--;
+
 			xLeft++;
 
-			while (xRight < width && !visited[xRight, y] && isTarget(xRight, y))
+			var xRight = x;
+
+			while (xRight < size.Width && !visited[xRight, y] && isTarget(xRight, y))
 				xRight++;
+
 			xRight--;
 
 			for (var xi = xLeft; xi <= xRight; xi++)
 			{
 				visited[xi, y] = true;
-				yield return new Vector3(xi, y, 1);
+				yield return new Float3(xi, y, 1f);
 			}
 
 			foreach (var offset in Neighborhood.Offsets2D)
 			{
-				var ny = y + (int)offset.Y;
-				if (ny < 0 || ny >= height) continue;
+				var ny = y + offset.Y;
+
+				if (ny < 0 || ny >= size.Height)
+					continue;
 
 				for (var xi = xLeft; xi <= xRight; xi++)
 				{
-					var nx = xi + (int)offset.X;
-					if (nx < 0 || nx >= width) continue;
+					var nx = xi + offset.X;
+
+					if (nx < 0 || nx >= size.Width)
+						continue;
 
 					if (!visited[nx, ny] && isTarget(nx, ny))
-						stack.Push(new Point(nx, ny));
+						stack.Push(new Float2(nx, ny));
 				}
 			}
 		}
