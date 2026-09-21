@@ -1,6 +1,6 @@
-﻿namespace MathForge.Numerical.Simple;
+namespace MathForge.Functions.Internals.Gamma;
 
-public static class GammaLanczosFunction
+internal static class GammaLanczos
 {
 	private const double G = 7;
 	private static readonly double[] Coef =

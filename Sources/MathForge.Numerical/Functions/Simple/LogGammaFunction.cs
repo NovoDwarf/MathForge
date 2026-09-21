@@ -1,6 +1,6 @@
-﻿namespace MathForge.Numerical.Simple;
+﻿namespace MathForge.Functions.Simple;
 
-public static class GammaLogFunction
+public static class LogGammaFunction
 {
 	private static readonly double[] Coef =
 	[
@@ -14,8 +14,6 @@ public static class GammaLogFunction
 	
 	public static double Calculate(double x)
 	{
-
-
 		var tmp = x + 5.5;
 		tmp -= (x + 0.5) * Math.Log(tmp);
 		var ser = 1.000000000190015;

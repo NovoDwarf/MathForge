@@ -1,4 +1,4 @@
-﻿namespace MathForge.Numerical.Simple;
+﻿namespace MathForge.Functions.Simple;
 
 public static class ErrorComplementaryFunction
 {
