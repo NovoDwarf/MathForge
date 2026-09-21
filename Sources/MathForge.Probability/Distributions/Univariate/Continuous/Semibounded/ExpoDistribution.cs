@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded
 {
@@ -28,15 +28,15 @@ namespace MathForge.Distributions.Univariate.Continuous.Semibounded
     
         public override double Maximum => double.PositiveInfinity;
 
-        [EntityParameter(typeof(double), nameof(Rate))]
+        [EntityParameter(nameof(Rate))]
         [Range(0, double.PositiveInfinity)]
         public double Rate { get; private set; } = 1;
 
         public double Scale => 1 / Rate;
     
-        public override double Distribute()
+        public override double Sample(IRandom random)
         {
-            var u = RandomUtils.NextDoubleSafe();
+            var u = random.Next();
         
             return -Math.Log(u) / Rate;
         }

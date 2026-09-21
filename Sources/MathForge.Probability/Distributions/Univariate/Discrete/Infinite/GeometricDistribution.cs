@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Infinite
 {
@@ -27,12 +27,12 @@ namespace MathForge.Distributions.Univariate.Discrete.Infinite
     
         public override double Maximum => double.PositiveInfinity;
 
-        [EntityParameter(typeof(double), nameof(Probability))]
+        [EntityParameter(nameof(Probability))]
         public double Probability { get; set; }
 
         public double Q => 1 - Probability;
     
-        public override double Distribute() => Math.Floor(Math.Log(1 - RandomUtils.NextDouble()) / Math.Log(1 - Probability)) + 1;
+        public override double Sample(IRandom random) => Math.Floor(Math.Log(1 - random.NextDouble()) / Math.Log(1 - Probability)) + 1;
 
         public override double Quantile(double p)
         {

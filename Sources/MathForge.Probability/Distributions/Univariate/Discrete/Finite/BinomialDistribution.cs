@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Finite;
 
@@ -27,10 +27,10 @@ public partial class BinomialDistribution : Distribution
     
     public override double Maximum => Trials;
 
-    [EntityParameter(typeof(int), nameof(Trials))]
+    [EntityParameter(nameof(Trials))]
     public int Trials { get; private set; } = 10;
 
-    [EntityParameter(typeof(double), nameof(Probability))]
+    [EntityParameter(nameof(Probability))]
     public double Probability { get; private set; } = 0.5;
     
     public double Q => 1 - Probability;
@@ -44,17 +44,13 @@ public partial class BinomialDistribution : Distribution
             throw new ArgumentOutOfRangeException(nameof(Probability), "Probability must be between 0 and 1.");
     }
     
-    public override double Distribute()
+    public override double Sample(IRandom random)
     {
         var successes = 0;
 
         for (var i = 0; i < Trials; i++)
-        {
-            if (RandomUtils.NextDouble() < Probability)
-            {
+            if (random.NextDouble() < Probability) 
                 successes++;
-            }
-        }
 
         return successes;
     }

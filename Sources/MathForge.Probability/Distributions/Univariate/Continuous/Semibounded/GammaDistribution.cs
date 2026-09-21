@@ -1,8 +1,8 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
-using MathForge.Numerical.Simple;
-using MathForge.Numerical.Transforms;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
+using MathForge.Sampling.Transforms;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
@@ -29,10 +29,10 @@ public partial class GammaDistribution : Distribution
     
     public override double Maximum => double.PositiveInfinity;
 
-    [EntityParameter(typeof(double), nameof(Shape))]
+    [EntityParameter(nameof(Shape))]
     public double Shape { get; set; } = 2;
 
-    [EntityParameter(typeof(double), nameof(Scale))]
+    [EntityParameter(nameof(Scale))]
     public double Scale { get; set; } = 1;
 
     protected override void Validate()
@@ -41,11 +41,11 @@ public partial class GammaDistribution : Distribution
         ArgumentOutOfRangeException.ThrowIfLessThan(Scale, 0);
     }
     
-    public override double Distribute()
+    public override double Sample(IRandom random)
     {
         return Shape >= 1.0
-            ? CalculateGamma(Shape) * Scale
-            : CalculateSmallShapeGamma(Shape) * Scale;
+            ? CalculateGamma(Shape, random) * Scale
+            : CalculateSmallShapeGamma(Shape, random) * Scale;
     }
 
     public override double Quantile(double p)
@@ -136,7 +136,7 @@ public partial class GammaDistribution : Distribution
         return sum * step;
     }
 
-    private double CalculateGamma(double alpha)
+    private double CalculateGamma(double alpha, IRandom random)
     {
         var d = alpha - 1.0 / 3.0;
         var c = 1.0 / Math.Sqrt(9.0 * d);
@@ -146,13 +146,13 @@ public partial class GammaDistribution : Distribution
             double x;
             do
             {
-                x = BoxMullerPolarTransform.Transform().u;
+                x = BoxMullerTransform.Transform(random).X;
             } while (x <= -1.0 / c);
 
             var v = 1.0 + c * x;
             v = v * v * v;
 
-            var u = RandomUtils.NextDouble();
+            var u = random.NextDouble();
 
             if (u < 1.0 - 0.0331 * Math.Pow(x, 4) ||
                 Math.Log(u) < 0.5 * x * x + d * (1.0 - v + Math.Log(v)))
@@ -160,12 +160,12 @@ public partial class GammaDistribution : Distribution
         }
     }
 
-    private double CalculateSmallShapeGamma(double alpha)
+    private double CalculateSmallShapeGamma(double alpha, IRandom random)
     {
         while (true)
         {
-            var u = RandomUtils.NextDouble();
-            var v = RandomUtils.NextDouble();
+            var u = random.NextDouble();
+            var v = random.NextDouble();
 
             var x = Math.Pow(u, 1.0 / alpha);
             var y = Math.Pow(v, 1.0 / (1.0 - alpha));
@@ -174,7 +174,7 @@ public partial class GammaDistribution : Distribution
                 continue;
 
             var z = x / (x + y);
-            var w = -Math.Log(Random.Shared.NextDouble());
+            var w = -Math.Log(random.NextDouble());
 
             return z * w;
         }

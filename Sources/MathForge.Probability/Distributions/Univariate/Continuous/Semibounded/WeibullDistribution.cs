@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
-using MathForge.Numerical.Simple;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
@@ -29,11 +29,11 @@ public partial class WeibullDistribution : Distribution
 	
 	public override double Maximum => double.PositiveInfinity;
 	
-	[EntityParameter(typeof(double), nameof(Shape))]
+	[EntityParameter(nameof(Shape))]
 	[Range(0, double.PositiveInfinity)]
 	public double Shape { get; private set; } = 1;
 	
-	[EntityParameter(typeof(double), nameof(Scale))]
+	[EntityParameter(nameof(Scale))]
 	[Range(0, double.PositiveInfinity)]
 	public double Scale { get; private set; } = 1;
 
@@ -43,9 +43,9 @@ public partial class WeibullDistribution : Distribution
 		ArgumentOutOfRangeException.ThrowIfLessThan(Shape, 0);
 	}
 
-	public override double Distribute()
+	public override double Sample(IRandom random)
 	{
-		var u = RandomUtils.NextDoubleSafe();
+		var u = random.NextDouble();
 		
 		return Scale * Math.Pow(-Math.Log(u), 1.0 / Shape);
 	}

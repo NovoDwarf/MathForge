@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
-using MathForge.Numerical.Simple;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Infinite
 {
@@ -26,19 +26,19 @@ namespace MathForge.Distributions.Univariate.Discrete.Infinite
     
         public override double Maximum => double.PositiveInfinity;
     
-        [EntityParameter(typeof(double), nameof(Probability))]
+        [EntityParameter(nameof(Mu1))]
         public double Mu1 { get; set; }
     
-        [EntityParameter(typeof(double), nameof(Probability))]
+        [EntityParameter(nameof(Mu2))]
         public double Mu2 { get; set; }
 
         private PoissonDistribution _poissonGenerator1;
         private PoissonDistribution _poissonGenerator2;
     
-        public override double Distribute()
+        public override double Sample(IRandom random)
         {
-            var poisson1 = _poissonGenerator1.Distribute();
-            var poisson2 = _poissonGenerator2.Distribute();
+            var poisson1 = _poissonGenerator1.Sample(random);
+            var poisson2 = _poissonGenerator2.Sample(random);
         
             return poisson1 - poisson2;
         }

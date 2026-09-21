@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Finite
 {
@@ -27,9 +27,9 @@ namespace MathForge.Distributions.Univariate.Discrete.Finite
     
         public override double Maximum => 9;
 
-        public override double Distribute()
+        public override double Sample(IRandom random)
         {
-            var randomValue = RandomUtils.NextDouble();
+            var randomValue = random.NextDouble();
             var cumulativeProbability = 0.0;
 
             for (var digit = 1; digit <= 9; digit++)

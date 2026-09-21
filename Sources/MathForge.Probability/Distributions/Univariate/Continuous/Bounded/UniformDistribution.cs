@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Bounded;
 
@@ -27,10 +27,10 @@ public partial class UniformDistribution : Distribution
 
 	public override double Maximum => _maximum;
 
-	[EntityParameter(typeof(double), nameof(Minimum))]
+	[EntityParameter(nameof(Minimum))]
 	private double _minimum = 0;
 	
-	[EntityParameter(typeof(double), nameof(Maximum))]
+	[EntityParameter(nameof(Maximum))]
 	private double _maximum = 1;
 
 	protected override void Validate()
@@ -39,7 +39,10 @@ public partial class UniformDistribution : Distribution
 			throw new ArgumentOutOfRangeException(nameof(Minimum), "Minimum must be less than maximum");
 	}
 
-	public override double Distribute() => RandomUtils.NextDouble(_minimum, _maximum);
+	public override double Sample(IRandom random)
+	{
+		return random.NextDouble(_minimum, _maximum);
+	}
 
 	public override double Quantile(double p)
 	{

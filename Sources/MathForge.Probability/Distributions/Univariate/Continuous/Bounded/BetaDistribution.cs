@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 using MathForge.Distributions.Univariate.Continuous.Semibounded;
-using MathForge.Numerical.Simple;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Bounded;
 
@@ -31,24 +31,24 @@ public partial class BetaDistribution : Distribution
 	public override double Maximum => 1;
 	
 	[Range(1, double.PositiveInfinity)]
-	[EntityParameter(typeof(double), nameof(Alpha))]
+	[EntityParameter(nameof(Alpha))]
 	public double Alpha { get; private set; } = 1;
 
 	[Range(1, double.PositiveInfinity)]
-	[EntityParameter(typeof(double), nameof(Beta))]
+	[EntityParameter(nameof(Beta))]
 	public double Beta { get; private set; } = 1;
 
 	[Range(1, double.PositiveInfinity)]
-	[EntityParameter(typeof(double), nameof(Scale))]
+	[EntityParameter(nameof(Scale))]
 	public double Scale { get; private set; } = 1;
 	
 	private GammaDistribution _gammaDistributionAlpha = new();
 	private GammaDistribution _gammaDistributionBeta = new();
 	
-	public override double Distribute()
+	public override double Sample(IRandom random)
 	{
-		var y1 = _gammaDistributionAlpha.Distribute();
-		var y2 = _gammaDistributionBeta.Distribute();
+		var y1 = _gammaDistributionAlpha.Sample(random);
+		var y2 = _gammaDistributionBeta.Sample(random);
 
 		return y1 / (y1 + y2);
 	}

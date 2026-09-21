@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Finite
 {
@@ -41,7 +41,7 @@ namespace MathForge.Distributions.Univariate.Discrete.Finite
     
         public override double Maximum => 1;
 
-        [EntityParameter(typeof(double), nameof(Probability))]
+        [EntityParameter(nameof(Probability))]
         public double Probability { get; private set; } = 0.5;
     
         public double Q => 1 - Probability;
@@ -52,7 +52,7 @@ namespace MathForge.Distributions.Univariate.Discrete.Finite
                 throw new ArgumentOutOfRangeException(nameof(Probability), "Probability must be between 0 and 1.");
         }
     
-        public override double Distribute() => RandomUtils.NextDouble() < Probability ? 1.0 : 0.0;
+        public override double Sample(IRandom random) => random.NextDouble() < Probability ? 1.0 : 0.0;
 
         public override double Quantile(double p)
         {

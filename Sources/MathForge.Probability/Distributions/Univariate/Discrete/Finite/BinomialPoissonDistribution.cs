@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Finite;
 
@@ -27,10 +27,10 @@ public partial class BinomialPoissonDistribution : Distribution
     
     public override double Maximum => Success.Length;
 
-    public override double Distribute() => SamplePoissonBinomial(Success);
-
-    [EntityParameter(typeof(double[]), nameof(Success))]
+    [EntityParameter(nameof(Success))]
     public double[] Success { get; private set; } = [0.3, 0.7];
+    
+    public override double Sample(IRandom random) => SamplePoissonBinomial(Success, random);
     
     protected override void Validate()
     {
@@ -94,12 +94,12 @@ public partial class BinomialPoissonDistribution : Distribution
         return cdf;
     }
 
-    private int SamplePoissonBinomial(double[] probabilities)
+    private int SamplePoissonBinomial(double[] probabilities, IRandom random)
     {
         if (probabilities.Length == 0)
             return 0;
 
-        return probabilities.Count(p => RandomUtils.NextDouble() < p);
+        return probabilities.Count(p => random.NextDouble() < p);
     }
 
     public double ProbabilityMass(int k)

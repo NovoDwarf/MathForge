@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
-using MathForge.Numerical.Simple;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
@@ -29,11 +29,11 @@ public partial class ErlangDistribution : Distribution
 	
 	public override double Maximum => double.PositiveInfinity;
 
-	[EntityParameter(typeof(double), nameof(Shape))]
+	[EntityParameter(nameof(Shape))]
 	[Range(1, int.MaxValue)]
 	public int Shape { get; private set; } = 2;
 
-	[EntityParameter(typeof(double), nameof(Rate))]
+	[EntityParameter(nameof(Rate))]
 	[Range(0, double.PositiveInfinity)]
 	public double Rate { get; private set; } = 1;
 
@@ -46,7 +46,7 @@ public partial class ErlangDistribution : Distribution
 			throw new ArgumentException("Rate must be greater than 0.", nameof(Rate));
 	}
 
-	public override double Distribute()
+	public override double Sample(IRandom random)
 	{
 		var sum = 0.0;
 		var exp = new ExpoDistribution();
@@ -54,7 +54,7 @@ public partial class ErlangDistribution : Distribution
 		exp.Set(Rate);
 		
 		for (var i = 0; i < Shape; i++)
-			sum += exp.Distribute();
+			sum += exp.Sample(random);
 
 		return sum;
 	}

@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Finite
 {
@@ -33,10 +33,10 @@ namespace MathForge.Distributions.Univariate.Discrete.Finite
     
         public double Entropy => Math.Log(_maximum - _minimum + 1);
     
-        [EntityParameter(typeof(double), nameof(Minimum))]
+        [EntityParameter(nameof(Minimum))]
         private int _minimum = 0;
    
-        [EntityParameter(typeof(double), nameof(Maximum))]
+        [EntityParameter(nameof(Maximum))]
         private int _maximum = 1;
 
         protected override void Validate()
@@ -45,7 +45,7 @@ namespace MathForge.Distributions.Univariate.Discrete.Finite
                 throw new ArgumentOutOfRangeException(nameof(Minimum), "Minimum value must be less than maximum value.");
         }
 
-        public override double Distribute() => RandomUtils.Next(_minimum, _maximum + 1);
+        public override double Sample(IRandom random) => random.Next(_minimum, _maximum + 1);
     
         public override double Quantile(double p)
         {

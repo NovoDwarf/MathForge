@@ -1,7 +1,7 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
-using MathForge.Numerical.Simple;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Infinite;
 
@@ -28,10 +28,10 @@ public partial class PoissonDistribution : Distribution
     
     public override double Maximum => double.PositiveInfinity;
     
-    [EntityParameter(typeof(double), nameof(Lambda))]
+    [EntityParameter(nameof(Lambda))]
     public double Lambda { get; set; }
     
-    public override double Distribute()
+    public override double Sample(IRandom random)
     {
         if (Lambda < 30)
         {
@@ -42,15 +42,15 @@ public partial class PoissonDistribution : Distribution
             do
             {
                 k++;
-                p *= RandomUtils.NextDouble();
+                p *= random.NextDouble();
             }
             while (p > l);
             
             return k - 1;
         }
 
-        var u1 = 1.0 - RandomUtils.NextDouble();
-        var u2 = 1.0 - RandomUtils.NextDouble();
+        var u1 = 1.0 - random.NextDouble();
+        var u2 = 1.0 - random.NextDouble();
         
         var randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
         var randNormal = Math.Sqrt(Lambda) * randStdNormal + Lambda;

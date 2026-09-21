@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Finite
 {
@@ -27,13 +27,13 @@ namespace MathForge.Distributions.Univariate.Discrete.Finite
     
         public override double Maximum => Math.Min(Draws, SuccessStates);
 
-        [EntityParameter(typeof(int), nameof(PopulationSize))]
+        [EntityParameter(nameof(PopulationSize))]
         public int PopulationSize { get; private set; } = 20;
 
-        [EntityParameter(typeof(int), nameof(SuccessStates))]
+        [EntityParameter(nameof(SuccessStates))]
         public int SuccessStates { get; private set; } = 5;
 
-        [EntityParameter(typeof(int), nameof(Draws))]
+        [EntityParameter(nameof(Draws))]
         public int Draws { get; private set; } = 10;
 
         protected override void Validate()
@@ -48,7 +48,7 @@ namespace MathForge.Distributions.Univariate.Discrete.Finite
                 throw new ArgumentOutOfRangeException(nameof(Draws), "Number of draws must be between 0 and population size.");
         }
 
-        public override double Distribute()
+        public override double Sample(IRandom random)
         {
             var successes = 0;
             var remainingSuccesses = SuccessStates;
@@ -58,7 +58,7 @@ namespace MathForge.Distributions.Univariate.Discrete.Finite
             {
                 var probability = (double)remainingSuccesses / remainingPopulation;
 
-                if (RandomUtils.NextDouble() < probability)
+                if (random.NextDouble() < probability)
                 {
                     successes++;
                     remainingSuccesses--;

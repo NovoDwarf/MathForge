@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Degenerate
 {
@@ -29,10 +29,10 @@ namespace MathForge.Distributions.Degenerate
 		public override double Maximum => Constant;
 	
 		[Range(0, double.MaxValue)]
-		[EntityParameter(typeof(double), nameof(Constant))]
+		[EntityParameter(nameof(Constant))]
 		public double Constant { get; private set; } = 1;
 	
-		public override double Distribute() => Constant;
+		public override double Sample(IRandom random) => Constant;
 
 		public override double Quantile(double p)
 		{

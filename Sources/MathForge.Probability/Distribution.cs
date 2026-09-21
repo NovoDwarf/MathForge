@@ -1,4 +1,7 @@
-namespace MathForge.Core.Base.Entities;
+using MathForge.Core.Entities;
+using MathForge.Random.Generators;
+
+namespace MathForge;
 
 /// <summary>
 /// Base class for all distributions.
@@ -59,12 +62,13 @@ public abstract class Distribution : Entity
 	/// Returns the support of distribution
 	/// </summary>
 	//public abstract Range Support { get; }
-	
+
 	/// <summary>
 	/// Returns a random value from the distribution
 	/// </summary>
+	/// <param name="random"></param>
 	/// <returns>Random value</returns>
-	public abstract double Distribute();
+	public abstract double Sample(IRandom random);
 	
 	/// <summary>
 	/// Returns the quantile of the distribution

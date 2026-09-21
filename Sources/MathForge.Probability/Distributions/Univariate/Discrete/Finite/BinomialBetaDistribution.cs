@@ -1,8 +1,8 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 using MathForge.Distributions.Univariate.Continuous.Bounded;
-using MathForge.Numerical.Simple;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Finite;
 
@@ -29,13 +29,13 @@ public partial class BinomialBetaDistribution : Distribution
     
     public override double Maximum => Trials;
 
-    [EntityParameter(typeof(double), nameof(Alpha))]
+    [EntityParameter(nameof(Alpha))]
     public double Alpha { get; private set; } = 1;
 
-    [EntityParameter(typeof(double), nameof(Beta))]
+    [EntityParameter(nameof(Beta))]
     public double Beta { get; private set; } = 1;
 
-    [EntityParameter(typeof(int), nameof(Trials))]
+    [EntityParameter(nameof(Trials))]
     public int Trials { get; private set; } = 10;
 
     private BetaDistribution _betaDist = new();
@@ -50,10 +50,10 @@ public partial class BinomialBetaDistribution : Distribution
             throw new ArgumentOutOfRangeException(nameof(Trials), "Number of trials must be non-negative.");
     }
 
-    public override double Distribute()
+    public override double Sample(IRandom random)
     {
-        var p = _betaDist.Distribute();
-        return SampleBinomial(Trials, p);
+        var p = _betaDist.Sample(random);
+        return SampleBinomial(Trials, p, random);
     }
     
     public override double Quantile(double p)
@@ -109,7 +109,7 @@ public partial class BinomialBetaDistribution : Distribution
         return cdf;
     }
 
-    private int SampleBinomial(int n, double p)
+    private int SampleBinomial(int n, double p, IRandom random)
     {
         if (n == 0 || p == 0)
             return 0;
@@ -120,7 +120,7 @@ public partial class BinomialBetaDistribution : Distribution
         var successes = 0;
 
         for (var i = 0; i < n; i++)
-            if (RandomUtils.NextDouble() < p)
+            if (random.NextDouble() < p)
                 successes++;
         return successes;
     }

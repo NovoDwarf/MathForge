@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
-using MathForge.Numerical.Simple;
-using MathForge.Numerical.Transforms;
+using MathForge.Functions.Simple;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded
 {
@@ -29,19 +27,19 @@ namespace MathForge.Distributions.Univariate.Continuous.Semibounded
     
         public override double Maximum => _maximum;
 
-        [EntityParameter(typeof(double), nameof(Mean))]
+        [EntityParameter(nameof(Mean))]
         [Range(double.NegativeInfinity, double.PositiveInfinity)]
         private double _mean = 0;
     
-        [EntityParameter(typeof(double), nameof(StandardDeviation))]
+        [EntityParameter(nameof(StandardDeviation))]
         [Range(0, double.PositiveInfinity)]
         private double _standardDeviation = 1;
     
-        [EntityParameter(typeof(double), nameof(Minimum))]
+        [EntityParameter(nameof(Minimum))]
         [Range(double.NegativeInfinity, double.PositiveInfinity)]
         private double _minimum = 0;
     
-        [EntityParameter(typeof(double), nameof(Maximum))]
+        [EntityParameter(nameof(Maximum))]
         [Range(double.NegativeInfinity, double.PositiveInfinity)]
         private double _maximum = 1;
 
@@ -54,7 +52,7 @@ namespace MathForge.Distributions.Univariate.Continuous.Semibounded
                 throw new ArgumentOutOfRangeException(nameof(_minimum), "Min must be less than max");
         }
 
-        public override double Distribute()
+        public override double Sample(IRandomGenerator random)
         {
             double x;
             do

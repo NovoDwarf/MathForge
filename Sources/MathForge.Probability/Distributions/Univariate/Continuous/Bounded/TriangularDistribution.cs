@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Bounded;
 
@@ -31,13 +31,13 @@ public partial class TriangularDistribution : Distribution
 	
 	public double RightSlope => 2 / ((_maximum - _minimum) * (_maximum - _mode));
 
-	[EntityParameter(typeof(double), nameof(Minimum))]
+	[EntityParameter(nameof(Minimum))]
 	private double _minimum = 0;
 	
-	[EntityParameter(typeof(double), nameof(Maximum))]
+	[EntityParameter(nameof(Maximum))]
 	private double _maximum = 10;
 	
-	[EntityParameter(typeof(double), nameof(Mode))]
+	[EntityParameter(nameof(Mode))]
 	private double _mode = 5;
 
 	protected override void Validate()
@@ -49,9 +49,9 @@ public partial class TriangularDistribution : Distribution
 			throw new ArgumentOutOfRangeException(nameof(_mode), "Mode must be between min and max");
 	}
 
-	public override double Distribute()
+	public override double Sample(IRandom random)
 	{
-		var u = RandomUtils.NextDouble();
+		var u = random.NextDouble();
 		var fc = (_mode - _minimum) / (_maximum - _minimum);
 
 		return u < fc

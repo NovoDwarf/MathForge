@@ -1,5 +1,5 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
@@ -26,12 +26,12 @@ public partial class ExpoHypoDistribution : Distribution
     
     public override double Maximum => double.PositiveInfinity;
 
-    [EntityParameter(typeof(double[]), nameof(Rates))]
+    [EntityParameter(nameof(Rates))]
     public double[] Rates { get; private set; } = [2.0, 0.5];
     
     private ExpoDistribution[] _stages;
     
-    public override double Distribute() => _stages.Sum(stage => stage.Distribute());
+    public override double Sample(IRandom random) => _stages.Sum(stage => stage.Sample(random));
 
     public override double Quantile(double p)
     {

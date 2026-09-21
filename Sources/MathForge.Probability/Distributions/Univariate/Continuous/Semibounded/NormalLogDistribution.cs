@@ -1,8 +1,7 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
-using MathForge.Numerical.Simple;
-using MathForge.Randoms;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
@@ -33,10 +32,10 @@ public partial class NormalLogDistribution : Distribution
     
     public double HarmonicMean => Math.Exp(_mean - _standardDeviation * _standardDeviation / 2);
     
-    [EntityParameter(typeof(double), nameof(Mean))]
+    [EntityParameter(nameof(Mean))]
     private double _mean = 0;
     
-    [EntityParameter(typeof(double), nameof(StandardDeviation))]
+    [EntityParameter(nameof(StandardDeviation))]
     private double _standardDeviation = 1;
 
     protected override void Validate()
@@ -45,7 +44,7 @@ public partial class NormalLogDistribution : Distribution
             throw new ArgumentOutOfRangeException(nameof(_standardDeviation), "Standard deviation must be positive");
     }
 
-    public override double Distribute()
+    public override double Sample(IRandom random)
     {
         var u = RandomUtils.NextNormal();
         return Math.Exp(_mean + _standardDeviation * u);

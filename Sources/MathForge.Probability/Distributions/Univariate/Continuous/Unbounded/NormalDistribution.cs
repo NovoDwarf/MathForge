@@ -1,8 +1,7 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
-using MathForge.Numerical.Simple;
-using MathForge.Randoms;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Continuous.Unbounded;
 
@@ -29,10 +28,10 @@ public partial class NormalDistribution : Distribution
 	
 	public override double Maximum => double.PositiveInfinity;
 
-	[EntityParameter(typeof(double), nameof(Mean))]
+	[EntityParameter(nameof(Mean))]
 	private double _mean = 0;
 	
-	[EntityParameter(typeof(double), nameof(StandardDeviation))]
+	[EntityParameter(nameof(StandardDeviation))]
 	private double _stdDev = 1;
 
 	protected override void Validate()
@@ -41,7 +40,7 @@ public partial class NormalDistribution : Distribution
 			throw new ArgumentOutOfRangeException(nameof(StandardDeviation), "Standard deviation must be positive");
 	}
 
-	public override double Distribute() => _mean + _stdDev * RandomUtils.NextNormal();
+	public override double Sample(IRandom random) => _mean + _stdDev * RandomUtils.NextNormal();
 	
 	public override double ProbabilityDensity(double x)
 	{

@@ -1,7 +1,7 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
-using MathForge.Numerical.Simple;
-using MathForge.Numerical.Transforms;
+using MathForge.Functions.Simple;
+using MathForge.Random.Generators;
+using MathForge.Sampling.Transforms;
 
 namespace MathForge.Distributions.Univariate.Continuous.Unbounded;
 
@@ -28,7 +28,7 @@ public partial class StudentsTDistribution : Distribution
 	
 	public override double Maximum => double.PositiveInfinity;
 
-	[EntityParameter(typeof(int), nameof(DegreesOfFreedom))]
+	[EntityParameter(nameof(DegreesOfFreedom))]
 	public int DegreesOfFreedom { get; private set; } = 10;
 
 	protected override void Validate()
@@ -36,15 +36,15 @@ public partial class StudentsTDistribution : Distribution
 		ArgumentOutOfRangeException.ThrowIfNegative(DegreesOfFreedom);
 	}
 
-	public override double Distribute()
+	public override double Sample(IRandom random)
 	{
-		var (z, _) = BoxMullerPolarTransform.Transform();
+		var (z, _) = BoxMullerTransform.Transform(random);
 
 		var v = 0.0;
 
 		for (var i = 0; i < DegreesOfFreedom; i++)
 		{
-			var (zi, _) = BoxMullerPolarTransform.Transform();
+			var (zi, _) = BoxMullerTransform.Transform(random);
 			v += zi * zi;
 		}
 
