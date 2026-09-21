@@ -1,15 +1,15 @@
-﻿using MathForge.Core.Interfaces.Noises;
+﻿using MathForge.Graphics.Noises.Abstractions;
 
 namespace MathForge.Graphics.Noises.Gradient;
 
 public partial class PerlinNoise : INoise1D<float>
 {
 	/// <summary>
-	/// Generates a 1D Perlin noise value at the specified x coordinate.
+	///     Generates a 1D Perlin noise value at the specified x coordinate.
 	/// </summary>
 	/// <param name="x">Coordinate of the point</param>
 	/// <returns>Return the noise value at the specified point</returns>
-	public float Make(float x)
+	public float Sample(float x)
 	{
 		float y = 0, z = 0;
 		ApplyInput(ref x, ref y, ref z);
@@ -26,7 +26,7 @@ public partial class PerlinNoise : INoise1D<float>
 
 		return ApplyOutput(value);
 	}
-	
+
 	private static float Grad(int hash, float x)
 	{
 		var h = hash & 15;

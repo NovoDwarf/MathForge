@@ -1,38 +1,67 @@
-﻿using MathForge.Core.Utilities;
+﻿using System.Runtime.CompilerServices;
+using MathForge.Graphics.Noises.Abstractions;
+using MathForge.Graphics.Noises.Options;
 
 namespace MathForge.Graphics.Noises.Spectral;
 
-public class WhiteNoise
+public sealed partial class WhiteNoise : INoise1D<float>, INoise2D, INoise3D
 {
-	public int Seed { get; set; } = RandomUtils.Next();
-	
-	public float Make(float x)
+	private readonly WhiteNoiseOptions _options;
+
+	public WhiteNoise(WhiteNoiseOptions? options = null)
+	{
+		_options = options ?? new WhiteNoiseOptions();
+
+		//_options.Seed = _options.Seed == -1 ? _options.Random.Next() : _options.Seed;
+	}
+
+	private float ApplyOutput(float value)
+	{
+		if (_options.Invert)
+			value = -value;
+
+		value = value * _options.Amplitude + _options.Bias;
+
+		if (_options.Normalize)
+			value = value * 0.5f + 0.5f;
+
+		if (_options.Power != 1f)
+			value = MathF.Pow(value, _options.Power);
+
+		if (_options.Clamp01)
+			value = Math.Clamp(value, 0f, 1f);
+
+		return value;
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static uint Hash(float x, float y, float z, int seed)
 	{
 		unchecked
 		{
-			var h = (uint)(x * 374761393 + Seed * 668265263);
-			h = (h ^ (h >> 13)) * 1274126177u;
-			return (h & 0xFFFFFF) / (float)0xFFFFFF * 2f - 1f;
+			var h = (uint)BitConverter.SingleToInt32Bits(x);
+
+			h ^= (uint)BitConverter.SingleToInt32Bits(y) * 0x9E3779B9u;
+			h ^= (uint)BitConverter.SingleToInt32Bits(z) * 0x85EBCA6Bu;
+			h ^= (uint)seed * 0xC2B2AE35u;
+
+			h ^= h >> 16;
+			h *= 0x85EBCA6Bu;
+			h ^= h >> 13;
+			h *= 0xC2B2AE35u;
+			h ^= h >> 16;
+
+			return h;
 		}
 	}
 
-	public float Make(float x, float y)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static float ToNoise(uint hash)
 	{
-		unchecked
-		{
-			var h = (uint)(x * 374761393 + y * 668265263 + Seed * 1442695040888963407);
-			h = (h ^ (h >> 13)) * 1274126177u;
-			return (h & 0xFFFFFF) / (float)0xFFFFFF * 2f - 1f;
-		}
+		return (hash & 0xFFFFFF) / 16777215f * 2f - 1f;
 	}
-	
-	public float Make(float x, float y, float z)
-	{
-		unchecked
-		{
-			var h = (uint)(x * 374761393 + y * 668265263 + z * 1442695041 + Seed * 2147483647);
-			h = (h ^ (h >> 13)) * 1274126177u;
-			return (h & 0xFFFFFF) / (float)0xFFFFFF * 2f - 1f;
-		}
-	}
+}
+
+public record WhiteNoiseOptions : SeedNoiseOptions
+{
 }

@@ -1,16 +1,16 @@
-﻿using MathForge.Core.Interfaces.Noises;
+﻿using MathForge.Graphics.Noises.Abstractions;
 
 namespace MathForge.Graphics.Noises.Gradient;
 
 public partial class PerlinNoise : INoise2D
 {
 	/// <summary>
-	/// Generates a 2D Perlin noise value for a single point.
+	///     Generates a 2D Perlin noise value for a single point.
 	/// </summary>
 	/// <param name="x">X coordinate of the point</param>
 	/// <param name="y">Y coordinate of the point</param>
 	/// <returns>Return the noise value at the specified point</returns>
-	public float Make(float x, float y)
+	public float Sample(float x, float y)
 	{
 		float z = 0;
 		ApplyInput(ref x, ref y, ref z);
@@ -24,18 +24,18 @@ public partial class PerlinNoise : INoise2D
 		var u = Fade(x);
 		var v = Fade(y);
 
-		var aa = _permutation[_permutation[X]     + Y];
+		var aa = _permutation[_permutation[X] + Y];
 		var ba = _permutation[_permutation[X + 1] + Y];
-		var ab = _permutation[_permutation[X]     + Y + 1];
+		var ab = _permutation[_permutation[X] + Y + 1];
 		var bb = _permutation[_permutation[X + 1] + Y + 1];
 
 		var value =
 			Lerp(v,
 				Lerp(u,
-					Grad(aa, x,     y),
+					Grad(aa, x, y),
 					Grad(ba, x - 1, y)),
 				Lerp(u,
-					Grad(ab, x,     y - 1),
+					Grad(ab, x, y - 1),
 					Grad(bb, x - 1, y - 1)));
 
 		return ApplyOutput(value);
@@ -47,9 +47,9 @@ public partial class PerlinNoise : INoise2D
 		var h = hash & 3;
 		return h switch
 		{
-			0 =>  x + y,
+			0 => x + y,
 			1 => -x + y,
-			2 =>  x - y,
+			2 => x - y,
 			_ => -x - y
 		};
 	}

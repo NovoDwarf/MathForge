@@ -1,51 +1,7 @@
-﻿using System.Numerics;
-using MathForge.Core.Interfaces.Noises;
+﻿using MathForge.Graphics.Noises.Abstractions;
+using MathForge.Graphics.Noises.Options;
 
 namespace MathForge.Graphics.Noises.Fractal;
-
-public record OpenSimplexOptions : NoiseOptionsBase;
-
-public abstract record NoiseOptionsBase
-{
-	public float Scale { get; init; } = 1.0f;
-	
-	public Vector4 Offset { get; init; } = new Vector4(0, 0, 0, 0);
-
-	public long Seed { get; init; } = 0;
-
-	public float Amplitude { get; init; } = 1.0f;
-
-	public float Bias { get; init; } = 0.0f;
-	
-	public bool Clamp01 { get; init; } = true;
-
-	public bool Normalize { get; init; } = true;
-
-	public float Power { get; init; } = 1.0f;
-
-	public bool Invert { get; init; } = false;
-}
-
-
-public record FractalNoiseOptions : NoiseOptionsBase
-{
-	
-	public int Octaves { get; init; } = 6;
-
-	public float Persistence { get; init; } = 0.5f;
-
-	public float Lacunarity { get; init; } = 2.0f;
-
-	public FractalType Type { get; init; } = FractalType.FBM;
-}
-
-public enum FractalType
-{
-	FBM,
-	Billow,
-	Ridged,
-	Turbulence
-}
 
 public class FractalNoise : INoise1D<float>, INoise2D, INoise3D
 {
@@ -58,9 +14,20 @@ public class FractalNoise : INoise1D<float>, INoise2D, INoise3D
 	private INoise3D Noise { get; }
 	private FractalNoiseOptions Options { get; }
 
-	public float Make(float x) => Fractal(x, 0, 0);
-	public float Make(float x, float y) => Fractal(x, y, 0);
-	public float Make(float x, float y, float z) => Fractal(x, y, z);
+	public float Sample(float x)
+	{
+		return Fractal(x, 0, 0);
+	}
+
+	public float Sample(float x, float y)
+	{
+		return Fractal(x, y, 0);
+	}
+
+	public float Sample(float x, float y, float z)
+	{
+		return Fractal(x, y, z);
+	}
 
 	private float Fractal(float x, float y, float z)
 	{
@@ -75,11 +42,7 @@ public class FractalNoise : INoise1D<float>, INoise2D, INoise3D
 
 		for (var i = 0; i < Options.Octaves; i++)
 		{
-			var n = Noise.Make(
-				x * frequency,
-				y * frequency,
-				z * frequency
-			);
+			var n = Noise.Sample(x * frequency, y * frequency, z * frequency);
 
 			switch (Options.Type)
 			{
@@ -87,14 +50,15 @@ public class FractalNoise : INoise1D<float>, INoise2D, INoise3D
 					n = Math.Abs(n);
 					break;
 
+				case FractalType.Turbulence:
+					n = 2f * MathF.Abs(n) - 1f;
+					break;
+
 				case FractalType.Ridged:
 					n = 1f - Math.Abs(n);
 					n *= n;
 					break;
 
-				case FractalType.Turbulence:
-					n = Math.Abs(n);
-					break;
 				case FractalType.FBM:
 					break;
 				default:
@@ -109,7 +73,7 @@ public class FractalNoise : INoise1D<float>, INoise2D, INoise3D
 		}
 
 		var value = Options.Normalize ? total / maxValue : total;
-		
+
 		if (Options.Power != 1f)
 			value = MathF.Pow(value, Options.Power);
 
@@ -118,9 +82,9 @@ public class FractalNoise : INoise1D<float>, INoise2D, INoise3D
 
 		value = value * Options.Amplitude + Options.Bias;
 
-		if (!Options.Clamp01) 
+		if (!Options.Clamp01)
 			return value;
-		
+
 		value = value switch
 		{
 			< 0 => 0,
@@ -131,4 +95,3 @@ public class FractalNoise : INoise1D<float>, INoise2D, INoise3D
 		return value;
 	}
 }
-

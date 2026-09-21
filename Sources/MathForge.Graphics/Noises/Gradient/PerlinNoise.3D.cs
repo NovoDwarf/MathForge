@@ -1,10 +1,10 @@
-﻿using MathForge.Core.Interfaces.Noises;
+﻿using MathForge.Graphics.Noises.Abstractions;
 
 namespace MathForge.Graphics.Noises.Gradient;
 
 public partial class PerlinNoise : INoise3D
 {
-	public float Make(float x, float y, float z)
+	public float Sample(float x, float y, float z)
 	{
 		ApplyInput(ref x, ref y, ref z);
 
@@ -30,25 +30,25 @@ public partial class PerlinNoise : INoise3D
 		var value =
 			Lerp(w,
 				Lerp(v,
-					Lerp(u, Grad(_permutation[aa], x,     y,     z),
-                        Grad(_permutation[ba], x - 1, y,     z)),
-					Lerp(u, Grad(_permutation[ab], x,     y - 1, z),
-                        Grad(_permutation[bb], x - 1, y - 1, z))),
+					Lerp(u, Grad(_permutation[aa], x, y, z),
+						Grad(_permutation[ba], x - 1, y, z)),
+					Lerp(u, Grad(_permutation[ab], x, y - 1, z),
+						Grad(_permutation[bb], x - 1, y - 1, z))),
 				Lerp(v,
-					Lerp(u, Grad(_permutation[aa + 1], x,     y,     z - 1),
-                        Grad(_permutation[ba + 1], x - 1, y,     z - 1)),
-					Lerp(u, Grad(_permutation[ab + 1], x,     y - 1, z - 1),
-                        Grad(_permutation[bb + 1], x - 1, y - 1, z - 1))));
+					Lerp(u, Grad(_permutation[aa + 1], x, y, z - 1),
+						Grad(_permutation[ba + 1], x - 1, y, z - 1)),
+					Lerp(u, Grad(_permutation[ab + 1], x, y - 1, z - 1),
+						Grad(_permutation[bb + 1], x - 1, y - 1, z - 1))));
 
 		return ApplyOutput(value);
 	}
-	
+
 	private static float Grad(int hash, float x, float y, float z)
 	{
 		var h = hash & 15;
 		var u = h < 8 ? x : y;
 		var v = h < 4 ? y : h == 12 || h == 14 ? x : z;
-		
+
 		return ((h & 1) != 0 ? -u : u) + ((h & 2) != 0 ? -v : v);
 	}
 }
