@@ -4,12 +4,5 @@
         <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
         <RootNamespace>MathForge</RootNamespace>
     </PropertyGroup>
-    
-    <ItemGroup>
-      <Folder Include="Curves\" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <ProjectReference Include="..\MathForge.Mathematics\MathForge.Mathematics.csproj" />
-    </ItemGroup>
+
 </Project>

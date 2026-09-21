@@ -2,10 +2,16 @@
 
     <PropertyGroup>
         <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
+        <RootNamespace>MathForge</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MathForge.Core" Version="1.0.0" />
-        <PackageReference Include="MathForge.Numerical" Version="1.0.0" />
+      <Folder Include="Sampling\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MathForge.Core\MathForge.Core.csproj" />
+      <ProjectReference Include="..\MathForge.Mathematics\MathForge.Mathematics.csproj" />
+      <ProjectReference Include="..\MathForge.Numerical\MathForge.Numerical.csproj" />
     </ItemGroup>
 </Project>
