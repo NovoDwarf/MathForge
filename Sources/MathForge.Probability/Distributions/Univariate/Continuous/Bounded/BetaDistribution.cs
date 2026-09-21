@@ -2,10 +2,10 @@
 using MathForge.Core.Attributes;
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Distributions.Univariate.Continuous.Semibounded;
 using MathForge.Numerical.Simple;
-using MathForge.Probability.Distributions.Univariate.Continuous.Semibounded;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Bounded;
+namespace MathForge.Distributions.Univariate.Continuous.Bounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Bounded")]
 public partial class BetaDistribution : Distribution

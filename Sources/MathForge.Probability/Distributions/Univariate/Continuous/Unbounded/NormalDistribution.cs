@@ -2,9 +2,9 @@
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 using MathForge.Numerical.Simple;
-using MathForge.Probability.Randoms;
+using MathForge.Randoms;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Unbounded;
+namespace MathForge.Distributions.Univariate.Continuous.Unbounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Unbounded")]
 public partial class NormalDistribution : Distribution

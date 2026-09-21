@@ -3,7 +3,7 @@ using MathForge.Core.Attributes;
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 
-namespace MathForge.Probability.Distributions.Degenerate
+namespace MathForge.Distributions.Degenerate
 {
 	[Categories("Distributions", "Degenerate")]
 	public sealed partial class DegenerateDistribution : Distribution

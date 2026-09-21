@@ -1,9 +1,8 @@
-﻿
-using MathForge.Core.Attributes;
+﻿using MathForge.Core.Attributes;
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Semibounded;
+namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Semibounded")]
 public partial class ExpoHyperDistribution : Distribution

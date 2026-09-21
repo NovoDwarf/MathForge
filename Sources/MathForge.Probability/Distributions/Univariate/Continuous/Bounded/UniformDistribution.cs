@@ -2,7 +2,7 @@
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Bounded;
+namespace MathForge.Distributions.Univariate.Continuous.Bounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Bounded")]
 public partial class UniformDistribution : Distribution

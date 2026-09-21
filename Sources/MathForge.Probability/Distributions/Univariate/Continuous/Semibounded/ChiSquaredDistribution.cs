@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Semibounded;
+namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Semibounded")]
 public partial class ChiSquaredDistribution

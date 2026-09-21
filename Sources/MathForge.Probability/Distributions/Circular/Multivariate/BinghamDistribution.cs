@@ -1,6 +1,6 @@
 ﻿using MathForge.Core.Attributes;
 
-namespace MathForge.Probability.Distributions.Circular.Multivariate;
+namespace MathForge.Distributions.Circular.Multivariate;
 
 [Categories("Distributions", "Circular", "Multivariate")]
 public class BinghamDistribution

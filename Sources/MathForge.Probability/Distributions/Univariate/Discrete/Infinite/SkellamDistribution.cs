@@ -2,7 +2,7 @@
 using MathForge.Core.Base.Entities;
 using MathForge.Numerical.Simple;
 
-namespace MathForge.Probability.Distributions.Univariate.Discrete.Infinite
+namespace MathForge.Distributions.Univariate.Discrete.Infinite
 {
     public class SkellamDistribution : Distribution
     {

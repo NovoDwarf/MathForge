@@ -1,9 +1,8 @@
-﻿
-using MathForge.Core.Attributes;
+﻿using MathForge.Core.Attributes;
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Unbounded
+namespace MathForge.Distributions.Univariate.Continuous.Unbounded
 {
 	[Categories("Distributions", "Univariate", "Continious", "Unbounded")]
 	public partial class CauchyDistribution : Distribution

@@ -2,9 +2,9 @@
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 using MathForge.Numerical.Simple;
-using MathForge.Probability.Randoms;
+using MathForge.Randoms;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Semibounded;
+namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Semibounded")]
 public partial class NormalLogDistribution : Distribution

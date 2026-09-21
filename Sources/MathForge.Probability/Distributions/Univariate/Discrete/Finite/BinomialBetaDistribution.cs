@@ -1,10 +1,10 @@
 ﻿using MathForge.Core.Attributes;
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
+using MathForge.Distributions.Univariate.Continuous.Bounded;
 using MathForge.Numerical.Simple;
-using MathForge.Probability.Distributions.Univariate.Continuous.Bounded;
 
-namespace MathForge.Probability.Distributions.Univariate.Discrete.Finite;
+namespace MathForge.Distributions.Univariate.Discrete.Finite;
 
 [Categories("Distributions", "Univariate", "Discrete", "Finite")]
 public partial class BinomialBetaDistribution : Distribution

@@ -3,7 +3,7 @@ using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 using MathForge.Numerical.Simple;
 
-namespace MathForge.Probability.Distributions.Univariate.Discrete.Infinite;
+namespace MathForge.Distributions.Univariate.Discrete.Infinite;
 
 [Categories("Distributions", "Univariate", "Discrete", "Infinite")]
 public partial class PoissonDistribution : Distribution

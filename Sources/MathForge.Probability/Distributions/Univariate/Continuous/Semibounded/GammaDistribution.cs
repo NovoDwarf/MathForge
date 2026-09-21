@@ -4,7 +4,7 @@ using MathForge.Core.Utilities;
 using MathForge.Numerical.Simple;
 using MathForge.Numerical.Transforms;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Semibounded;
+namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Semibounded")]
 public partial class GammaDistribution : Distribution

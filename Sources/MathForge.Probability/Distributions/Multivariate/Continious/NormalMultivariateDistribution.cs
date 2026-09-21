@@ -1,4 +1,4 @@
-﻿namespace MathForge.Probability.Distributions.Multivariate.Continious;
+﻿namespace MathForge.Distributions.Multivariate.Continious;
 
 public class NormalMultivariateDistribution
 {

@@ -2,7 +2,7 @@
 using MathForge.Core.Base.Entities;
 using MathForge.Core.Utilities;
 
-namespace MathForge.Probability.Distributions.Univariate.Discrete.Finite
+namespace MathForge.Distributions.Univariate.Discrete.Finite
 {
     [Categories("Distributions", "Univariate", "Discrete", "Finite")]
     public partial class GeometricHyperDistribution : Distribution

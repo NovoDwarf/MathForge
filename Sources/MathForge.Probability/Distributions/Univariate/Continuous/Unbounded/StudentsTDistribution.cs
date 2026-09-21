@@ -3,7 +3,7 @@ using MathForge.Core.Base.Entities;
 using MathForge.Numerical.Simple;
 using MathForge.Numerical.Transforms;
 
-namespace MathForge.Probability.Distributions.Univariate.Continuous.Unbounded;
+namespace MathForge.Distributions.Univariate.Continuous.Unbounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Unbounded")]
 public partial class StudentsTDistribution : Distribution
