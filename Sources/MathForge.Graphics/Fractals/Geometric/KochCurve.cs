@@ -4,9 +4,11 @@ namespace MathForge.Graphics.Fractals.Geometric;
 
 public class KochCurve
 {
-	public static KochCurve Default { get; } = new();
+	private KochCurve()
+	{
+	}
 
-	private KochCurve() { }
+	public static KochCurve Default { get; } = new();
 
 	public float Angle { get; set; } = MathF.PI / 3f;
 
@@ -30,7 +32,7 @@ public class KochCurve
 
 				var p2 = p1 + Rotate(v / 3f, Angle);
 
-				next.Add((a,  p1));
+				next.Add((a, p1));
 				next.Add((p1, p2));
 				next.Add((p2, p3));
 				next.Add((p3, b));
@@ -41,7 +43,7 @@ public class KochCurve
 
 		return segments;
 	}
-	
+
 	public IEnumerable<(Vector2 A, Vector2 B)> GenerateAdaptive(
 		Vector2 start,
 		Vector2 end,
@@ -75,18 +77,19 @@ public class KochCurve
 			stack.Push((p3, b));
 			stack.Push((p2, p3));
 			stack.Push((p1, p2));
-			stack.Push((a,  p1));
+			stack.Push((a, p1));
 		}
 	}
 
-	public void DrawAdaptive(Vector2 start, Vector2 end, Func<Vector2, Vector2> worldToScreen, float minPixelLength, Action<Vector2, Vector2> drawLine)
+	public void DrawAdaptive(Vector2 start, Vector2 end, Func<Vector2, Vector2> worldToScreen, float minPixelLength,
+		Action<Vector2, Vector2> drawLine)
 	{
 		const int MaxStackSize = 1 << 16;
 
 		Span<(Vector2 A, Vector2 B)> stack =
 			stackalloc (Vector2, Vector2)[MaxStackSize];
 
-		int top = 0;
+		var top = 0;
 		stack[top++] = (start, end);
 
 		while (top > 0)
@@ -110,10 +113,10 @@ public class KochCurve
 			stack[top++] = (p3, b);
 			stack[top++] = (p2, p3);
 			stack[top++] = (p1, p2);
-			stack[top++] = (a,  p1);
+			stack[top++] = (a, p1);
 		}
 	}
-	
+
 	public IEnumerable<IReadOnlyList<(Vector2 A, Vector2 B)>> GenerateSteps(Vector2 start, Vector2 end, int depth)
 	{
 		var segments = new List<(Vector2, Vector2)> { (start, end) };
@@ -132,7 +135,7 @@ public class KochCurve
 				var p3 = a + v * 2f / 3f;
 				var p2 = p1 + Rotate(v / 3f, Angle);
 
-				next.Add((a,  p1));
+				next.Add((a, p1));
 				next.Add((p1, p2));
 				next.Add((p2, p3));
 				next.Add((p3, b));
@@ -142,7 +145,7 @@ public class KochCurve
 			yield return segments;
 		}
 	}
-	
+
 	private static Vector2 Rotate(Vector2 v, float angle)
 	{
 		var cos = MathF.Cos(angle);

@@ -7,11 +7,13 @@
 
     <ItemGroup>
       <Folder Include="Sampling\" />
+      <Folder Include="Stochastic\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\MathForge.Core\MathForge.Core.csproj" />
       <ProjectReference Include="..\MathForge.Mathematics\MathForge.Mathematics.csproj" />
       <ProjectReference Include="..\MathForge.Numerical\MathForge.Numerical.csproj" />
+      <ProjectReference Include="..\MathForge.Random\MathForge.Random.csproj" />
     </ItemGroup>
 </Project>

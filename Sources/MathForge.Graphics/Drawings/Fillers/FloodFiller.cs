@@ -1,6 +1,6 @@
 ﻿using MathForge.Geometry;
 using MathForge.Graphics.Drawings.Abstractions.Fillers;
-using MathForge.Graphics.Neighborhoods;
+using MathForge.Neighborhoods;
 using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Fillers;

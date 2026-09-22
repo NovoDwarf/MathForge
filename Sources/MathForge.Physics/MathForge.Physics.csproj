@@ -3,4 +3,5 @@
     <PropertyGroup>
         <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
     </PropertyGroup>
+
 </Project>

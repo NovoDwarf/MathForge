@@ -5,10 +5,9 @@
     </PropertyGroup>
     
     <ItemGroup>
+      <Folder Include="Asymmetric\" />
       <Folder Include="Hashing\" />
-      <Folder Include="Monosound\" />
-      <Folder Include="Polyalphabet\" />
-      <Folder Include="Polygramms\" />
+      <Folder Include="Symmetric\" />
     </ItemGroup>
     
     <ItemGroup>

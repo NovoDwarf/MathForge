@@ -1,4 +1,4 @@
-﻿namespace MathForge.Core.Base.Entities;
+﻿namespace MathForge.Core.Entities;
 
 /// <summary>
 /// Represents a mathematical entity.

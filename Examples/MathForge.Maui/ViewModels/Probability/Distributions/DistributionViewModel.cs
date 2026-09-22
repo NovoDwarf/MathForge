@@ -72,13 +72,13 @@ public partial class DistributionViewModel<TDistribution> : BaseViewModel, IHasD
 	public event Action<Distribution>? DistributionChanged;
 
 	[RelayCommand]
-	private async Task Distribute()
+	private async Task Sample(IRandomGenerator random)
 	{
 		try
 		{
 			SetParameters();
 
-			Value = Distribution.Distribute();
+			Value = Distribution.Sample(IRandomGenerator random);
 
 			RefreshParameters();
 		}

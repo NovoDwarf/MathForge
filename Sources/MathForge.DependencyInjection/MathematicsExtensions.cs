@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
-using MathForge.Core.Base.Entities;
-using MathForge.Probability.Distributions.Univariate.Discrete.Finite;
+using MathForge.Distributions.Univariate.Discrete.Finite;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MathForge.DependencyInjection;

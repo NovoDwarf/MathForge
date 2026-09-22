@@ -1,70 +1,74 @@
-﻿using MathForge.Core.Base.Entities;
+﻿using MathForge.Core.Entities;
 
 namespace MathForge.Processing.Sort.Merge;
 
-public class MergeSort<T> : Sorting<T>
+public sealed class MergeSort<T> : Sorting<T>
 	where T : IComparable<T>
 {
-	public override void Sort(in T[] array)
+	public override void Sort(T[] array)
 	{
-		if (array is not { Length: > 1 })
-			throw new ArgumentException("Array must have at least two elements");
+		ArgumentNullException.ThrowIfNull(array);
 
-		var temp = new T[array.Length];
+		if (array.Length < 2)
+			return;
 
-		Sort(array, temp, 0, array.Length - 1);
+		var buffer = new T[array.Length];
+
+		Sort(array, buffer, 0, array.Length - 1);
 	}
 
-	private void Sort(T[] array, T[] temp, int left, int right)
+	private void Sort(T[] array, T[] buffer, int left, int right)
 	{
 		if (left >= right)
 			return;
 
-		var middle = (left + right) / 2;
+		var middle = left + (right - left) / 2;
 
-		Sort(array, temp, left, middle);
-		Sort(array, temp, middle + 1, right);
-		Merge(array, temp, left, middle, right);
+		OnStep?.Invoke(new SortingStep<T>
+		{
+			Array = (T[])array.Clone(),
+			Left = left,
+			Right = right,
+			Middle = middle
+		});
+
+		Sort(array, buffer, left, middle);
+		Sort(array, buffer, middle + 1, right);
+		Merge(array, buffer, left, middle, right);
 	}
 
-	private void Merge(T[] array, T[] temp, int left, int middle, int right)
+	private void Merge(
+		T[] array,
+		T[] buffer,
+		int left,
+		int middle,
+		int right)
 	{
 		var leftIndex = left;
 		var rightIndex = middle + 1;
-		var tempIndex = left;
+		var bufferIndex = left;
 
 		while (leftIndex <= middle && rightIndex <= right)
 		{
 			if (array[leftIndex].CompareTo(array[rightIndex]) <= 0)
 			{
-				temp[tempIndex] = array[leftIndex];
-				leftIndex++;
+				buffer[bufferIndex++] = array[leftIndex++];
 			}
 			else
 			{
-				temp[tempIndex] = array[rightIndex];
-				rightIndex++;
+				buffer[bufferIndex++] = array[rightIndex++];
 			}
-
-			tempIndex++;
 		}
 
 		while (leftIndex <= middle)
-		{
-			temp[tempIndex] = array[leftIndex];
-			leftIndex++;
-			tempIndex++;
-		}
+			buffer[bufferIndex++] = array[leftIndex++];
 
 		while (rightIndex <= right)
-		{
-			temp[tempIndex] = array[rightIndex];
-			rightIndex++;
-			tempIndex++;
-		}
+			buffer[bufferIndex++] = array[rightIndex++];
 
-		for (var i = left; i <= right; i++) array[i] = temp[i];
-		
-		OnStep?.Invoke(array);
+		for (var i = left; i <= right; i++)
+			array[i] = buffer[i];
+
+		OnStep?.Invoke(new SortingStep<T> { Array = (T[])array.Clone(), Left = left, Right = right, Middle = middle });
 	}
 }
