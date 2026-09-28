@@ -15,5 +15,8 @@
       <ProjectReference Include="..\MathForge.Mathematics\MathForge.Mathematics.csproj" />
       <ProjectReference Include="..\MathForge.Numerical\MathForge.Numerical.csproj" />
       <ProjectReference Include="..\MathForge.Random\MathForge.Random.csproj" />
+      <ProjectReference Include="..\MathForge.SourceGenerators\MathForge.SourceGenerators.csproj"                       
+                        OutputItemType="Analyzer"
+                        ReferenceOutputAssembly="false"/>
     </ItemGroup>
 </Project>
