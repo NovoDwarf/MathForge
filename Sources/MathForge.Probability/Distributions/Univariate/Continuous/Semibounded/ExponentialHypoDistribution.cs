@@ -4,7 +4,7 @@ using MathForge.Random.Generators;
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Semibounded")]
-public partial class ExpoHypoDistribution : Distribution
+public partial class ExponentialHypoDistribution : Distribution
 {
     public override double Expected => Rates.Sum(rate => 1.0 / rate);
     
@@ -29,7 +29,7 @@ public partial class ExpoHypoDistribution : Distribution
     [EntityParameter(nameof(Rates))]
     public double[] Rates { get; private set; } = [2.0, 0.5];
     
-    private ExpoDistribution[] _stages;
+    private ExponentialDistribution[] _stages;
     
     public override double Sample(IRandom random) => _stages.Sum(stage => stage.Sample(random));
 
@@ -135,7 +135,7 @@ public partial class ExpoHypoDistribution : Distribution
         return $"Expo Hypo Distribution [Rates = [{ratesString}]]";
     }
 
-    public override bool Equals(object? obj) => obj is ExpoHypoDistribution other && Rates.SequenceEqual(other.Rates);
+    public override bool Equals(object? obj) => obj is ExponentialHypoDistribution other && Rates.SequenceEqual(other.Rates);
 
     public override int GetHashCode()
     {
@@ -157,7 +157,7 @@ public partial class ExpoHypoDistribution : Distribution
         
         _stages = Rates.Select(rate =>
         {
-           var expo = new ExpoDistribution();
+           var expo = new ExponentialDistribution();
            
            expo.Set(rate);
 

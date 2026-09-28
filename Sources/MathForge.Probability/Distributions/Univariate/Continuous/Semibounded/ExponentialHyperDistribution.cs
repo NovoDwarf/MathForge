@@ -5,35 +5,15 @@ using MathForge.Random.Generators;
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Semibounded")]
-public partial class ExpoHyperDistribution : Distribution
+public partial class ExponentialHyperDistribution : Distribution
 {
     public override double Expected => GetMean();
     
     public override double Mean => GetMean();
     
     public override double Median => Quantile(0.5);
-    
-    public override double Mode
-    {
-        get
-        {
-            var maxDensity = 0.0;
-            var mode = 0.0;
-            
-            for (var i = 0; i < Rates.Length; i++)
-            {
-                var density = _expoProbabilities[i] * Rates[i];
-                
-                if (!(density > maxDensity)) 
-                    continue;
-                
-                maxDensity = density;
-                mode = 0;
-            }
-            
-            return mode;
-        }
-    }
+
+    public override double Mode => GetMode();
     
     public override double Variance => GetVariance();
     
@@ -55,7 +35,7 @@ public partial class ExpoHyperDistribution : Distribution
     [EntityParameter(nameof(Rates))]
     public double[] Rates { get; private set; } = [1.0, 0.1];
     
-    private ExpoDistribution[] _components = [new(), new()];
+    private ExponentialDistribution[] _components = [new(), new()];
     
     private double[] _expoProbabilities;
     
@@ -142,7 +122,7 @@ public partial class ExpoHyperDistribution : Distribution
         return $"Expo Hyper Distribution [Probabilities = [{probsString}], Rates = [{ratesString}]]";
     }
 
-    public override bool Equals(object? obj) => obj is ExpoHyperDistribution other && _expoProbabilities.SequenceEqual(other._expoProbabilities) && Rates.SequenceEqual(other.Rates);
+    public override bool Equals(object? obj) => obj is ExponentialHyperDistribution other && _expoProbabilities.SequenceEqual(other._expoProbabilities) && Rates.SequenceEqual(other.Rates);
 
     public override int GetHashCode()
     {
@@ -176,15 +156,18 @@ public partial class ExpoHyperDistribution : Distribution
         if (sum <= 0)
             throw new ArgumentException("Sum of probabilities must be positive", nameof(Probabilities));
         
-        _expoProbabilities = Probabilities.Select(p => p / sum).ToArray();
-        _components = Rates.Select(r =>
-        {
-            var expo = new ExpoDistribution();
+        _expoProbabilities = [.. Probabilities.Select(p => p / sum)];
+        _components =
+        [
+            .. Rates.Select(r =>
+            {
+                var expo = new ExponentialDistribution();
+                
+                expo.Set(r);
 
-            expo.Set(r);
-            
-            return expo;
-        }).ToArray();
+                return expo;
+            })
+        ];
     }
 
     private double GetMean()
@@ -192,6 +175,25 @@ public partial class ExpoHyperDistribution : Distribution
         return Rates.Select((t, i) => _expoProbabilities[i] / t).Sum();
     }
 
+    private double GetMode()
+    {
+        var maxDensity = 0.0;
+        var mode = 0.0;
+            
+        for (var i = 0; i < Rates.Length; i++)
+        {
+            var density = _expoProbabilities[i] * Rates[i];
+                
+            if (!(density > maxDensity)) 
+                continue;
+                
+            maxDensity = density;
+            mode = 0;
+        }
+            
+        return mode;
+    }
+    
     private double GetVariance()
     {
         var mean = Mean;
