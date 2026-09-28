@@ -7,15 +7,15 @@ namespace MathForge.Distributions.Univariate.Continuous.Bounded;
 [Categories("Distributions", "Univariate", "Continious", "Bounded")]
 public partial class TriangularDistribution : Distribution
 {
-	public override double Expected => (_minimum + _maximum + _mode) / 3.0;
+	public override double Expected => (MinimumI + MaximumI + ModeI) / 3.0;
 
-	public override double Mean => (_minimum + _maximum + _mode) / 3.0;
+	public override double Mean => (MinimumI + MaximumI + ModeI) / 3.0;
 
 	public override double Median => GetMedian();
 
-	public override double Mode => _mode;
+	public override double Mode => ModeI;
 
-	public override double Variance => (Math.Pow(_minimum, 2) + Math.Pow(_maximum, 2) + Math.Pow(_mode, 2) - _minimum * _maximum - _minimum * _mode - _maximum * _mode) / 18.0;
+	public override double Variance => (Math.Pow(MinimumI, 2) + Math.Pow(MaximumI, 2) + Math.Pow(ModeI, 2) - MinimumI * MaximumI - MinimumI * ModeI - MaximumI * ModeI) / 18.0;
 
 	public override double Skewness => GetSkewness();
 
@@ -23,40 +23,40 @@ public partial class TriangularDistribution : Distribution
 	
 	public override double StandardDeviation => Math.Sqrt(Variance);
 
-	public override double Minimum => _minimum;
+	public override double Minimum => MinimumI;
 
-	public override double Maximum => _maximum;
+	public override double Maximum => MaximumI;
 	
-	public double LeftSlope => 2 / ((_maximum - _minimum) * (_mode - _minimum));
+	public double LeftSlope => 2 / ((MaximumI - MinimumI) * (ModeI - MinimumI));
 	
-	public double RightSlope => 2 / ((_maximum - _minimum) * (_maximum - _mode));
+	public double RightSlope => 2 / ((MaximumI - MinimumI) * (MaximumI - ModeI));
 
 	[EntityParameter(nameof(Minimum))]
-	private double _minimum = 0;
+	public double MinimumI { get; private set; } = 0;
 	
 	[EntityParameter(nameof(Maximum))]
-	private double _maximum = 10;
+	public double MaximumI { get; private set; } = 10;
 	
 	[EntityParameter(nameof(Mode))]
-	private double _mode = 5;
+	public double ModeI { get; private set; } = 5;
 
 	protected override void Validate()
 	{
-		if (_minimum >= _maximum)
-			throw new ArgumentOutOfRangeException(nameof(_minimum), "Min must be less than max");
+		if (MinimumI >= MaximumI)
+			throw new ArgumentOutOfRangeException(nameof(MinimumI), "Min must be less than max");
 		
-		if (_mode < _minimum || _mode > _maximum)
-			throw new ArgumentOutOfRangeException(nameof(_mode), "Mode must be between min and max");
+		if (ModeI < MinimumI || ModeI > MaximumI)
+			throw new ArgumentOutOfRangeException(nameof(ModeI), "Mode must be between min and max");
 	}
 
 	public override double Sample(IRandom random)
 	{
 		var u = random.NextDouble();
-		var fc = (_mode - _minimum) / (_maximum - _minimum);
+		var fc = (ModeI - MinimumI) / (MaximumI - MinimumI);
 
 		return u < fc
-			? _minimum + Math.Sqrt(u * (_maximum - _minimum) * (_mode - _minimum))
-			: _maximum - Math.Sqrt((1 - u) * (_maximum - _minimum) * (_maximum - _mode));
+			? MinimumI + Math.Sqrt(u * (MaximumI - MinimumI) * (ModeI - MinimumI))
+			: MaximumI - Math.Sqrt((1 - u) * (MaximumI - MinimumI) * (MaximumI - ModeI));
 	}
 
 	public override double Quantile(double p)
@@ -66,58 +66,58 @@ public partial class TriangularDistribution : Distribution
 	
 	public override double ProbabilityDensity(double x)
 	{
-		if (x < _minimum || x > _maximum)
+		if (x < MinimumI || x > MaximumI)
 			return 0;
 
-		if (x < _mode)
-			return 2 * (x - _minimum) / ((_maximum - _minimum) * (_mode - _minimum));
+		if (x < ModeI)
+			return 2 * (x - MinimumI) / ((MaximumI - MinimumI) * (ModeI - MinimumI));
 
-		if (x > _mode)
-			return 2 * (_maximum - x) / ((_maximum - _minimum) * (_maximum - _mode));
+		if (x > ModeI)
+			return 2 * (MaximumI - x) / ((MaximumI - MinimumI) * (MaximumI - ModeI));
 		
-		return 2 / (_maximum - _minimum);
+		return 2 / (MaximumI - MinimumI);
 	}
 
 	public override double CumulativeDistribution(double x)
 	{
-		if (x < _minimum)
+		if (x < MinimumI)
 			return 0;
 		
-		if (x > _maximum)
+		if (x > MaximumI)
 			return 1;
 
-		if (x <= _mode)
-			return Math.Pow(x - _minimum, 2) / ((_maximum - _minimum) * (_mode - _minimum));
+		if (x <= ModeI)
+			return Math.Pow(x - MinimumI, 2) / ((MaximumI - MinimumI) * (ModeI - MinimumI));
 
-		return 1 - Math.Pow(_maximum - x, 2) / ((_maximum - _minimum) * (_maximum - _mode));
+		return 1 - Math.Pow(MaximumI - x, 2) / ((MaximumI - MinimumI) * (MaximumI - ModeI));
 	}
 	
-	public override string ToString() => $"Triangular Distribution [Min = {_minimum}, Max = {_maximum}, Mode = {_mode}]";
+	public override string ToString() => $"Triangular Distribution [Min = {MinimumI}, Max = {MaximumI}, Mode = {ModeI}]";
 
 	public override bool Equals(object? obj)
 	{
 		return obj is TriangularDistribution other 
-		       && DoubleUtils.Approximately(_minimum, other._minimum) 
-		       && DoubleUtils.Approximately(_maximum, other._maximum) 
-			 && DoubleUtils.Approximately(_mode, other._mode);
+		       && DoubleUtils.Approximately(MinimumI, other.MinimumI) 
+		       && DoubleUtils.Approximately(MaximumI, other.MaximumI) 
+			 && DoubleUtils.Approximately(ModeI, other.ModeI);
 	}
 
-	public override int GetHashCode() => HashCode.Combine(_minimum, _maximum, _mode);
+	public override int GetHashCode() => HashCode.Combine(MinimumI, MaximumI, ModeI);
 	
 	private double GetMedian()
 	{
-		var mid = (_minimum + _maximum) / 2.0;
+		var mid = (MinimumI + MaximumI) / 2.0;
 		
-		if (_mode >= mid)
-			return _minimum + Math.Sqrt((_maximum - _minimum) * (_mode - _minimum) / 2.0);
+		if (ModeI >= mid)
+			return MinimumI + Math.Sqrt((MaximumI - MinimumI) * (ModeI - MinimumI) / 2.0);
 
-		return _maximum - Math.Sqrt((_maximum - _minimum) * (_maximum - _mode) / 2.0);
+		return MaximumI - Math.Sqrt((MaximumI - MinimumI) * (MaximumI - ModeI) / 2.0);
 	}
 	
 	private double GetSkewness()
 	{
-		var numerator = Math.Sqrt(2) * (_minimum + _maximum - 2 * _mode) * (2 * _minimum - _maximum - _mode) * (_minimum - 2 * _maximum + _mode);
-		var denominator = 5 * Math.Pow(_minimum * _minimum + _maximum * _maximum + _mode * _mode - _minimum * _maximum - _minimum * _mode - _maximum * _mode, 1.5);
+		var numerator = Math.Sqrt(2) * (MinimumI + MaximumI - 2 * ModeI) * (2 * MinimumI - MaximumI - ModeI) * (MinimumI - 2 * MaximumI + ModeI);
+		var denominator = 5 * Math.Pow(MinimumI * MinimumI + MaximumI * MaximumI + ModeI * ModeI - MinimumI * MaximumI - MinimumI * ModeI - MaximumI * ModeI, 1.5);
 		
 		return numerator / denominator;
 	}

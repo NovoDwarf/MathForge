@@ -45,10 +45,3 @@ public class FactorialFunction
 		return true;
 	}
 }
-
-public enum FactorialAlgorithm
-{
-	Auto,
-	Iterative,
-	Stirling
-}

@@ -49,7 +49,7 @@ public partial class ErlangDistribution : Distribution
 	public override double Sample(IRandom random)
 	{
 		var sum = 0.0;
-		var exp = new ExpoDistribution();
+		var exp = new ExponentialDistribution();
 
 		exp.Set(Rate);
 		

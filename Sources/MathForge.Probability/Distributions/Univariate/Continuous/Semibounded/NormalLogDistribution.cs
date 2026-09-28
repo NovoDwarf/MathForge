@@ -46,7 +46,7 @@ public partial class NormalLogDistribution : Distribution
 
     public override double Sample(IRandom random)
     {
-        var u = RandomUtils.NextNormal();
+        var u = random.Next();
         return Math.Exp(_mean + _standardDeviation * u);
     }
 

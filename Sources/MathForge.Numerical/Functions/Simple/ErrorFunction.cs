@@ -15,9 +15,3 @@ public static class ErrorFunction
 		};
 	}
 }
-
-public enum ErrorFunctionAlgorithm
-{
-	Auto,
-	AbramowitzStegun
-}
