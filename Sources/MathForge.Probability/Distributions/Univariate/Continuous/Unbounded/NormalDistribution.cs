@@ -2,37 +2,38 @@
 using MathForge.Core.Utilities;
 using MathForge.Functions.Simple;
 using MathForge.Random.Generators;
+using MathForge.Sampling.Transforms;
 
 namespace MathForge.Distributions.Univariate.Continuous.Unbounded;
 
 [Categories("Distributions", "Univariate", "Continious", "Unbounded")]
 public partial class NormalDistribution : Distribution
 {
-	public override double Expected => _mean;
+	public override double Expected => MeanI;
 	
-	public override double Mean => _mean;
+	public override double Mean => MeanI;
 	
-	public override double Median => _mean;
+	public override double Median => MeanI;
 	
-	public override double Mode => _mean;
+	public override double Mode => MeanI;
 	
-	public override double Variance => _stdDev * _stdDev;
+	public override double Variance => StandardDeviationI * StandardDeviationI;
 	
 	public override double Skewness => 0;
 	
 	public override double Kurtosis => 0;
 	
-	public override double StandardDeviation => _stdDev;
+	public override double StandardDeviation => StandardDeviationI;
 	
 	public override double Minimum => double.NegativeInfinity;
 	
 	public override double Maximum => double.PositiveInfinity;
 
 	[EntityParameter(nameof(Mean))]
-	private double _mean = 0;
+	public double MeanI { get; private set; } = 0;
 	
 	[EntityParameter(nameof(StandardDeviation))]
-	private double _stdDev = 1;
+	public double StandardDeviationI { get; private set; } = 1;
 
 	protected override void Validate()
 	{
@@ -40,18 +41,18 @@ public partial class NormalDistribution : Distribution
 			throw new ArgumentOutOfRangeException(nameof(StandardDeviation), "Standard deviation must be positive");
 	}
 
-	public override double Sample(IRandom random) => _mean + _stdDev * RandomUtils.NextNormal();
+	public override double Sample(IRandom random) => MeanI + StandardDeviationI * random.Next();
 	
 	public override double ProbabilityDensity(double x)
 	{
-		var exponent = -0.5 * Math.Pow((x - _mean) / _stdDev, 2);
+		var exponent = -0.5 * Math.Pow((x - MeanI) / StandardDeviationI, 2);
 		
-		return Math.Exp(exponent) / (_stdDev * Math.Sqrt(2 * Math.PI));
+		return Math.Exp(exponent) / (StandardDeviationI * Math.Sqrt(2 * Math.PI));
 	}
 
 	public override double CumulativeDistribution(double x)
 	{
-		var z = (x - _mean) / (_stdDev * Math.Sqrt(2));
+		var z = (x - MeanI) / (StandardDeviationI * Math.Sqrt(2));
 		
 		return 0.5 * (1 + ErrorFunction.Calculate(z));
 	}
@@ -61,7 +62,7 @@ public partial class NormalDistribution : Distribution
 		if (p <= 0 || p >= 1)
 			throw new ArgumentOutOfRangeException(nameof(p), "Probability must be between 0 and 1");
 
-		return p < 0.5 ? _mean - _stdDev * InverseNormalCDF(1 - p) : _mean + _stdDev * InverseNormalCDF(p);
+		return p < 0.5 ? MeanI - StandardDeviationI * InverseNormalCDF(1 - p) : MeanI + StandardDeviationI * InverseNormalCDF(p);
 	}
 
 	private static double InverseNormalCDF(double p)
@@ -107,9 +108,9 @@ public partial class NormalDistribution : Distribution
 		       (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
 	}
 
-	public override string ToString() => $"Normal Distribution [Mean = {_mean}, StdDev = {_stdDev}]";
+	public override string ToString() => $"Normal Distribution [Mean = {MeanI}, StdDev = {StandardDeviationI}]";
 
-	public override bool Equals(object? obj) => obj is NormalDistribution other && _mean == other._mean && _stdDev == other._stdDev;
+	public override bool Equals(object? obj) => obj is NormalDistribution other && MeanI == other.MeanI && StandardDeviationI == other.StandardDeviationI;
 
-	public override int GetHashCode() => HashCode.Combine(_mean, _stdDev);
+	public override int GetHashCode() => HashCode.Combine(MeanI, StandardDeviationI);
 }

@@ -7,15 +7,15 @@ namespace MathForge.Distributions.Univariate.Continuous.Bounded;
 [Categories("Distributions", "Univariate", "Continious", "Bounded")]
 public partial class UniformDistribution : Distribution
 {
-	public override double Expected => (_minimum + _maximum) / 2.0;
+	public override double Expected => (MinimumI + MaximumI) / 2.0;
 
-	public override double Mean => (_minimum + _maximum) / 2.0;
+	public override double Mean => (MinimumI + MaximumI) / 2.0;
 
-	public override double Median => (_minimum + _maximum) / 2.0;
+	public override double Median => (MinimumI + MaximumI) / 2.0;
 
 	public override double Mode => double.NaN;
 
-	public override double Variance => Math.Pow(_maximum - _minimum, 2) / 12.0;
+	public override double Variance => Math.Pow(MaximumI - MinimumI, 2) / 12.0;
 
 	public override double Skewness => 0;
 
@@ -23,25 +23,25 @@ public partial class UniformDistribution : Distribution
 
 	public override double StandardDeviation => Math.Sqrt(Variance);
 
-	public override double Minimum => _minimum;
+	public override double Minimum => MinimumI;
 
-	public override double Maximum => _maximum;
+	public override double Maximum => MaximumI;
 
 	[EntityParameter(nameof(Minimum))]
-	private double _minimum = 0;
+	public double MinimumI { get; private set; } = 0;
 	
 	[EntityParameter(nameof(Maximum))]
-	private double _maximum = 1;
+	public double MaximumI { get; private set; } = 10;
 
 	protected override void Validate()
 	{
-		if (_minimum >= _maximum)
+		if (MinimumI >= MaximumI)
 			throw new ArgumentOutOfRangeException(nameof(Minimum), "Minimum must be less than maximum");
 	}
 
 	public override double Sample(IRandom random)
 	{
-		return random.NextDouble(_minimum, _maximum);
+		return random.NextDouble(MinimumI, MaximumI);
 	}
 
 	public override double Quantile(double p)
@@ -49,22 +49,22 @@ public partial class UniformDistribution : Distribution
 		return p; // TODO: impelement this
 	}
 
-	public override double ProbabilityDensity(double x) => x < _minimum || x > _maximum ? 0 : 1.0 / (_maximum - _minimum);
+	public override double ProbabilityDensity(double x) => x < MinimumI || x > MaximumI ? 0 : 1.0 / (MaximumI - MinimumI);
 
 	public override double CumulativeDistribution(double x)
 	{
-		if (x < _minimum)
+		if (x < MinimumI)
 			return 0;
 		
-		if (x > _maximum)
+		if (x > MaximumI)
 			return 1;
 		
-		return (x - _minimum) / (_maximum - _minimum);
+		return (x - MinimumI) / (MaximumI - MinimumI);
 	}
 	
-	public override string ToString() => $"Uniform Distribution [Min = {_minimum}, Max = {_maximum}]";
+	public override string ToString() => $"Uniform Distribution [Min = {MinimumI}, Max = {MaximumI}]";
 
-	public override bool Equals(object? obj) => obj is UniformDistribution other && _minimum == other._minimum && _maximum == other._maximum;
+	public override bool Equals(object? obj) => obj is UniformDistribution other && MinimumI == other.MinimumI && MaximumI == other.MaximumI;
 
-	public override int GetHashCode() => HashCode.Combine(_minimum, _maximum);
+	public override int GetHashCode() => HashCode.Combine(MinimumI, MaximumI);
 }
