@@ -369,7 +369,7 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
         var name = parameter.Symbol.Name;
 
         if (SyntaxFacts.IsValidIdentifier(name))
-            return char.ToLowerInvariant(name[0]) + name[1..];
+            return char.ToLowerInvariant(name[0]) + name.Substring(1);
 
         return $"parameter{index}";
     }
