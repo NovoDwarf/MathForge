@@ -38,7 +38,7 @@ public partial class BinomialBetaDistribution : Distribution
     [EntityParameter(nameof(Trials))]
     public int Trials { get; private set; } = 10;
 
-    private BetaDistribution _betaDist = new();
+    private readonly BetaDistribution _betaDist = new();
     
     protected override void Validate()
     {

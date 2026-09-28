@@ -42,8 +42,8 @@ public partial class BetaDistribution : Distribution
 	[EntityParameter(nameof(Scale))]
 	public double Scale { get; private set; } = 1;
 	
-	private GammaDistribution _gammaDistributionAlpha = new();
-	private GammaDistribution _gammaDistributionBeta = new();
+	private readonly GammaDistribution _gammaDistributionAlpha = new();
+	private readonly GammaDistribution _gammaDistributionBeta = new();
 	
 	public override double Sample(IRandom random)
 	{
