@@ -1,4 +1,4 @@
-﻿namespace MathForge.Distributions.Multivariate.Continious;
+﻿namespace MathForge.Distributions.Multivariate.Continuous;
 
 public class LaplaceMultivariateDistribution
 {
