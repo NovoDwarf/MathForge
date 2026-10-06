@@ -21,13 +21,37 @@ public class NeumannNeighborhood : INeighborhood2D, INeighborhood3D
 		new(1, 0, 0)
 	];
 
-	private NeumannNeighborhood()
-	{
-	}
-
 	public static NeumannNeighborhood Default { get; } = new();
-
+	
+	private NeumannNeighborhood() { }
+	
 	public IReadOnlyList<Int2> Offsets2D => OffsetsInternal2D;
 
 	public IReadOnlyList<Int3> Offsets3D => OffsetsInternal3D;
+	
+	public IEnumerable<Int2> GetNeighbors(int x, int y)
+	{
+		foreach (var offset in OffsetsInternal2D)
+		{
+			yield return new Int2(x + offset.X, y + offset.Y);
+		}
+	}
+
+	public IEnumerable<Int2> GetNeighbors(Int2 coordinate)
+	{
+		return GetNeighbors(coordinate.X, coordinate.Y);
+	}
+
+	public IEnumerable<Int3> GetNeighbors(int x, int y, int z)
+	{
+		foreach (var offset in OffsetsInternal3D)
+		{
+			yield return new Int3(x + offset.X, y + offset.Y, z + offset.Z);
+		}
+	}
+
+	public IEnumerable<Int3> GetNeighbors(Int3 coordinate)
+	{
+		return GetNeighbors(coordinate.X, coordinate.Y, coordinate.Z);
+	}
 }
