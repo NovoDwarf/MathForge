@@ -1,14 +1,12 @@
-using MathForge.Core.Entities;
+using MathForge.Core.Attributes;
 
-namespace MathForge.Processing.Sort.Merge;
+namespace MathForge.Processing.Sort.Exchange;
 
-public sealed class BubbleSort<T> : Sorting<T>
-	where T : IComparable<T>
+[Categories("Sort", "Exchange")]
+public sealed class BubbleSort<T> : Sorting<T> where T : IComparable<T>
 {
 	public override void Sort(T[] array)
 	{
-		ArgumentNullException.ThrowIfNull(array);
-
 		for (var i = array.Length - 1; i > 0; i--)
 		{
 			var swapped = false;

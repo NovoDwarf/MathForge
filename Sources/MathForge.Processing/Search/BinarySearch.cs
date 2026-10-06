@@ -1,7 +1,6 @@
-namespace MathForge.Processing.Sort.Merge;
+namespace MathForge.Processing.Search;
 
-public sealed class BinarySearch<T>
-	where T : IComparable<T>
+public sealed class BinarySearch<T> where T : IComparable<T>
 {
 	public Action<SearchStep<T>>? OnStep { get; set; }
 
@@ -37,5 +36,3 @@ public sealed class BinarySearch<T>
 		return -1;
 	}
 }
-
-public readonly record struct SearchStep<T>(int Left, int Middle, int Right, T Value, T Current);
