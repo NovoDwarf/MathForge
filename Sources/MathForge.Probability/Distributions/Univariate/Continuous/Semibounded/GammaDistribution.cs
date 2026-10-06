@@ -3,6 +3,7 @@ using MathForge.Core.Utilities;
 using MathForge.Functions.Simple;
 using MathForge.Random.Generators;
 using MathForge.Sampling.Transforms;
+using MathForge.Utilities;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 

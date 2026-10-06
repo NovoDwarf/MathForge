@@ -1,4 +1,4 @@
-using MathForge.Core.Entities;
+using MathForge.Core;
 using MathForge.Random.Generators;
 
 namespace MathForge;
@@ -6,7 +6,7 @@ namespace MathForge;
 /// <summary>
 /// Base class for all distributions.
 /// </summary>
-public abstract class Distribution : Entity
+public abstract class Distribution : MathEntity
 {
 	/// <summary>
 	/// Returns the expected value of the distribution

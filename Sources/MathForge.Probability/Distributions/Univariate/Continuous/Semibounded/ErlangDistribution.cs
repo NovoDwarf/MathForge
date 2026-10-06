@@ -3,6 +3,8 @@ using MathForge.Core.Attributes;
 using MathForge.Core.Utilities;
 using MathForge.Functions.Simple;
 using MathForge.Random.Generators;
+using MathForge.Utilities;
+using MathForge.Vectors;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
@@ -39,11 +41,8 @@ public partial class ErlangDistribution : Distribution
 
 	protected override void Validate()
 	{
-		if (Shape < 1)
-			throw new ArgumentException("Shape must be greater than 0.", nameof(Shape));
-
-		if (Rate <= 0)
-			throw new ArgumentException("Rate must be greater than 0.", nameof(Rate));
+		ArgumentOutOfRangeException.ThrowIfLessThan(Shape, 1);
+		ArgumentOutOfRangeException.ThrowIfNegativeOrZero(Rate);
 	}
 
 	public override double Sample(IRandom random)
@@ -61,9 +60,8 @@ public partial class ErlangDistribution : Distribution
 	
 	public override double Quantile(double p)
 	{
-		if (p < 0 || p > 1)
-			throw new ArgumentOutOfRangeException(nameof(p), "Probability must be between 0 and 1");
-
+		MathArgumentException.ThrowIfNotInRange(p, new Range<double>(0, 1, BoundType.Exclusive, BoundType.Exclusive));
+		
 		switch (p)
 		{
 			case 0: return 0;

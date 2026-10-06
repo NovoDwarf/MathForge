@@ -2,6 +2,7 @@
 using MathForge.Core.Attributes;
 using MathForge.Core.Utilities;
 using MathForge.Random.Generators;
+using MathForge.Vectors;
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 
@@ -43,8 +44,7 @@ public partial class ExponentialDistribution : Distribution
     
     public override double Quantile(double p)
     {
-        if (p < 0 || p > 1)
-            throw new ArgumentOutOfRangeException(nameof(p), "Probability must be between 0 and 1");
+        MathArgumentException.ThrowIfNotInRange(p, new Range<double>(0, 1, BoundType.Exclusive, BoundType.Exclusive));
 
         return p switch
         {

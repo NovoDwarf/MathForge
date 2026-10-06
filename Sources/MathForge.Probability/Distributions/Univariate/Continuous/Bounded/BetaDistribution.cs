@@ -4,6 +4,7 @@ using MathForge.Core.Utilities;
 using MathForge.Distributions.Univariate.Continuous.Semibounded;
 using MathForge.Functions.Simple;
 using MathForge.Random.Generators;
+using MathForge.Utilities;
 
 namespace MathForge.Distributions.Univariate.Continuous.Bounded;
 

@@ -2,6 +2,8 @@
 using MathForge.Core.Attributes;
 using MathForge.Core.Utilities;
 using MathForge.Random.Generators;
+using MathForge.Utilities;
+using MathForge.Vectors;
 
 namespace MathForge.Distributions.Degenerate;
 
@@ -36,8 +38,7 @@ public sealed partial class DegenerateDistribution : Distribution
 
 	public override double Quantile(double p)
 	{
-		if (p is <= 0 or >= 1)
-			throw new ArgumentOutOfRangeException(nameof(p), "Probability must be between 0 and 1");
+		MathArgumentException.ThrowIfNotInRange(p, new Range<double>(0, 1));
 		
 		return Constant;
 	}
@@ -54,7 +55,6 @@ public sealed partial class DegenerateDistribution : Distribution
 
 	protected override void Validate()
 	{
-		if (double.IsNaN(Constant))
-			throw new ArgumentException("Constant must be a valid number.", nameof(Constant)); 
+		MathArgumentException.ThrowIfIsNaN(Constant);
 	}
 }
