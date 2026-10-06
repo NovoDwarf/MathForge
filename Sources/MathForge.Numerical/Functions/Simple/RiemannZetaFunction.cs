@@ -6,8 +6,7 @@ public static class RiemannZetaFunction
 {
 	public static double Calculate(double s, RiemannZetaAlgorithm algorithm = RiemannZetaAlgorithm.Auto)
 	{
-		if (double.IsNaN(s))
-			return double.NaN;
+		MathArgumentException.ThrowIfIsNaN(s);
 
 		if (s == 1.0)
 			return double.PositiveInfinity;

@@ -1,4 +1,6 @@
-﻿namespace MathForge.Functions.Simple;
+﻿using MathForge.Vectors;
+
+namespace MathForge.Functions.Simple;
 
 public static class ErrorInverseFunction
 {
@@ -6,9 +8,8 @@ public static class ErrorInverseFunction
 	
 	public static double Calculate(double y)
 	{
-		if (y is <= -1.0 or >= 1.0)
-			throw new ArgumentOutOfRangeException(nameof(y), "y must be in range (-1, 1)");
-
+		MathArgumentException.ThrowIfNotInRange(y, new Range<double>(-1, 1));
+		
 		var sign = y < 0 ? -1 : 1;
 		y = Math.Abs(y);
         
