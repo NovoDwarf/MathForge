@@ -10,4 +10,9 @@ public partial class WhiteNoise
 
 		return ApplyOutput(ToNoise(hash));
 	}
+
+	private uint Hash(float optionsSeed)
+	{
+		throw new NotImplementedException();
+	}
 }
