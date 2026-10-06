@@ -1,4 +1,4 @@
-namespace MathForge.Functions.Simple;
+namespace MathForge.Functions.Internals.Factorial;
 
 public enum FactorialAlgorithm
 {
