@@ -14,4 +14,7 @@
     <data name="Category_Distribution_Name" xml:space="preserve">
         <value>Распределения</value>
     </data>
+    <data name="Category_Sort_Name" xml:space="preserve">
+        <value>Сортировка</value>
+    </data>
 </root>

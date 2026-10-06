@@ -21,4 +21,7 @@
     <data name="Category_Distribution_Name" xml:space="preserve">
         <value>Distributions</value>
     </data>
+    <data name="Category_Sort_Name" xml:space="preserve">
+        <value>Sort</value>
+    </data>
 </root>
