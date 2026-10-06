@@ -40,9 +40,9 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(MSBuildProjectName)' == 'MathForge.Probability'">
-        <Version>1.0.1-dev1</Version>
-        <AssemblyVersion>1.0.1.1</AssemblyVersion>
-        <FileVersion>1.0.1.1</FileVersion>
+        <Version>1.0.1-dev3</Version>
+        <AssemblyVersion>1.0.1.3</AssemblyVersion>
+        <FileVersion>1.0.1.3</FileVersion>
         <Description>Probability module from MathForge</Description>
     </PropertyGroup>
 
@@ -89,9 +89,9 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(MSBuildProjectName)' == 'MathForge.Numerical'">
-        <Version>1.0.1-dev2</Version>
-        <AssemblyVersion>1.0.1.2</AssemblyVersion>
-        <FileVersion>1.0.1.2</FileVersion>
+        <Version>1.0.1-dev3</Version>
+        <AssemblyVersion>1.0.1.3</AssemblyVersion>
+        <FileVersion>1.0.1.3</FileVersion>
         <Description>Numerical module from MathForge</Description>
     </PropertyGroup>
 

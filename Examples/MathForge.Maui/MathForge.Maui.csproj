@@ -6,8 +6,8 @@
     </PropertyGroup>
   
     <PropertyGroup>
-        <TargetFrameworks>net11.0-android;net11.0-ios;net11.0-maccatalyst</TargetFrameworks>
-        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net11.0-windows10.0.19041.0</TargetFrameworks>
+        <TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
         
         <OutputType>Exe</OutputType>
         <UseMaui>true</UseMaui>
@@ -478,6 +478,11 @@
     
     <ItemGroup>
       <Folder Include="Views\Modules\Numerical\" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\..\Sources\MathForge.MachineLearning\MathForge.MachineLearning.csproj" />
+      <ProjectReference Include="..\..\Sources\MathForge.Processing\MathForge.Processing.csproj" />
     </ItemGroup>
   
 </Project>

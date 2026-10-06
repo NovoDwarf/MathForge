@@ -21,10 +21,13 @@
   <Folder Name="/Sources/Main/">
     <Project Path="Sources/MathForge.Core/MathForge.Core.csproj" />
     <Project Path="Sources/MathForge.Mathematics/MathForge.Mathematics.csproj" />
+    <Project Path="Sources/MathForge.SourceGenerators/MathForge.SourceGenerators.csproj" />
   </Folder>
   <Folder Name="/Sources/Utilities/">
     <Project Path="Sources/MathForge.DependencyInjection/MathForge.DependencyInjection.csproj" />
     <Project Path="Sources/MathForge.SourceGenerators/MathForge.SourceGenerators.csproj" />
   </Folder>
-  <Folder Name="/Tests/" />
+  <Folder Name="/Tests/">
+    <Project Path="Tests/MathForge.Tests.Graphs/MathForge.Tests.Graphs.csproj" />
+  </Folder>
 </Solution>
