@@ -1,9 +1,10 @@
 ﻿using System.Numerics;
 using MathForge.Ballistics.Entities.Objects;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Ballistics.Entities.Precreated;
 
-public class GravityForce
+public class GravityForce : IForce
 {
-	public Vector3 Compute(Projectile p, World w) => w.Gravity * p.Mass;
+	public Float3 Compute(Projectile p, World w) => w.Gravity * p.Mass;
 }

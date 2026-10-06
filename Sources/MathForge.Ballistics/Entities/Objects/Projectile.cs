@@ -1,12 +1,12 @@
-﻿using System.Numerics;
+﻿using MathForge.Vectors.Float;
 
 namespace MathForge.Ballistics.Entities.Objects;
 
 public class Projectile
 {
 	public float Mass { get; }
-	public Vector3 Position { get; set; }
-	public Vector3 Velocity { get; set; }
+	public Float3 Position { get; set; }
+	public Float3 Velocity { get; set; }
 
 	private readonly List<IForce> _forces = [];
 
@@ -18,16 +18,12 @@ public class Projectile
 	public void AddForce(IForce force)
 		=> _forces.Add(force);
 
-	public void Step(double dt, World w)
-	{
-		Vector3 totalForce = new();
-
-		foreach (var f in _forces)
-			totalForce += f.Compute(this, w);
-
+	public void Step(float dt, World w)
+	{ 
+		var totalForce = _forces.Aggregate(Float3.Zero, (current, f) => current + f.Compute(this, w));
 		var acceleration = totalForce * (1.0f / Mass);
 
-		//Velocity += acceleration * dt;
-		//Position += Velocity * dt;
+		Velocity += acceleration * dt;
+		Position += Velocity * dt;
 	}
 }

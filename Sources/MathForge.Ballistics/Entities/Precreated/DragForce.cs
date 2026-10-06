@@ -1,6 +1,5 @@
-﻿using System.Numerics;
-using MathForge.Ballistics.Entities.Objects;
-using MathForge.Ballistics.Extensions;
+﻿using MathForge.Ballistics.Entities.Objects;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Ballistics.Entities.Precreated;
 
@@ -15,13 +14,13 @@ public class DragForce : IForce
 		_area = (float)(Math.PI * Math.Pow(diameter / 2.0, 2));
 	}
 
-	public Vector3 Compute(Projectile p, World w)
+	public Float3 Compute(Projectile p, World w)
 	{
 		var v = p.Velocity;
-		var speed = v.Length();
+		var speed = v.Length;
 		
 		if (speed == 0) 
-			return new Vector3();
+			return Float3.Zero;
 
 		var dragMag = 0.5f * w.AirDensity * speed * speed * _cd * _area;
 		

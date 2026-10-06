@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using MathForge.Ballistics.Entities.Data;
+using MathForge.Vectors.Float;
 
 namespace MathForge.Ballistics.Entities.Objects;
 
@@ -10,6 +11,6 @@ public class World
 		Gravity = data.Gravity;
 	}
 	
-	public Vector3 Gravity { get; set; }
+	public Float3 Gravity { get; set; }
 	public float AirDensity { get; set; }
 }
