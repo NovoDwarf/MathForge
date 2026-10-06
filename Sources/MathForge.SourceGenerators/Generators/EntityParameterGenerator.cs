@@ -1,178 +1,113 @@
-﻿namespace MathForge.SourceGenerators.Generators;
-
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
+﻿using System.Collections.Immutable;
 using System.Text;
+using MathForge.SourceGenerators.Diagnostics;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
+namespace MathForge.SourceGenerators.Generators;
+
 [Generator]
 public sealed class EntityParameterGenerator : IIncrementalGenerator
 {
-    private const string AttributeMetadataName = "MathForge.Core.EntityParameterAttribute";
+    private const string AttributeMetadataName = "MathForge.Core.Attributes.EntityParameterAttribute";
 
-    private static readonly DiagnosticDescriptor ClassMustBePartial = new(
-        id: "MF001",
-        title: "Entity must be partial",
-        messageFormat: "Type '{0}' contains EntityParameter members and must be declared partial",
-        category: "MathForge.Entity",
-        DiagnosticSeverity.Error,
-        isEnabledByDefault: true);
 
-    private static readonly DiagnosticDescriptor UnsupportedMember = new(
-        id: "MF002",
-        title: "Unsupported entity parameter member",
-        messageFormat: "Member '{0}' is not a writable field or property and cannot be used as an entity parameter",
-        category: "MathForge.Entity",
-        DiagnosticSeverity.Error,
-        isEnabledByDefault: true);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        var entities = context.SyntaxProvider
-            .ForAttributeWithMetadataName(AttributeMetadataName,
-                static (node, _) => node is PropertyDeclarationSyntax
-                    or FieldDeclarationSyntax
-                    or VariableDeclaratorSyntax,
-                static (ctx, _) => GetEntity(ctx))
-            .Where(static x => x is not null);
+        var types = context.SyntaxProvider.ForAttributeWithMetadataName(
+                AttributeMetadataName,
+                static (_, _) => true,
+                static (ctx, _) => ctx.TargetSymbol.ContainingType)
+            .Collect();
 
-        context.RegisterSourceOutput(entities, 
-            static (spc, entity) =>
-            {
-                if (entity is null)
-                    return;
-
-                GenerateSource(spc, entity);
-            });
-    }
-
-    private static EntityInfo? GetEntity(GeneratorAttributeSyntaxContext context)
-    {
-        if (context.TargetSymbol.ContainingType is not null && context.TargetSymbol is IPropertySymbol or IFieldSymbol)
+        context.RegisterSourceOutput(types, static (spc, types) =>
         {
-            var type = context.TargetSymbol.ContainingType;
-            var members = GetParameterMembers(type);
-
-            return new EntityInfo(type, members);
-        }
-
-        return null;
-    }
-
-    private static ImmutableArray<EntityParameterInfo> GetParameterMembers(INamedTypeSymbol type)
-    {
-        var result = new List<EntityParameterInfo>();
-
-        foreach (var member in type.GetMembers())
-        {
-            var attribute = member switch
+            foreach (var type in types.Where(static type => type is not null)
+                                      .GroupBy(static type => type!.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat))
+                                      .Select(static group => group.First()!))
             {
-                IPropertySymbol property => GetAttribute(property),
-                IFieldSymbol field => GetAttribute(field),
-                _ => null
-            };
-
-            if (attribute is null)
-                continue;
-
-            switch (member)
-            {
-                case IPropertySymbol property:
-                {
-                    result.Add(property.SetMethod is null
-                        ? new EntityParameterInfo(member, attribute, property.Type, isWritable: false)
-                        : new EntityParameterInfo(member, attribute, property.Type, isWritable: true));
-
-                    break;
-                }
-
-                case IFieldSymbol field:
-                {
-                    result.Add(new EntityParameterInfo(member, attribute, field.Type, isWritable: !field.IsReadOnly));
-                    break;
-                }
+                Generate(spc, type);
             }
+        });
+    }
+
+    private static void Generate(SourceProductionContext context, INamedTypeSymbol type)
+    {
+        if (!IsPartial(type))
+        {
+            context.ReportDiagnostic(Diagnostic.Create(CoreDiagnostics.ClassMustBePartial, type.Locations.FirstOrDefault(), type.Name));
+            return;
         }
 
-        return [.. result.OrderBy(static x => GetSourcePosition(x.Symbol))];
-    }
+        var parameters = GetParameters(type);
 
-    private static AttributeData? GetAttribute(ISymbol symbol)
-    {
-        return symbol.GetAttributes()
-            .FirstOrDefault(static attribute => attribute.AttributeClass?.ToDisplayString() == AttributeMetadataName);
-    }
-
-    private static int GetSourcePosition(ISymbol symbol)
-    {
-        var location = symbol.Locations.FirstOrDefault();
-
-        return location?.SourceSpan.Start ?? int.MaxValue;
-    }
-
-    private static void GenerateSource(
-        SourceProductionContext context,
-        EntityInfo entity)
-    {
-        var classSymbol = entity.Symbol;
-
-        if (!IsPartial(classSymbol))
+        if (parameters.Any(static p => !p.IsWritable))
         {
-            context.ReportDiagnostic(Diagnostic.Create(ClassMustBePartial, classSymbol.Locations.FirstOrDefault(), classSymbol.Name));
+            foreach (var parameter in parameters.Where(static p => !p.IsWritable))
+            {
+                context.ReportDiagnostic(Diagnostic.Create(CoreDiagnostics.UnsupportedMember, parameter.Symbol.Locations.FirstOrDefault(), parameter.Symbol.Name));
+            }
 
             return;
         }
 
-        foreach (var parameter in entity.Parameters.Where(parameter => !parameter.IsWritable))
-        {
-            context.ReportDiagnostic(
-                Diagnostic.Create(UnsupportedMember, parameter.Symbol.Locations.FirstOrDefault(), parameter.Symbol.Name));
-            
-            return;
-        }
+        var hintName = $"{GetTypeName(type)}_EntityParameters.g.cs";
 
-        var source = GenerateClassSource(classSymbol, entity.Parameters);
-        var hintName = $"{classSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-                                     .Replace("global::", string.Empty)
-                                     .Replace('.', '_')
-                                     .Replace('<', '_')
-                                     .Replace('>', '_')}_EntityParameters.g.cs";
-
-        context.AddSource(hintName, SourceText.From(source, Encoding.UTF8));
+        context.AddSource(hintName, SourceText.From(GenerateSource(type, parameters), Encoding.UTF8));
     }
 
-    private static bool IsPartial(INamedTypeSymbol symbol)
+    private static ImmutableArray<Parameter> GetParameters(INamedTypeSymbol type)
     {
-        foreach (var syntaxReference in symbol.DeclaringSyntaxReferences)
-        {
-            if (syntaxReference.GetSyntax() is ClassDeclarationSyntax declaration && declaration.Modifiers.Any(SyntaxKind.PartialKeyword))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return
+        [
+            .. type.GetMembers()
+                .Select(CreateParameter)
+                .Where(static p => p is not null)
+                .Select(static p => p!)
+                .OrderBy(static p => p.Symbol.Locations.FirstOrDefault()?.SourceSpan.Start ?? int.MaxValue)
+        ];
     }
 
-    private static string GenerateClassSource(
-        INamedTypeSymbol classSymbol,
-        ImmutableArray<EntityParameterInfo> parameters)
+    private static Parameter? CreateParameter(ISymbol member)
     {
-        var namespaceName = classSymbol.ContainingNamespace.IsGlobalNamespace
-                ? null
-                : classSymbol.ContainingNamespace.ToDisplayString();
+        if (!HasAttribute(member))
+            return null;
 
-        var className = classSymbol.Name;
+        return member switch
+        {
+            IPropertySymbol property => new Parameter(property, property.Type, property.SetMethod is not null),
+            IFieldSymbol field => new Parameter(field, field.Type, !field.IsReadOnly),
+            _ => null
+        };
+    }
 
+    private static bool HasAttribute(ISymbol symbol)
+    {
+        return symbol.GetAttributes().Any(static attribute => attribute.AttributeClass?.ToDisplayString() == AttributeMetadataName);
+    }
+
+    private static bool IsPartial(INamedTypeSymbol type)
+    {
+        return type.DeclaringSyntaxReferences
+            .Select(static reference => reference.GetSyntax())
+            .OfType<ClassDeclarationSyntax>()
+            .Any(static declaration => declaration.Modifiers.Any(SyntaxKind.PartialKeyword));
+    }
+
+    private static string GenerateSource(INamedTypeSymbol type, ImmutableArray<Parameter> parameters)
+    {
         var builder = new StringBuilder();
 
         builder.AppendLine("// <auto-generated />");
         builder.AppendLine("#nullable enable");
         builder.AppendLine();
+
+        var namespaceName = type.ContainingNamespace.IsGlobalNamespace
+            ? null
+            : type.ContainingNamespace.ToDisplayString();
 
         if (namespaceName is not null)
         {
@@ -183,13 +118,12 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
         }
 
         builder.Append("partial class ")
-            .Append(className)
+            .Append(type.Name)
             .AppendLine();
         builder.AppendLine("{");
 
         GenerateObjectSet(builder, parameters);
         builder.AppendLine();
-
         GenerateTypedSet(builder, parameters);
 
         builder.AppendLine("}");
@@ -197,42 +131,32 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
         return builder.ToString();
     }
 
-    private static void GenerateObjectSet(
-        StringBuilder builder,
-        ImmutableArray<EntityParameterInfo> parameters)
+    private static void GenerateObjectSet(StringBuilder builder, ImmutableArray<Parameter> parameters)
     {
-        builder.AppendLine(
-            "    public override void Set(params object[] parameters)");
+        builder.AppendLine("    public override void Set(params object[] parameters)");
         builder.AppendLine("    {");
+        builder.AppendLine("        if (parameters is null)");
+        builder.AppendLine("            throw new global::System.ArgumentNullException(nameof(parameters));");
 
-        builder.Append("        if (parameters is null)")
-            .AppendLine();
+        builder.AppendLine();
 
+        builder.AppendLine($"        if (parameters.Length != {parameters.Length})");
         builder.AppendLine(
-            "            throw new global::System.ArgumentNullException(nameof(parameters));");
-
-        builder.Append("        if (parameters.Length != ")
-            .Append(parameters.Length)
-            .AppendLine(")");
-
-        builder.Append(
-            "            throw new global::System.ArgumentException(");
-        builder.Append(
-            $"\"Expected {parameters.Length} parameters, got {{parameters.Length}}\", ");
-        builder.AppendLine("nameof(parameters));");
+            $"            throw new global::System.ArgumentException(\"Expected {parameters.Length} parameters, got {{parameters.Length}}\", nameof(parameters));");
 
         builder.AppendLine();
 
         for (var i = 0; i < parameters.Length; i++)
         {
             var parameter = parameters[i];
+            var name = GetParameterName(parameter.Symbol.Name, i);
 
             builder.Append("        ")
                 .Append(GetTypeName(parameter.Type))
                 .Append(' ')
-                .Append(GetParameterName(parameter, i))
+                .Append(name)
                 .Append(" = ")
-                .Append(GenerateConversion(parameter.Type, $"parameters[{i}]"))
+                .Append(Convert(parameter.Type, $"parameters[{i}]"))
                 .AppendLine(";");
         }
 
@@ -245,14 +169,14 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
             if (i > 0)
                 builder.Append(", ");
 
-            builder.Append(GetParameterName(parameters[i], i));
+            builder.Append(GetParameterName(parameters[i].Symbol.Name, i));
         }
 
         builder.AppendLine(");");
         builder.AppendLine("    }");
     }
 
-    private static void GenerateTypedSet(StringBuilder builder, ImmutableArray<EntityParameterInfo> parameters)
+    private static void GenerateTypedSet(StringBuilder builder, ImmutableArray<Parameter> parameters)
     {
         builder.Append("    public void Set(");
 
@@ -261,26 +185,20 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
             if (i > 0)
                 builder.Append(", ");
 
-            var parameter = parameters[i];
-
-            builder.Append(GetTypeName(parameter.Type))
+            builder.Append(GetTypeName(parameters[i].Type))
                 .Append(' ')
-                .Append(GetParameterName(parameter, i));
+                .Append(GetParameterName(parameters[i].Symbol.Name, i));
         }
 
         builder.AppendLine(")");
         builder.AppendLine("    {");
 
-        foreach (var parameter in parameters)
+        for (var i = 0; i < parameters.Length; i++)
         {
-            var parameterName = GetParameterName(
-                parameter,
-                parameters.IndexOf(parameter));
-
             builder.Append("        ")
-                .Append(parameter.Symbol.Name)
+                .Append(parameters[i].Symbol.Name)
                 .Append(" = ")
-                .Append(parameterName)
+                .Append(GetParameterName(parameters[i].Symbol.Name, i))
                 .AppendLine(";");
         }
 
@@ -289,126 +207,101 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
         builder.AppendLine("    }");
     }
 
-    private static string GenerateConversion(
-        ITypeSymbol type,
-        string expression)
+    private static string Convert(ITypeSymbol type, string expression)
     {
-        var nullable = type as INamedTypeSymbol;
+        if (type is INamedTypeSymbol { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T } nullable)
+            return $"({GetTypeName(type)}){Convert(nullable.TypeArguments[0], expression)}";
 
-        if (nullable?.OriginalDefinition.SpecialType ==
-            SpecialType.System_Nullable_T)
+        var conversion = type.SpecialType switch
         {
-            var underlying = nullable.TypeArguments[0];
+            SpecialType.System_Byte =>
+                $"global::System.Convert.ToByte({expression})",
 
-            return $"({GetTypeName(type)}){GenerateConversion(underlying, expression)}";
-        }
+            SpecialType.System_SByte =>
+                $"global::System.Convert.ToSByte({expression})",
 
-        switch (type.SpecialType)
-        {
-            case SpecialType.System_Byte:
-                return $"global::System.Convert.ToByte({expression})";
+            SpecialType.System_Int16 =>
+                $"global::System.Convert.ToInt16({expression})",
 
-            case SpecialType.System_SByte:
-                return $"global::System.Convert.ToSByte({expression})";
+            SpecialType.System_UInt16 =>
+                $"global::System.Convert.ToUInt16({expression})",
 
-            case SpecialType.System_Int16:
-                return $"global::System.Convert.ToInt16({expression})";
+            SpecialType.System_Int32 =>
+                $"global::System.Convert.ToInt32({expression})",
 
-            case SpecialType.System_UInt16:
-                return $"global::System.Convert.ToUInt16({expression})";
+            SpecialType.System_UInt32 =>
+                $"global::System.Convert.ToUInt32({expression})",
 
-            case SpecialType.System_Int32:
-                return $"global::System.Convert.ToInt32({expression})";
+            SpecialType.System_Int64 =>
+                $"global::System.Convert.ToInt64({expression})",
 
-            case SpecialType.System_UInt32:
-                return $"global::System.Convert.ToUInt32({expression})";
+            SpecialType.System_UInt64 =>
+                $"global::System.Convert.ToUInt64({expression})",
 
-            case SpecialType.System_Int64:
-                return $"global::System.Convert.ToInt64({expression})";
+            SpecialType.System_Single =>
+                $"global::System.Convert.ToSingle({expression})",
 
-            case SpecialType.System_UInt64:
-                return $"global::System.Convert.ToUInt64({expression})";
+            SpecialType.System_Double =>
+                $"global::System.Convert.ToDouble({expression})",
 
-            case SpecialType.System_Single:
-                return $"global::System.Convert.ToSingle({expression})";
+            SpecialType.System_Decimal =>
+                $"global::System.Convert.ToDecimal({expression})",
 
-            case SpecialType.System_Double:
-                return $"global::System.Convert.ToDouble({expression})";
+            SpecialType.System_Boolean =>
+                $"global::System.Convert.ToBoolean({expression})",
 
-            case SpecialType.System_Decimal:
-                return $"global::System.Convert.ToDecimal({expression})";
+            SpecialType.System_String =>
+                $"global::System.Convert.ToString({expression})!",
 
-            case SpecialType.System_Boolean:
-                return $"global::System.Convert.ToBoolean({expression})";
+            SpecialType.System_Char =>
+                $"global::System.Convert.ToChar({expression})",
 
-            case SpecialType.System_String:
-                return $"global::System.Convert.ToString({expression})!";
+            _ => null
+        };
 
-            case SpecialType.System_Char:
-                return $"global::System.Convert.ToChar({expression})";
-        }
+        if (conversion is not null)
+            return conversion;
 
         if (type.TypeKind == TypeKind.Enum)
-        {
             return $"({GetTypeName(type)})global::System.Convert.ToInt32({expression})";
-        }
 
         return $"({GetTypeName(type)}){expression}";
     }
 
     private static string GetTypeName(ITypeSymbol type)
     {
-        return type.ToDisplayString(
-            SymbolDisplayFormat.FullyQualifiedFormat);
+        return type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+            .Replace("global::", string.Empty)
+            .Replace('.', '_')
+            .Replace('<', '_')
+            .Replace('>', '_');
     }
 
-    private static string GetParameterName(
-        EntityParameterInfo parameter,
-        int index)
+    private static string GetParameterName(string name, int index)
     {
-        var name = parameter.Symbol.Name;
-
-        if (SyntaxFacts.IsValidIdentifier(name))
-            return char.ToLowerInvariant(name[0]) + name.Substring(1);
-
-        return $"parameter{index}";
+        return SyntaxFacts.IsValidIdentifier(name) && name.Length > 0
+            ? char.ToLowerInvariant(name[0]) + name.Substring(1)
+            : $"parameter{index}";
     }
 
-    private sealed class EntityInfo
+    private sealed record Parameter
     {
-        public EntityInfo(
-            INamedTypeSymbol symbol,
-            ImmutableArray<EntityParameterInfo> parameters)
+        public Parameter(ISymbol Symbol, ITypeSymbol Type, bool IsWritable)
         {
-            Symbol = symbol;
-            Parameters = parameters;
-        }
-
-        public INamedTypeSymbol Symbol { get; }
-
-        public ImmutableArray<EntityParameterInfo> Parameters { get; }
-    }
-
-    private sealed class EntityParameterInfo
-    {
-        public EntityParameterInfo(
-            ISymbol symbol,
-            AttributeData attribute,
-            ITypeSymbol type,
-            bool isWritable)
-        {
-            Symbol = symbol;
-            Attribute = attribute;
-            Type = type;
-            IsWritable = isWritable;
+            this.Symbol = Symbol;
+            this.Type = Type;
+            this.IsWritable = IsWritable;
         }
 
         public ISymbol Symbol { get; }
-
-        public AttributeData Attribute { get; }
-
         public ITypeSymbol Type { get; }
-
         public bool IsWritable { get; }
+
+        public void Deconstruct(out ISymbol Symbol, out ITypeSymbol Type, out bool IsWritable)
+        {
+            Symbol = this.Symbol;
+            Type = this.Type;
+            IsWritable = this.IsWritable;
+        }
     }
 }

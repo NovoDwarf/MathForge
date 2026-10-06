@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using MathForge.SourceGenerators.Diagnostics;
 using MathForge.SourceGenerators.Utilities;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -53,7 +54,7 @@ public class PropertiesGenerator : IIncrementalGenerator
 			}
 			catch (Exception ex)
 			{
-				var diagnostic = Diagnostic.Create(DiagnosticUtils.ErrorGenerating(), Location.None, classSymbol.Name, ex.Message);
+				var diagnostic = Diagnostic.Create(PropertiesDiagnostics.ErrorGeneratingProperty, Location.None, classSymbol.Name, ex.Message);
 				
 				context.ReportDiagnostic(diagnostic);
 			}
