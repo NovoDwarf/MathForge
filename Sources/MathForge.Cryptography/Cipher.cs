@@ -1,6 +1,8 @@
-﻿namespace MathForge.Core.Entities;
+﻿using MathForge.Core;
 
-public abstract class Cipher : Entity
+namespace MathForge.Cryptography;
+
+public abstract class Cipher : MathEntity
 {
 	public abstract byte[] Encrypt(ReadOnlySpan<byte> data);
 

@@ -1,5 +1,4 @@
-﻿using MathForge.Core.Entities;
-
+﻿
 namespace MathForge.Cryptography.Classical.Monoalphabetic;
 
 public sealed class SimpleSubstitutionCipher : Cipher
