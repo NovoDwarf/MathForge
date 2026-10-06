@@ -7,7 +7,7 @@ namespace MathForge.Utilities;
 /// <summary>
 /// Field math class
 /// </summary>
-public static class FMath
+public static class FieldUtils
 {
 	public static Field<T> Add<T>(Field<T> a, Field<T> b) where T : INumber<T>
 	{

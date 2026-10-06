@@ -5,7 +5,7 @@ namespace MathForge.Utilities;
 /// <summary>
 /// Vector math class
 /// </summary>
-public static class VMath
+public static class VectorUtils
 {
 	public static T Min<T>(T a, T b) where T : INumber<T>
 	{
@@ -70,31 +70,38 @@ public static class VMath
 	#endregion
 
 	#region 3D Vector Math
-
-
-	public static T Dot<T>(T ax, T ay, T az, T bx, T by, T bz) where T : INumber<T>
+	
+	public static T Dot<T>(
+		T ax, T ay, T az, 
+		T bx, T by, T bz) where T : INumber<T>
 	{
 		return ax * bx + ay * by + az * bz;
 	}
 	
-	public static T CrossX<T>(T ax, T ay, T az, T bx, T by, T bz) where T : INumber<T>
+	public static T CrossX<T>(
+		T ax, T ay, T az, 
+		T bx, T by, T bz) where T : INumber<T>
 	{
 		return ay * bz - az * by;
 	}
 
-	public static T CrossY<T>(T ax, T ay, T az, T bx, T by, T bz) where T : INumber<T>
+	public static T CrossY<T>(
+		T ax, T ay, T az, 
+		T bx, T by, T bz) where T : INumber<T>
 	{
 		return az * bx - ax * bz;
 	}
 
-	public static T CrossZ<T>(T ax, T ay, T az, T bx, T by, T bz) where T : INumber<T>
+	public static T CrossZ<T>(
+		T ax, T ay, T az, 
+		T bx, T by, T bz) where T : INumber<T>
 	{
 		return ax * by - ay * bx;
 	}
 	
-
-	
-	public static T DistanceSquared<T>(T ax, T ay, T az, T bx, T by, T bz) where T : INumber<T>
+	public static T DistanceSquared<T>(
+		T ax, T ay, T az, 
+		T bx, T by, T bz) where T : INumber<T>
 	{
 		var dx = ax - bx;
 		var dy = ay - by;
@@ -104,5 +111,15 @@ public static class VMath
 	}
 
 	#endregion
+
+	#region 4D Vector Math
+
+	public static T Dot<T>(
+		T ax, T ay, T az, T aw, 
+		T bx, T by, T bz, T bw) where T : INumber<T>
+	{
+		return ax * bx + ay * by + az * bz + aw * bw;
+	}
 	
+	#endregion
 }

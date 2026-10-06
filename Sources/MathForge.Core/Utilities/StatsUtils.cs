@@ -10,7 +10,7 @@ public static class StatsUtils
 		ArgumentNullException.ThrowIfNull(samplesX);
 		ArgumentNullException.ThrowIfNull(samplesY);
 
-		if (samplesX == null || samplesY == null || samplesX.Count != samplesY.Count)
+		if (samplesX.Count != samplesY.Count)
 			throw new ArgumentException("Sample lists cannot be null and must have same length");
 
 		if (samplesX.Count < 2)
