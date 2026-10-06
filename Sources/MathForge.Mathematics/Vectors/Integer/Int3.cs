@@ -1,5 +1,8 @@
+using MathForge.Attributes;
+
 namespace MathForge.Vectors.Integer;
 
+[Vector(3)]
 public readonly partial record struct Int3
 {
 	public Int3(int x, int y, int z)

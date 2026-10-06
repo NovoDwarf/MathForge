@@ -1,5 +1,8 @@
+using MathForge.Attributes;
+
 namespace MathForge.Vectors.Float;
 
+[Vector(2)]
 public readonly partial record struct Float2
 {
 	public Float2(float x, float y)

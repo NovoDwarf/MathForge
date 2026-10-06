@@ -1,5 +1,8 @@
+using MathForge.Attributes;
+
 namespace MathForge.Vectors.Integer;
 
+[Vector(2)]
 public readonly partial record struct Int2
 {
 	public Int2(int x, int y)
