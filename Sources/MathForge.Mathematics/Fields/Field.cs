@@ -19,7 +19,7 @@ public sealed partial class Field<T> : IDisposable
         var length = checked(width * height);
 
         if (buffer.Length < length)
-            throw new ArgumentException("Buffer is too small.", nameof(buffer));
+            throw new ArgumentException("Buffer is too small", nameof(buffer));
 
         Width = width;
         Height = height;

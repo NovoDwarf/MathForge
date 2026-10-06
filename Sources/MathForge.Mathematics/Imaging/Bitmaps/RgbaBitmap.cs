@@ -6,7 +6,7 @@ namespace MathForge.Imaging.Bitmaps;
 
 public sealed class RgbaBitmap : IDisposable
 {
-	public RgbaBitmap(Field<NFloat> r, Field<NFloat> g, Field<NFloat> b, Field<NFloat> a)
+	public RgbaBitmap(Field<NormalizedFloat> r, Field<NormalizedFloat> g, Field<NormalizedFloat> b, Field<NormalizedFloat> a)
 	{
 		ArgumentNullException.ThrowIfNull(r);
 		ArgumentNullException.ThrowIfNull(g);
@@ -25,10 +25,10 @@ public sealed class RgbaBitmap : IDisposable
 		A = a;
 	}
 
-	public Field<NFloat> R { get; }
-	public Field<NFloat> G { get; }
-	public Field<NFloat> B { get; }
-	public Field<NFloat> A { get; }
+	public Field<NormalizedFloat> R { get; }
+	public Field<NormalizedFloat> G { get; }
+	public Field<NormalizedFloat> B { get; }
+	public Field<NormalizedFloat> A { get; }
 
 	public int Width => R.Width;
 	public int Height => R.Height;

@@ -2,9 +2,9 @@ using MathForge.Scalars;
 
 namespace MathForge.Imaging.Colors;
 
-public readonly record struct ColorF(NFloat R, NFloat G, NFloat B, NFloat A)
+public readonly record struct ColorF(NormalizedFloat R, NormalizedFloat G, NormalizedFloat B, NormalizedFloat A)
 {
-	public ColorF(NFloat r, NFloat g, NFloat b) : this(r, g, b, NFloat.One) { }
+	public ColorF(NormalizedFloat r, NormalizedFloat g, NormalizedFloat b) : this(r, g, b, NormalizedFloat.One) { }
 	
 	public static ColorF Transparent => new(0f, 0f, 0f, 0f);
 	public static ColorF Black => new(0f, 0f, 0f, 1f);
