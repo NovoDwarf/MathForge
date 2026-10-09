@@ -1,5 +1,4 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Utilities;
 using MathForge.Functions.Simple;
 using MathForge.Random.Generators;
 using MathForge.Sampling.Transforms;

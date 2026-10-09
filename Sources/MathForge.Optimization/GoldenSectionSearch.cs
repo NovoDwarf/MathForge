@@ -1,4 +1,3 @@
-using MathForge.Extensions;
 using MathForge.Vectors;
 
 namespace MathForge.Optimization;

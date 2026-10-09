@@ -1,5 +1,6 @@
 ﻿using MathForge.Random.Generators;
-using MathForge.Vectors.Float;
+using MathForge.Vectors;
+
 
 namespace MathForge.Sampling.Transforms.Internals.BoxMuller;
 

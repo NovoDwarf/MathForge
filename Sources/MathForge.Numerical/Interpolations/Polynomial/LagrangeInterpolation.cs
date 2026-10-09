@@ -1,4 +1,7 @@
-using MathForge.Vectors.Float;
+
+
+
+using MathForge.Vectors;
 
 namespace MathForge.Interpolations.Polynomial;
 

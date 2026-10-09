@@ -1,5 +1,4 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Utilities;
 using MathForge.Distributions.Univariate.Continuous.Bounded;
 using MathForge.Functions.Simple;
 using MathForge.Random.Generators;

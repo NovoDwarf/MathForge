@@ -1,6 +1,7 @@
 ﻿using MathForge.Graphics.Drawings.Abstractions.Clippers;
 using MathForge.Graphics.Drawings.Entities;
-using MathForge.Vectors.Float;
+
+using Float2 = MathForge.Vectors.Float2;
 
 namespace MathForge.Graphics.Drawings.Clippers;
 

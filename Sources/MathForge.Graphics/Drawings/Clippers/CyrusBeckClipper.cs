@@ -1,6 +1,6 @@
 ﻿using MathForge.Graphics.Drawings.Abstractions.Clippers;
 using MathForge.Graphics.Drawings.Entities;
-using MathForge.Vectors.Float;
+using MathForge.Vectors;
 
 namespace MathForge.Graphics.Drawings.Clippers;
 
@@ -27,10 +27,10 @@ public sealed class CyrusBeckClipper : ILineClipper
 
 		List<Float3> boundaries =
 		[
-			new(line.Start.X, direction.X, clipRect.MinX),
-			new(line.Start.X, direction.X, clipRect.MaxX),
-			new(line.Start.Y, direction.Y, clipRect.MinY),
-			new(line.Start.Y, direction.Y, clipRect.MaxY)
+			new(line.Start.X, (float)direction.X, clipRect.MinX),
+			new(line.Start.X, (float)direction.X, clipRect.MaxX),
+			new(line.Start.Y, (float)direction.Y, clipRect.MinY),
+			new(line.Start.Y, (float)direction.Y, clipRect.MaxY)
 		];
 
 		foreach (var (start, directionComponent, boundary) in boundaries)

@@ -1,6 +1,6 @@
 ﻿using MathForge.Graphics.Drawings.Abstractions.Clippers;
 using MathForge.Graphics.Drawings.Entities;
-using MathForge.Vectors.Float;
+using MathForge.Vectors;
 
 namespace MathForge.Graphics.Drawings.Clippers;
 
@@ -198,7 +198,7 @@ public sealed class WeilerAthertonClipper : IPolygonClipper
 
 		var determinant = a1 * b2 - a2 * b1;
 
-		if (MathF.Abs(determinant) < Float2.NormalizationEpsilon)
+		if (MathF.Abs(determinant) < float.Epsilon)
 		{
 			intersection = default;
 			return false;
@@ -211,7 +211,7 @@ public sealed class WeilerAthertonClipper : IPolygonClipper
 
 	private static bool IsBetween(Float2 a, Float2 b, Float2 point)
 	{
-		const float epsilon = Float2.NormalizationEpsilon;
+		const float epsilon = float.Epsilon;
 
 		return point.X >= MathF.Min(a.X, b.X) - epsilon && point.X <= MathF.Max(a.X, b.X) + epsilon &&
 		       point.Y >= MathF.Min(a.Y, b.Y) - epsilon && point.Y <= MathF.Max(a.Y, b.Y) + epsilon;

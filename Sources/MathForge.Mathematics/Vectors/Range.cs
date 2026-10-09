@@ -2,8 +2,6 @@ using System.Numerics;
 
 namespace MathForge.Vectors;
 
-using System.Numerics;
-
 public readonly struct Range<TNumber> where TNumber : INumber<TNumber>
 {
 	public TNumber Start { get; }

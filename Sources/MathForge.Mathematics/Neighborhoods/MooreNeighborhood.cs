@@ -1,4 +1,4 @@
-﻿using MathForge.Vectors.Integer;
+﻿using MathForge.Vectors;
 
 namespace MathForge.Neighborhoods;
 

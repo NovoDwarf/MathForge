@@ -1,6 +1,6 @@
 using MathForge.Attributes;
 
-namespace MathForge.Vectors.Integer;
+namespace MathForge.Vectors;
 
 [Vector(3)]
 public readonly partial record struct Int3
@@ -15,7 +15,4 @@ public readonly partial record struct Int3
 	public int X { get; }
 	public int Y { get; }
 	public int Z { get; }
-
-	public double Length => Math.Sqrt(X * X + Y * Y + Z * Z);
-	public int LengthSquared => X * X + Y * Y + Z * Z;
 }

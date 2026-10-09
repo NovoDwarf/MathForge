@@ -1,5 +1,5 @@
 using MathForge.Geometry;
-using MathForge.Vectors.Float;
+using MathForge.Vectors;
 
 namespace MathForge.Graphics.Drawings.Abstractions.Fillers;
 
