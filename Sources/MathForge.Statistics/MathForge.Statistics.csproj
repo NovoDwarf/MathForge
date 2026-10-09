@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
+        <RootNamespace>MathForge</RootNamespace>
+    </PropertyGroup> 
+
+    <ItemGroup>
+      <PackageReference Include="NovoDwarf.Utilities" Version="1.0.0" />
+    </ItemGroup>
+
+</Project>
