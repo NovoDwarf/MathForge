@@ -1,7 +1,7 @@
-using System.Text;
+using MathForge.SourceGenerators.Generators;
 using Microsoft.CodeAnalysis;
 
-namespace MathForge.SourceGenerators.Generators;
+namespace MathForge.SourceGenerators.Vectors.Emitters;
 
 internal sealed class VectorConversionEmitter
 {
