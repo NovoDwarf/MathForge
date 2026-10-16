@@ -42,6 +42,8 @@ public class LocaleService : ILocaleService
 
 		Thread.CurrentThread.CurrentCulture = culture;
 		Thread.CurrentThread.CurrentUICulture = culture;
+            Current = locale;
+            Save(locale);
 	}
 
 	private static void Save(LocaleItem locale) => Preferences.Set(PreferenceKeys.Locale, locale.CultureCode);

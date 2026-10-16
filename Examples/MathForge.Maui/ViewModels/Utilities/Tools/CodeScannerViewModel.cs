@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MathForge.Maui.Core.ViewModels;
+using ZXing.Net.Maui;
 
 namespace MathForge.Maui.ViewModels.Utilities.Tools;
 

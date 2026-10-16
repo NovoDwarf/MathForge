@@ -1,54 +1,28 @@
-﻿<ContentPage 
+<ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:sv="clr-namespace:AiForms.Settings;assembly=SettingsView"
-    xmlns:pages1="using:MathForge.Maui.ViewModels.Pages"
+    xmlns:pages="using:MathForge.Maui.ViewModels.Pages"
     xmlns:loc="using:MathForge.Maui.Resources.Localizations"
     x:Class="MathForge.Maui.Views.SettingsPage"
-    x:DataType="pages1:SettingsViewModel"
+    x:DataType="pages:SettingsViewModel"
     Title="{x:Static loc:Components_Resources.Title_Settings}">
-    
-    <ContentPage.Content>
-        <ScrollView>
-            <sv:SettingsView HasUnevenRows="true"  ShowArrowIndicatorForAndroid="True">
-                
-                <sv:Section Title="{x:Static loc:Components_Resources.Label_General}"> <!-- General -->
-                    <sv:CommandCell 
-                        IconSource="appicon.png" 
-                        IconSize="60,60" 
-                        IconRadius="30"
-                        Title="Кирилл Стародуб" 
-                        Description="kirillstarodub310@gmail.com"
-                        KeepSelectedUntilBack="true" />
-                    
-                    <sv:PickerCell
-                        Title="{x:Static loc:Components_Resources.Label_Language}"
-                        ItemsSource="{Binding AvailableLocales}"
-                        SelectedItem="{Binding SelectedLocale}"
-                        MaxSelectedNumber="1"
-                        SelectionMode="Single"
-                        UsePickToClose="true"
-                        SelectedCommand="{Binding SetLocaleCommand}" />
-                </sv:Section>
-  
-                <sv:Section Title="{x:Static loc:Components_Resources.Label_Visual}"> <!-- Visual -->
-                    
-                    <sv:PickerCell
-                        Title="{x:Static loc:Components_Resources.Label_Theme}"
-                        ItemsSource="{Binding AvailableThemes}"
-                        SelectedItem="{Binding SelectedTheme}"
-                        MaxSelectedNumber="1"
-                        SelectionMode="Single"
-                        UsePickToClose="true"
-                        SelectedCommand="{Binding SetThemeCommand}" />
-                    
-                    <sv:PickerCell
-                        Title="Цветовая гамма"
-                        TitleColor="{DynamicResource PrimaryTextColor}"
-                        ValueTextColor="{DynamicResource SecondaryTextColor}" />
-                </sv:Section>
-
-            </sv:SettingsView>
-        </ScrollView>
-    </ContentPage.Content>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label Text="{x:Static loc:Components_Resources.Label_General}" FontAttributes="Bold" />
+            <HorizontalStackLayout Spacing="16">
+                <Image Source="appicon.png" WidthRequest="60" HeightRequest="60" />
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label Text="Кирилл Стародуб" />
+                    <Label Text="kirillstarodub310@gmail.com" FontSize="12" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <Picker Title="{x:Static loc:Components_Resources.Label_Language}"
+                    ItemsSource="{Binding AvailableLocales}"
+                    SelectedItem="{Binding SelectedLocale, Mode=TwoWay}" />
+            <Label Text="{x:Static loc:Components_Resources.Label_Visual}" FontAttributes="Bold" />
+            <Picker Title="{x:Static loc:Components_Resources.Label_Theme}"
+                    ItemsSource="{Binding AvailableThemes}"
+                    SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

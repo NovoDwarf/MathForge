@@ -56,7 +56,7 @@ public class GamesViewModel : BaseViewModel
             collection.Add(vm);
         }
 
-        return collection.Sort(i => i.Title);
+        return new ObservableCollection<PreviewViewModel>(collection.OrderBy(i => i.Title));
     }
 
     private string GetIcon(string baseName, bool isDark)

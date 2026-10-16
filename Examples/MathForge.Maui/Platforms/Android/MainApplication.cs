@@ -2,7 +2,7 @@
 
 namespace MathForge.Maui;
 
-[Application(Label = "Математический органайзер")]
+[Android.App.Application(Label = "Математический органайзер")]
 public class MainApplication : MauiApplication
 {
 	public MainApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership) 

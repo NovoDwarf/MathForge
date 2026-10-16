@@ -1,5 +1,9 @@
 ﻿using MathForge.Maui.Views.Graphics;
 using SkiaSharp;
+using MathForge.Geometry.Primitives;
+using MathForge.Graphics.Drawings.Circles;
+using MathForge.Graphics.Drawings.Fillers;
+using MathForge.LinearAlgebra.Vectors;
 
 namespace MathForge.Maui.Views.Modules.Graphics.Drawings;
 
@@ -59,11 +63,12 @@ public partial class CirclesDrawPage : DrawPageBase
         int y1 = (int)((SKPoint)_radiusPoint).Y;
 
         string algorithm = AlgorithmPicker.SelectedItem?.ToString() ?? "DDA";
+        var radius = (int)Math.Round(Math.Sqrt((double)(x1 - x0) * (x1 - x0) + (double)(y1 - y0) * (y1 - y0)));
         var centerPoints = algorithm switch
         {
-            "DDA" => DdaCircleRasterizer.Default.Rasterize(x0, y0, x1, y1),
-            "Брезенхем" => BresenhamCircleRasterizer.Default.Rasterize(x0, y0, x1, y1),
-            "Ву" => WuCircleRasterizer.Default.Rasterize(x0, y0, x1, y1),
+            "DDA" => DdaCircleRasterizer.Default.Rasterize(x0, y0, radius),
+            "Брезенхем" => BresenhamCircleRasterizer.Default.Rasterize(x0, y0, radius),
+            "Ву" => WuCircleRasterizer.Default.Rasterize(x0, y0, radius),
             _ => []
         };
 
@@ -77,21 +82,25 @@ public partial class CirclesDrawPage : DrawPageBase
         var fillAlgorithm = FillPicker.SelectedItem?.ToString();
         if (!string.IsNullOrEmpty(fillAlgorithm))
         {
+            var seed = new Float2(x0, y0);
+            var size = new Size2(
+                Math.Max(1, (int)Math.Ceiling(GridCanvas.Width / GridCanvas.PixelScale)),
+                Math.Max(1, (int)Math.Ceiling(GridCanvas.Height / GridCanvas.PixelScale)));
             var fillPoints = fillAlgorithm switch
             {
                 "Flood Fill" => FloodFiller.Default.Fill(
-                    x0, y0, (int)GridCanvas.Width, (int)GridCanvas.Height,
-                    (x, y, _) => GridCanvas.IsEmpty((int)x, (int)y)
+                    seed, size, GridCanvas.IsEmpty
                 ),
                 "Seed Fill" => SeedFiller.Default.Fill(
-                    x0, y0, (int)GridCanvas.Width, (int)GridCanvas.Height,
-                    (x, y) => GridCanvas.IsEmpty(x, y)
+                    seed, size, GridCanvas.IsEmpty
                 ),
                 "Scanline Fill" =>
                     ScanlineFiller.Default.Fill(
-                        enumerable.Select(p => p with { Z = 1 }).ToList(),
-                        (int)GridCanvas.Height,
-                        (int)GridCanvas.Width
+                        enumerable
+                            .OrderBy(p => Math.Atan2(p.Y - y0, p.X - x0))
+                            .Select(p => new Float2(p.X, p.Y))
+                            .ToList(),
+                        size
                     ),
                 _ => null
             };

@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
-using MathForge.Core.Base.Entities;
+
 using MathForge.Maui.Core.ViewModels;
 using MathForge.Maui.Systems.Hosting.Services;
 using MathForge.Maui.Views.Modules.Probability.Distributions;

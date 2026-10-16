@@ -1,4 +1,3 @@
-﻿using AiForms.Settings;
 using Camera.MAUI;
 using CommunityToolkit.Maui;
 using LiveChartsCore.SkiaSharpView.Maui;
@@ -26,13 +25,13 @@ public static class MauiProgram
 	        .UseMauiApp<App>()
 	        .UseBarcodeReader()
 	        .UseMauiCameraView()
-	        .UseSettingsView(true)
+
 	        .UseMauiCommunityToolkit(ConfigureToolkit)
 	        .UseMemoryToolkit()
 	        .ConfigureExceptions()
 	        .ConfigureFonts(ConfigureFonts);
 
-        var registry = MeasurementLoader.LoadFromRawAsync().Result;
+        var registry = Task.Run(MeasurementLoader.LoadFromRawAsync).GetAwaiter().GetResult();
 
         builder.Services.AddSingleton(registry);
 

@@ -1,6 +1,6 @@
-﻿using MathForge.Core.Base.Entities;
+
 using MathForge.Maui.Views.Modules.Probability.Distributions;
-using MathForge.Probability.Distributions.Univariate.Discrete.Finite;
+using MathForge.Distributions.Univariate.Discrete.Finite;
 
 namespace MathForge.Maui.Systems.Algorithms.Services;
 
