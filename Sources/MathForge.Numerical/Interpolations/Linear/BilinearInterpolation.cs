@@ -1,7 +1,8 @@
+using MathForge.LinearAlgebra.Vectors;
 
 
 
-using MathForge.Vectors;
+
 
 namespace MathForge.Interpolations.Linear;
 

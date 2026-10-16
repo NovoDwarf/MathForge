@@ -1,4 +1,5 @@
 using MathForge.Functions.Internals.RiemannZeta;
+using MathForge.Numerics.Exceptions;
 
 namespace MathForge.Functions.Simple;
 
