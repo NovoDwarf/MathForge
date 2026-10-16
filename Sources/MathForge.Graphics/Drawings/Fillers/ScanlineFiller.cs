@@ -1,6 +1,8 @@
-﻿using MathForge.Geometry;
+using MathForge.LinearAlgebra.Vectors;
+using MathForge.Geometry;
+using MathForge.Geometry.Primitives;
 using MathForge.Graphics.Drawings.Abstractions.Fillers;
-using MathForge.Vectors;
+using Float3 = MathForge.LinearAlgebra.Vectors.Float3;
 
 namespace MathForge.Graphics.Drawings.Fillers;
 

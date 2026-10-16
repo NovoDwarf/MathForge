@@ -1,7 +1,8 @@
-﻿
+using MathForge.LinearAlgebra.Vectors;
 
 
-using MathForge.Vectors;
+
+using Float3 = MathForge.LinearAlgebra.Vectors.Float3;
 
 namespace MathForge.Graphics.Drawings.Abstractions.Rasterizers;
 

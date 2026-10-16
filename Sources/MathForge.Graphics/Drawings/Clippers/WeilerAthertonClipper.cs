@@ -1,12 +1,14 @@
-﻿using MathForge.Graphics.Drawings.Abstractions.Clippers;
+using MathForge.Geometry.Primitives;
+using MathForge.LinearAlgebra.Vectors;
+using MathForge.Graphics.Drawings.Abstractions.Clippers;
 using MathForge.Graphics.Drawings.Entities;
-using MathForge.Vectors;
+
 
 namespace MathForge.Graphics.Drawings.Clippers;
 
 public sealed class WeilerAthertonClipper : IPolygonClipper
 {
-	public IEnumerable<IReadOnlyList<Float2>> Clip(IReadOnlyList<Float2> polygon, Rect clipRegion)
+	public IEnumerable<IReadOnlyList<Float2>> Clip(IReadOnlyList<Float2> polygon, Rect2 clipRegion)
 	{
 		var clipPolygon = new[]
 		{

@@ -5,9 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Folder Include="Compositing\" />
         <Folder Include="Drawings\Abstractions\"/>
         <Folder Include="Fractals\Algebraic\"/>
         <Folder Include="Fractals\Stochastic\"/>
+        <Folder Include="Transforms\" />
     </ItemGroup>
 
     <ItemGroup>

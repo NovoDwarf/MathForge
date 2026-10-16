@@ -1,5 +1,6 @@
-﻿using MathForge.Graphics.Drawings.Abstractions.Rasterizers;
-using MathForge.Vectors;
+using MathForge.LinearAlgebra.Vectors;
+using MathForge.Graphics.Drawings.Abstractions.Rasterizers;
+using Float3 = MathForge.LinearAlgebra.Vectors.Float3;
 
 namespace MathForge.Graphics.Drawings.Circles;
 
