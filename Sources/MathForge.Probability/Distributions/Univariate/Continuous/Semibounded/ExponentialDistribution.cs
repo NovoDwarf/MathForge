@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MathForge.Core.Attributes;
+using MathForge.LinearAlgebra.Vectors;
+using MathForge.Numerics.Exceptions;
 using MathForge.Random.Generators;
-using MathForge.Vectors;
+
 
 namespace MathForge.Distributions.Univariate.Continuous.Semibounded;
 

@@ -1,6 +1,7 @@
+using MathForge.LinearAlgebra.Vectors;
 using MathForge.Random.Generators;
 using MathForge.Sampling.Transforms.Internals.BoxMuller;
-using MathForge.Vectors;
+
 
 
 namespace MathForge.Sampling.Transforms;
