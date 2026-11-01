@@ -21,10 +21,17 @@
     <Project Path="Sources/MathForge.System/MathForge.System.csproj" />
   </Folder>
   <Folder Name="/Sources/Main/">
+    <Project Path="Sources/MathForge.Analyzers/MathForge.Analyzers.csproj" />
+    <Project Path="Sources/MathForge.Analyzers.CodeFixes/MathForge.Analyzers.CodeFixes.csproj" />
     <Project Path="Sources/MathForge.Core/MathForge.Core.csproj" />
     <Project Path="Sources/MathForge.SourceGenerators/MathForge.SourceGenerators.csproj" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="Tests/MathForge.Tests.Analyzers/MathForge.Tests.Analyzers.csproj" />
+    <Project Path="Tests/MathForge.Tests.Physics/MathForge.Tests.Physics.csproj" />
+    <Project Path="Tests/MathForge.Tests.Mathematics/MathForge.Tests.Mathematics.csproj" />
+    <Project Path="Tests/MathForge.Tests.Probability/MathForge.Tests.Probability.csproj" />
+    <Project Path="Tests/MathForge.Tests.Graphics/MathForge.Tests.Graphics.csproj" />
     <Project Path="Tests/MathForge.Tests.Graphs/MathForge.Tests.Graphs.csproj" />
   </Folder>
 </Solution>
