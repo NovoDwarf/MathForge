@@ -1,4 +1,5 @@
-using MathForge.SourceGenerators.Generators;
+using MathForge.SourceGenerators.Vectors.Entities;
+using MathForge.SourceGenerators.Vectors.Enums;
 
 namespace MathForge.SourceGenerators.Vectors;
 

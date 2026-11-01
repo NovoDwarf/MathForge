@@ -1,5 +1,5 @@
-using MathForge.SourceGenerators.Generators;
 using MathForge.SourceGenerators.Utilities;
+using MathForge.SourceGenerators.Vectors.Entities;
 using Microsoft.CodeAnalysis;
 
 namespace MathForge.SourceGenerators.Vectors.Emitters;

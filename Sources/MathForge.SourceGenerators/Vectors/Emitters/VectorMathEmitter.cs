@@ -1,5 +1,6 @@
-using MathForge.SourceGenerators.Generators;
 using MathForge.SourceGenerators.Utilities;
+using MathForge.SourceGenerators.Vectors.Entities;
+using MathForge.SourceGenerators.Vectors.Enums;
 
 namespace MathForge.SourceGenerators.Vectors.Emitters;
 
@@ -12,8 +13,8 @@ internal sealed class VectorMathEmitter
             EmitDot(model),
             EmitLengthSquared(model),
             EmitLength(model),
-            EmitDistanceSquared(model),
-            EmitDistance(model),
+            EmitDistance(model, squared: true),
+            EmitDistance(model, squared: false),
             EmitMin(model),
             EmitMax(model),
             EmitNormalize(model, registry)
@@ -61,26 +62,39 @@ internal sealed class VectorMathEmitter
         };
     }
     
-    private static string EmitDistanceSquared(VectorModel model)
+    private static string EmitDistance(VectorModel model, bool squared)
     {
         var typeName = GeneratorUtils.GetTypeName(model.Symbol);
         var lengthType = NumericTypeRules.GetLengthType(model);
+        var name = squared ? "DistanceSquared" : "Distance";
+       
+        var differences = string.Join("\n", GetDistanceDifferences(model)
+            .Select((difference, index) => $"    var delta{index} = {difference};"));
+       
+        var sum = string.Join(" + ", Enumerable.Range(0, model.Dimension)
+            .Select(index => $"delta{index} * delta{index}"));
+      
+        var result = squared ? sum : $"global::System.Math.Sqrt((double)({sum}))";
 
-        return $"public static {lengthType} DistanceSquared({typeName} a, {typeName} b) => (a - b).LengthSquared;";
+        return $$"""
+            public static {{lengthType}} {{name}}({{typeName}} a, {{typeName}} b)
+            {
+            {{differences}}
+                return ({{lengthType}})({{result}});
+            }
+            """;
     }
 
-    private static string EmitDistance(VectorModel model)
+    private static IEnumerable<string> GetDistanceDifferences(VectorModel model)
     {
-        var typeName = GeneratorUtils.GetTypeName(model.Symbol);
-        var lengthType = NumericTypeRules.GetLengthType(model);
+        var kind = NumericTypeRules.GetKind(model.ScalarType);
 
-        return lengthType switch
+        return model.Coordinates.Select(coordinate => kind switch
         {
-            "global::System.Single" => $"public static {lengthType} Distance({typeName} a, {typeName} b) => global::System.MathF.Sqrt((a - b).LengthSquared);",
-            "global::System.Double" => $"public static {lengthType} Distance({typeName} a, {typeName} b) => global::System.Math.Sqrt((a - b).LengthSquared);",
-            "global::System.Decimal" => $"public static {lengthType} Distance({typeName} a, {typeName} b) => (global::System.Decimal)global::System.Math.Sqrt((double)(a - b).LengthSquared);",
-            _ => throw new InvalidOperationException($"Unsupported length type: {lengthType}")
-        };
+            NumericTypeKind.Int64 => $"(double)((decimal)a.{coordinate.Name} - b.{coordinate.Name})",
+            NumericTypeKind.Decimal => $"a.{coordinate.Name} - b.{coordinate.Name}",
+            _ => $"(double)a.{coordinate.Name} - b.{coordinate.Name}"
+        });
     }
 
     private static string EmitMin(VectorModel model) => EmitComponentwise(model, "Min");
@@ -111,20 +125,43 @@ internal sealed class VectorMathEmitter
     
     private static string EmitNormalize(VectorModel model, VectorTypeRegistry registry)
     {
-        if (!registry.TryGet(model.Dimension, NumericTypeKind.Float32, out var floatVector))
-            throw new InvalidOperationException($"Float vector with dimension {model.Dimension} is required for Normalize.");
+        var kind = NumericTypeRules.GetKind(model.ScalarType);
+        var resultKind = kind is NumericTypeKind.Float64 or NumericTypeKind.Decimal
+            ? NumericTypeKind.Float64
+            : NumericTypeKind.Float32;
 
-        var resultType = GeneratorUtils.GetTypeName(floatVector.Symbol);
-        var arguments = string.Join(", ", model.Coordinates.Select(static coordinate => $"(float){coordinate.Name} / length"));
-        var zeroValues = string.Join(", ", model.Coordinates.Select(static _ => "0f"));
+        if (!registry.TryGet(model.Dimension, resultKind, out var resultVector))
+        {
+            throw new InvalidOperationException($"{resultKind} vector with dimension {model.Dimension} is required for Normalize.");
+        }
+
+        var resultType = GeneratorUtils.GetTypeName(resultVector.Symbol);
+        var scalarType = NumericTypeRules.GetTypeName(resultKind);
+       
+        var scale = model.Coordinates.Select(coordinate => $"global::System.Math.Abs((double){coordinate.Name})")
+            .Aggregate((left, right) => $"global::System.Math.Max({left}, {right})");
+        
+        var scaledCoordinates = string.Join("\n", model.Coordinates.Select((coordinate, index) =>
+            $"    var component{index} = (double){coordinate.Name} / scale;"));
+      
+        var lengthSquared = string.Join(" + ", Enumerable.Range(0, model.Dimension)
+            .Select(index => $"component{index} * component{index}"));
+      
+        var arguments = string.Join(", ", Enumerable.Range(0, model.Dimension)
+            .Select(index => $"({scalarType})(component{index} / length)"));
 
         return $$"""
                  public {{resultType}} Normalize()
                  {
-                     var length = Length;
+                     var scale = {{scale}};
 
-                     if (length == 0f)
-                         return new {{resultType}}({{zeroValues}});
+                     if (scale == 0.0)
+                     {
+                         return default;
+                     }
+
+                 {{scaledCoordinates}}
+                     var length = global::System.Math.Sqrt({{lengthSquared}});
 
                      return new {{resultType}}({{arguments}});
                  }

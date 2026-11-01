@@ -1,6 +1,8 @@
+using MathForge.SourceGenerators.Vectors.Entities;
+using MathForge.SourceGenerators.Vectors.Enums;
 using Microsoft.CodeAnalysis;
 
-namespace MathForge.SourceGenerators.Generators;
+namespace MathForge.SourceGenerators.Vectors;
 
 internal static class NumericTypeRules
 {

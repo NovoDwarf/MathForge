@@ -1,5 +1,5 @@
 using System.Text;
-using MathForge.SourceGenerators.Generators;
+using MathForge.SourceGenerators.Vectors.Entities;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 

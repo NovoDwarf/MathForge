@@ -1,7 +1,8 @@
 using System.Collections.Immutable;
-using MathForge.SourceGenerators.Diagnostics;
-using MathForge.SourceGenerators.Generators;
+using MathForge.SourceGenerators.Vectors.Diagnostics;
 using MathForge.SourceGenerators.Vectors.Emitters;
+using MathForge.SourceGenerators.Vectors.Entities;
+using MathForge.SourceGenerators.Vectors.Enums;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;

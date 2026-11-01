@@ -1,20 +1,25 @@
 ﻿using System.Collections.Immutable;
 using System.Text;
-using MathForge.SourceGenerators.Diagnostics;
+using MathForge.SourceGenerators.Core.Diagnostics;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
-namespace MathForge.SourceGenerators.Generators;
+namespace MathForge.SourceGenerators.Core;
 
 [Generator]
 public sealed class EntityParameterGenerator : IIncrementalGenerator
 {
+    private sealed record Parameter(ISymbol Symbol, ITypeSymbol Type, bool IsWritable)
+    {
+        public ISymbol Symbol { get; } = Symbol;
+        public ITypeSymbol Type { get; } = Type;
+        public bool IsWritable { get; } = IsWritable;
+    }
+    
     private const string AttributeMetadataName = "MathForge.Core.Attributes.EntityParameterAttribute";
-
-
-
+    
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var types = context.SyntaxProvider.ForAttributeWithMetadataName(
@@ -195,7 +200,7 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
 
         for (var i = 0; i < parameters.Length; i++)
         {
-            builder.Append("        ")
+            builder.Append("        this.")
                 .Append(parameters[i].Symbol.Name)
                 .Append(" = ")
                 .Append(GetParameterName(parameters[i].Symbol.Name, i))
@@ -214,47 +219,20 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
 
         var conversion = type.SpecialType switch
         {
-            SpecialType.System_Byte =>
-                $"global::System.Convert.ToByte({expression})",
-
-            SpecialType.System_SByte =>
-                $"global::System.Convert.ToSByte({expression})",
-
-            SpecialType.System_Int16 =>
-                $"global::System.Convert.ToInt16({expression})",
-
-            SpecialType.System_UInt16 =>
-                $"global::System.Convert.ToUInt16({expression})",
-
-            SpecialType.System_Int32 =>
-                $"global::System.Convert.ToInt32({expression})",
-
-            SpecialType.System_UInt32 =>
-                $"global::System.Convert.ToUInt32({expression})",
-
-            SpecialType.System_Int64 =>
-                $"global::System.Convert.ToInt64({expression})",
-
-            SpecialType.System_UInt64 =>
-                $"global::System.Convert.ToUInt64({expression})",
-
-            SpecialType.System_Single =>
-                $"global::System.Convert.ToSingle({expression})",
-
-            SpecialType.System_Double =>
-                $"global::System.Convert.ToDouble({expression})",
-
-            SpecialType.System_Decimal =>
-                $"global::System.Convert.ToDecimal({expression})",
-
-            SpecialType.System_Boolean =>
-                $"global::System.Convert.ToBoolean({expression})",
-
-            SpecialType.System_String =>
-                $"global::System.Convert.ToString({expression})!",
-
-            SpecialType.System_Char =>
-                $"global::System.Convert.ToChar({expression})",
+            SpecialType.System_Byte => $"global::System.Convert.ToByte({expression})",
+            SpecialType.System_SByte => $"global::System.Convert.ToSByte({expression})",
+            SpecialType.System_Int16 => $"global::System.Convert.ToInt16({expression})",
+            SpecialType.System_UInt16 => $"global::System.Convert.ToUInt16({expression})",
+            SpecialType.System_Int32 => $"global::System.Convert.ToInt32({expression})",
+            SpecialType.System_UInt32 => $"global::System.Convert.ToUInt32({expression})",
+            SpecialType.System_Int64 => $"global::System.Convert.ToInt64({expression})",
+            SpecialType.System_UInt64 => $"global::System.Convert.ToUInt64({expression})",
+            SpecialType.System_Single => $"global::System.Convert.ToSingle({expression})",
+            SpecialType.System_Double => $"global::System.Convert.ToDouble({expression})",
+            SpecialType.System_Decimal => $"global::System.Convert.ToDecimal({expression})",
+            SpecialType.System_Boolean => $"global::System.Convert.ToBoolean({expression})",
+            SpecialType.System_String => $"global::System.Convert.ToString({expression})!",
+            SpecialType.System_Char => $"global::System.Convert.ToChar({expression})",
 
             _ => null
         };
@@ -282,26 +260,5 @@ public sealed class EntityParameterGenerator : IIncrementalGenerator
         return SyntaxFacts.IsValidIdentifier(name) && name.Length > 0
             ? char.ToLowerInvariant(name[0]) + name.Substring(1)
             : $"parameter{index}";
-    }
-
-    private sealed record Parameter
-    {
-        public Parameter(ISymbol Symbol, ITypeSymbol Type, bool IsWritable)
-        {
-            this.Symbol = Symbol;
-            this.Type = Type;
-            this.IsWritable = IsWritable;
-        }
-
-        public ISymbol Symbol { get; }
-        public ITypeSymbol Type { get; }
-        public bool IsWritable { get; }
-
-        public void Deconstruct(out ISymbol Symbol, out ITypeSymbol Type, out bool IsWritable)
-        {
-            Symbol = this.Symbol;
-            Type = this.Type;
-            IsWritable = this.IsWritable;
-        }
     }
 }

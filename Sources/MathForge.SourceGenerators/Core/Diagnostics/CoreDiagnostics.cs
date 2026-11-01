@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace MathForge.SourceGenerators.Diagnostics;
+namespace MathForge.SourceGenerators.Core.Diagnostics;
 
 public static class CoreDiagnostics
 {

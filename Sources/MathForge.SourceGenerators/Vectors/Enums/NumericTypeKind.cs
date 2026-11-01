@@ -1,4 +1,4 @@
-namespace MathForge.SourceGenerators.Generators;
+namespace MathForge.SourceGenerators.Vectors.Enums;
 
 internal enum NumericTypeKind
 {

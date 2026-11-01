@@ -1,7 +1,7 @@
 using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 
-namespace MathForge.SourceGenerators.Generators;
+namespace MathForge.SourceGenerators.Vectors.Entities;
 
 internal sealed record VectorModel
 {

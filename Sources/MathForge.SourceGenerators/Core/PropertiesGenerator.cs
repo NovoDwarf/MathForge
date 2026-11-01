@@ -1,10 +1,10 @@
 ﻿using System.Collections.Immutable;
-using MathForge.SourceGenerators.Diagnostics;
+using MathForge.SourceGenerators.Core.Diagnostics;
 using MathForge.SourceGenerators.Utilities;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace MathForge.SourceGenerators.Generators;
+namespace MathForge.SourceGenerators.Core;
 
 [Generator]
 public class PropertiesGenerator : IIncrementalGenerator

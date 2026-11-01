@@ -1,4 +1,6 @@
-namespace MathForge.SourceGenerators.Generators;
+using MathForge.SourceGenerators.Vectors.Enums;
+
+namespace MathForge.SourceGenerators.Vectors.Entities;
 
 internal readonly record struct NumericOperationResult
 {

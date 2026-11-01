@@ -1,5 +1,6 @@
-using MathForge.SourceGenerators.Generators;
 using MathForge.SourceGenerators.Utilities;
+using MathForge.SourceGenerators.Vectors.Entities;
+using MathForge.SourceGenerators.Vectors.Enums;
 using Microsoft.CodeAnalysis;
 
 namespace MathForge.SourceGenerators.Vectors.Emitters;
@@ -45,9 +46,28 @@ internal sealed class VectorUtilityEmitter
     {
         var typeName = GeneratorUtils.GetTypeName(model.Symbol);
         var scalarType = GeneratorUtils.GetTypeName(model.ScalarType);
-        var conditions = string.Join(" && ", model.Coordinates.Select(coordinate => $"global::System.Math.Abs({coordinate.Name} - other.{coordinate.Name}) <= epsilon"));
+        var kind = NumericTypeRules.GetKind(model.ScalarType);
+        
+        var invalidTolerance = kind is NumericTypeKind.Float32 or NumericTypeKind.Float64
+            ? $"!{scalarType}.IsFinite(epsilon) || epsilon < 0"
+            : "epsilon < 0";
+        
+        var conditions = string.Join(" && ", model.Coordinates.Select(coordinate =>
+            kind is NumericTypeKind.Byte or NumericTypeKind.Int32 or NumericTypeKind.Int64
+                ? $"global::System.Math.Abs((decimal){coordinate.Name} - other.{coordinate.Name}) <= epsilon"
+                : $"global::MathForge.Utilities.NumericUtils<{scalarType}>.Approximately({coordinate.Name}, other.{coordinate.Name}, epsilon)"));
 
-        return $"public bool NearlyEquals({typeName} other, {scalarType} epsilon = default) => {conditions};";
+        return $$"""
+            public bool NearlyEquals({{typeName}} other, {{scalarType}} epsilon = default)
+            {
+                if ({{invalidTolerance}})
+                {
+                    throw new global::System.ArgumentOutOfRangeException(nameof(epsilon));
+                }
+
+                return {{conditions}};
+            }
+            """;
     }
 
     private static string EmitGetHashCode(VectorModel model)
