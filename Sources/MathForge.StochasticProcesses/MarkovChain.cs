@@ -1,16 +1,11 @@
-namespace MathForge.Stochastic;
+using MathForge.Random.Generators;
+
+namespace MathForge.StochasticProcesses;
 
 public sealed class MarkovChain
 {
-	public TransitionMatrix Transitions { get; }
-
-	public MarkovChain(TransitionMatrix transitions)
+	public int NextState(int state, IRandom random)
 	{
-		Transitions = transitions;
-	}
-
-	public int NextState(int state, IRandomGenerator random)
-	{
-		...
+		return 0;
 	}
 }
