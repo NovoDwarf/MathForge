@@ -6,5 +6,5 @@ public readonly record struct Angle(double Radians)
 
 	public static Angle FromRadians(double radians) => new(radians);
 
-	public static Angle FromDegrees(double degrees) => new(degrees);
+	public static Angle FromDegrees(double degrees) => new(degrees * (Math.PI / 180.0));
 }
