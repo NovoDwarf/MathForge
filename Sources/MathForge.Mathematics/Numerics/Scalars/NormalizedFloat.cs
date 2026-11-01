@@ -6,6 +6,9 @@ public readonly record struct NormalizedFloat
 
 	public NormalizedFloat(float value)
 	{
+		if (!float.IsFinite(value))
+			throw new ArgumentOutOfRangeException(nameof(value));
+		
 		if (value is < 0f or > 1f)
 			throw new ArgumentOutOfRangeException(nameof(value));
 
