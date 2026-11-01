@@ -2,6 +2,10 @@ using System.Runtime.CompilerServices;
 
 namespace MathForge.Fields;
 
+/// <summary>Owns a two-dimensional buffer, optionally rented from the shared array pool.</summary>
+/// <remarks>
+/// Not thread-safe. Spans obtained from Values must not be used after this instance is disposed.
+/// </remarks>
 public sealed partial class Field<T> : IDisposable
 {
     private readonly T[] _values;
@@ -9,7 +13,9 @@ public sealed partial class Field<T> : IDisposable
 
     private bool _disposed;
 
-    public Field(int width, int height) : this(width, height, new T[checked(width * height)], isPooled: false) { }
+    public Field(int width, int height) : this(width, height, CreateBuffer(width, height), isPooled: false)
+    {
+    }
 
     private Field(int width, int height, T[] buffer, bool isPooled)
     {
@@ -38,15 +44,26 @@ public sealed partial class Field<T> : IDisposable
     public Span<T> Values
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get => _values.AsSpan(0, Length);
+        get
+        {
+            ObjectDisposedException.ThrowIf(_disposed, this);
+            return _values.AsSpan(0, Length);
+        }
     }
 
     public T this[int x, int y]
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get => _values[Index(ClampX(x), ClampY(y))];
+        get => GetUnchecked(Index(ClampX(x), ClampY(y)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        set => _values[Index(ClampX(x), ClampY(y))] = value;
+        set => SetUnchecked(Index(ClampX(x), ClampY(y)), value);
+    }
+
+    private static T[] CreateBuffer(int width, int height)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(width);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(height);
+        return new T[checked(width * height)];
     }
 }
