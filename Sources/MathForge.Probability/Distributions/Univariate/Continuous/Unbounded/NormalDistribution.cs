@@ -40,7 +40,10 @@ public partial class NormalDistribution : Distribution
 			throw new ArgumentOutOfRangeException(nameof(StandardDeviation), "Standard deviation must be positive");
 	}
 
-	public override double Sample(IRandom random) => MeanI + StandardDeviationI * random.Next();
+    public override double Sample(IRandom random)
+    {
+        return MeanI + StandardDeviationI * BoxMullerTransform.Transform(random).X;
+    }
 	
 	public override double ProbabilityDensity(double x)
 	{
