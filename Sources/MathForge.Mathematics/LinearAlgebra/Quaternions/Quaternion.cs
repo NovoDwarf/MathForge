@@ -1,4 +1,4 @@
-namespace MathForge.LinearAlgebra.Matrices;
+namespace MathForge.LinearAlgebra.Quaternions;
 
 public readonly partial record struct Quaternion(float X, float Y, float Z, float W)
 {

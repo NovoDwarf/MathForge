@@ -1,6 +1,7 @@
+using MathForge.LinearAlgebra.Quaternions;
 using MathForge.LinearAlgebra.Vectors;
 
-namespace MathForge.LinearAlgebra.Matrices;
+namespace MathForge.LinearAlgebra.Transforms;
 
 public struct Transform3D
 {
