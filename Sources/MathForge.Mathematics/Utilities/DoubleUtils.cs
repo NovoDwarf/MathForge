@@ -1,10 +1,11 @@
+using MathForge.Utilities.Comparers;
+
 namespace MathForge.Utilities;
 
 public static class DoubleUtils
 {
-	public const double AbsTol = 1e-12;
-	public const double RelTol = 1e-10;
+	public const double AbsTol = FloatingPointComparer.DoubleAbsoluteTolerance;
+	public const double RelTol = FloatingPointComparer.DoubleRelativeTolerance;
 
-	public static bool Approximately(double a, double b)
-		=> NumericUtils<double>.ApproximatelySmart(a, b, AbsTol, RelTol);
+	public static bool Approximately(double a, double b) => FloatingPointComparer.NearlyEquals(a, b);
 }

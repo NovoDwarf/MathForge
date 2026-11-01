@@ -4,26 +4,90 @@ namespace MathForge.Utilities;
 
 public static class NumericUtils<T> where T : INumber<T>
 {
-	public static bool ApproximatelySmart(T a, T b, T absoluteTolerance, T relativeTolerance)
-	{
-		if (a == b)
-			return true;
+    public static bool ApproximatelySmart(T a, T b, T absoluteTolerance, T relativeTolerance)
+    {
+        ValidateTolerance(absoluteTolerance, nameof(absoluteTolerance));
+        ValidateTolerance(relativeTolerance, nameof(relativeTolerance));
 
-		var diff = T.Abs(a - b);
-		var max = T.Max(T.Abs(a), T.Abs(b));
+        if (a == b)
+            return true;
 
-		return diff <= T.Max(absoluteTolerance, max * relativeTolerance);
-	}
-    
-	public static bool Approximately(T a, T b, T tolerance) => T.Abs(a - b) <= tolerance;
+        if (!T.IsFinite(a) || !T.IsFinite(b))
+            return false;
 
-	public static bool ApproximatelyZero(T value, T tolerance) => T.Abs(value) <= tolerance;
+        var difference = T.Zero;
+        var hasFiniteDifference = false;
 
-	public static bool GreaterThan(T a, T b, T tolerance) => a > b + tolerance;
+        try
+        {
+            difference = a >= b ? checked(a - b) : checked(b - a);
+            hasFiniteDifference = T.IsFinite(difference);
 
-	public static bool LessThan(T a, T b, T tolerance) => a < b - tolerance;
+            if (difference <= absoluteTolerance)
+                return true;
+        }
+        catch (OverflowException)
+        {
+            // The exact difference exceeds the representable absolute tolerance.
+        }
 
-	public static bool GreaterThanOrEqual(T a, T b, T tolerance) => !LessThan(a, b, tolerance);
+        if (relativeTolerance == T.Zero)
+            return false;
 
-	public static bool LessThanOrEqual(T a, T b, T tolerance) => !GreaterThan(a, b, tolerance);
+        if (relativeTolerance >= T.One)
+        {
+            var sameSign = (a >= T.Zero && b >= T.Zero) || (a <= T.Zero && b <= T.Zero);
+
+            if (sameSign || relativeTolerance >= T.One + T.One)
+                return true;
+
+            if (relativeTolerance == T.One)
+                return false;
+        }
+
+        var scale = T.Max(T.Abs(a), T.Abs(b));
+       
+        return hasFiniteDifference
+            ? difference / scale <= relativeTolerance
+            : T.Abs(a / scale - b / scale) <= relativeTolerance;
+    }
+
+    public static bool Approximately(T a, T b, T tolerance)
+    {
+        return ApproximatelySmart(a, b, tolerance, T.Zero);
+    }
+
+    public static bool ApproximatelyZero(T value, T tolerance)
+    {
+        return Approximately(value, T.Zero, tolerance);
+    }
+
+    public static bool GreaterThan(T a, T b, T tolerance)
+    {
+        return !Approximately(a, b, tolerance) && a > b;
+    }
+
+    public static bool LessThan(T a, T b, T tolerance)
+    {
+        return !Approximately(a, b, tolerance) && a < b;
+    }
+
+    public static bool GreaterThanOrEqual(T a, T b, T tolerance)
+    {
+        return Approximately(a, b, tolerance) || a > b;
+    }
+
+    public static bool LessThanOrEqual(T a, T b, T tolerance)
+    {
+        return Approximately(a, b, tolerance) || a < b;
+    }
+
+    private static void ValidateTolerance(T tolerance, string parameterName)
+    {
+        if (!T.IsFinite(tolerance))
+            throw new ArgumentOutOfRangeException(parameterName, "Tolerance must be finite and non-negative.");
+      
+        if (tolerance < T.Zero)
+            throw new ArgumentOutOfRangeException(parameterName, "Tolerance must be finite and non-negative.");
+    }
 }
