@@ -1,4 +1,7 @@
-using MathForge.Vectors;
+using MathForge.LinearAlgebra.Vectors;
+using MathForge.Numerics.Constants;
+using MathForge.Numerics.Exceptions;
+
 
 namespace MathForge.Optimization;
 
