@@ -34,6 +34,19 @@ public sealed partial class SettingsViewModel : BaseViewModel
 
     public ObservableCollection<LocaleItem> AvailableLocales { get; }
 
+    partial void OnSelectedThemeChanged(AppTheme value)
+    {
+        _themeService.Set(value);
+    }
+
+    partial void OnSelectedLocaleChanged(LocaleItem? value)
+    {
+        if (value != null)
+        {
+            _localeService.Set(value);
+        }
+    }
+
     [RelayCommand]
     private void SetTheme(AppTheme theme) => _themeService.Set(theme);
 

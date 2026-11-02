@@ -5,15 +5,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Folder Include="Compositing\" />
         <Folder Include="Drawings\Abstractions\"/>
         <Folder Include="Fractals\Algebraic\"/>
         <Folder Include="Fractals\Stochastic\"/>
-        <Folder Include="Noises\Hybrid\"/>
+        <Folder Include="Transforms\" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MathForge.Mathematics\MathForge.Mathematics.csproj" />
-      <ProjectReference Include="..\MathForge.Probability\MathForge.Probability.csproj" />
+        <ProjectReference Include="..\MathForge.Mathematics\MathForge.Mathematics.csproj"/>
+        <ProjectReference Include="..\MathForge.Probability\MathForge.Probability.csproj"/>
     </ItemGroup>
 
 </Project>

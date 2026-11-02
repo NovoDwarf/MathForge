@@ -1,10 +1,11 @@
-﻿using MathForge.Graphics.Drawings.Entities;
+using MathForge.Geometry.Primitives;
+using MathForge.Graphics.Drawings.Entities;
 
 namespace MathForge.Graphics.Drawings.Abstractions.Clippers;
 
 public interface ILineClipper
 {
-	public Rect Rect { get; }
+	public Rect2 Rect { get; }
 
-	public bool TryClip(LineSegment line, out LineSegment clipped);
+	public bool TryClip(Segment2 line, out Segment2 clipped);
 }

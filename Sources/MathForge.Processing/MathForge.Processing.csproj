@@ -5,12 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Sort\" />
+      <Folder Include="Sort\Cycle\" />
+      <Folder Include="Sort\Distribution\" />
+      <Folder Include="Sort\Network\" />
       <Folder Include="Transformation\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\MathForge.Core\MathForge.Core.csproj" />
+      <ProjectReference Include="..\MathForge.Random\MathForge.Random.csproj" />
     </ItemGroup>
     
 </Project>

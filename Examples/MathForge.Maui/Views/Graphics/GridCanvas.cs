@@ -1,5 +1,6 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Maui.Controls;
+using SkiaSharp.Views.Maui;
 
 namespace MathForge.Maui.Views.Graphics;
 

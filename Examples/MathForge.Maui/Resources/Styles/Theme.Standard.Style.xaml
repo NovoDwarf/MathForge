@@ -2,24 +2,11 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:settings="clr-namespace:AiForms.Settings;assembly=SettingsView"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
     <!-- =======================
          Сторонние компоненты
     ======================= -->
-    <Style TargetType="settings:SettingsView">
-        <Setter Property="CellBackgroundColor" Value="{toolkit:AppThemeResource Color.Surface.Secondary}" />
-        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource Color.Surface.Primary}" />
-        <Setter Property="HeaderBackgroundColor" Value="{toolkit:AppThemeResource Color.Surface.Primary}" />
-        <Setter Property="SeparatorColor" Value="{toolkit:AppThemeResource Color.Separator}" /> 
-        <Setter Property="HeaderTextColor" Value="{toolkit:AppThemeResource Color.Text.Accent}" />
-        <Setter Property="CellTitleColor" Value="{toolkit:AppThemeResource Color.Text.Primary}" />
-        <Setter Property="CellDescriptionColor" Value="{toolkit:AppThemeResource Color.Text.Secondary}" />
-        <Setter Property="CellValueTextColor" Value="{toolkit:AppThemeResource Color.Text.Secondary}" />
-        <Setter Property="CellAccentColor" Value="{toolkit:AppThemeResource Color.Text.Accent}" />
-        <Setter Property="SelectedColor" Value="{toolkit:AppThemeResource Color.Selection}" />
-    </Style>
 
     <!-- =======================
          Базовые элементы

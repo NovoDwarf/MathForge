@@ -1,15 +1,18 @@
 ﻿using System.Numerics;
-using MathForge.Core.Interfaces.Drawings;
+using MathForge.Geometry.Primitives;
+using MathForge.Graphics.Drawings.Abstractions.Clippers;
+using MathForge.Graphics.Drawings.Clippers;
+using MathForge.LinearAlgebra.Vectors;
 using MathForge.Maui.Views.Graphics;
 using SkiaSharp;
-using Rect = Mathematics.Core.Base.Graphics.Rect;
+using SkiaSharp.Views.Maui;
 
 namespace MathForge.Maui.Views.Modules.Graphics.Drawings;
 
 public partial class TruncationDrawPage : DrawPageBase
 {
     private readonly GridStyle _gridStyle = new();
-    private readonly Rect _clipRect = new(150, 100, 300, 250);
+    private readonly Rect2 _clipRect = new(new Float2(150, 100), new Size2(150, 150));
     private readonly List<(Vector2 A, Vector2 B)> _lines =
     [
         (new Vector2(50, 50),   new Vector2(500, 400)),
@@ -81,7 +84,7 @@ public partial class TruncationDrawPage : DrawPageBase
     private int _cachedCellsX = -1;
     private int _cachedCellsY = -1;
 	
-	private ILineClipper _clipper;
+    private ILineClipper _clipper = null!;
     
     private void OnAlgorithmChanged(object sender, EventArgs e)
     {
@@ -112,13 +115,12 @@ public partial class TruncationDrawPage : DrawPageBase
     {
         _clipper = index switch
         {
-            0 => new CohenSutherlandClipper(),
-            1 => new CyrusBeckClipper(),
-            2 => new LiangBarskyClipper(),
-            3 => new SutherlandHodgmanClipper()
+            0 => new CohenSutherlandClipper(_clipRect),
+            1 => new CyrusBeckClipper(_clipRect),
+            2 => new LiangBarskyClipper(_clipRect),
+            _ => new CohenSutherlandClipper(_clipRect)
         };
 
-        _clipper.Rect = _clipRect;
     }
 
     private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e)
@@ -176,8 +178,8 @@ public partial class TruncationDrawPage : DrawPageBase
         canvas.DrawRect(
             _clipRect.MinX * _transform.PixelSize,
             _clipRect.MinY * _transform.PixelSize,
-            _clipRect.Width * _transform.PixelSize,
-            _clipRect.Height * _transform.PixelSize,
+            _clipRect.Size.Width * _transform.PixelSize,
+            _clipRect.Size.Height * _transform.PixelSize,
             _gridStyle.ReferencePaint
         );
     }
@@ -195,15 +197,13 @@ public partial class TruncationDrawPage : DrawPageBase
                 1
             );
 
-            float x0 = a.X, y0 = a.Y;
-            float x1 = b.X, y1 = b.Y;
-
-            if (_clipper.Clip(ref x0, ref y0, ref x1, ref y1))
+            var line = new Segment2(new Point2(a.X, a.Y), new Point2(b.X, b.Y));
+            if (_clipper.TryClip(line, out var clipped))
             {
                 DrawLine(
                     canvas,
-                    ToScreen(new Vector2(x0, y0)),
-                    ToScreen(new Vector2(x1, y1)),
+                    ToScreen(new Vector2(clipped.Start.X, clipped.Start.Y)),
+                    ToScreen(new Vector2(clipped.End.X, clipped.End.Y)),
                     _gridStyle.PointPaint.Color,
                     3
                 );

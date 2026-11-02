@@ -2,12 +2,15 @@
 
 namespace MathForge.SourceGenerators.Utilities;
 
-public class GeneratorUtils
+public static  class GeneratorUtils
 {
 	private static readonly List<string> ClassSuffixes =
 	[
-		"Distribution", "Function"
+		"Distribution"
 	];
+
+	internal static string GetTypeName(ITypeSymbol type)
+		=> type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 	
 	internal static string GetCleanName(string name)
 	{
@@ -16,13 +19,18 @@ public class GeneratorUtils
 	
 	internal static bool HasValidSuffix(string className)
 	{
-		return ClassSuffixes.Any(suffix =>
-			className.EndsWith(suffix) && className.Length > suffix.Length);
+		return ClassSuffixes.Any(suffix => className.EndsWith(suffix) && className.Length > suffix.Length);
 	}
 	
-	internal static bool IsDistributionSubclass(INamedTypeSymbol? classSymbol) => IsSubclass(classSymbol, "Distribution");
-	
-	internal static bool IsEntitySubclass(INamedTypeSymbol? classSymbol) => IsSubclass(classSymbol, "Entity");
+	internal static bool IsDistributionSubclass(INamedTypeSymbol? classSymbol)
+	{
+		return IsSubclass(classSymbol, "Distribution");
+	}
+
+	internal static bool IsEntitySubclass(INamedTypeSymbol? classSymbol)
+	{
+		return IsSubclass(classSymbol, "Entity");
+	}
 
 	internal static bool IsSubclass(INamedTypeSymbol? classSymbol, string className)
 	{

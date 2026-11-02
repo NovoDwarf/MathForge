@@ -13,7 +13,6 @@
 					<x:String>Коэн–Сазерленд</x:String>
 					<x:String>Кирус–Бэк</x:String>
 					<x:String>Лян-Барский</x:String>
-					<x:String>Сазерленд-Хогдман</x:String>
 				</Picker.Items>
 			</Picker>
 

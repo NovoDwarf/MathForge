@@ -5,17 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="Resources\Probability.Resources.resx">
-        <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>Probability.Resources.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
   
-      <EmbeddedResource Update="Resources\Numerical.Resources.resx">
-        <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>Numerical.Resources.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-  
-      <EmbeddedResource Update="Resources\Base.Resources.resx">
+      <EmbeddedResource Update="Resources\Common.Resources.resx">
         <Generator>PublicResXFileCodeGenerator</Generator>
         <LastGenOutput>Base.Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
@@ -27,17 +18,7 @@
     </ItemGroup>
   
     <ItemGroup>
-      <Compile Update="Resources\Probability.Resources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Probability.Resources.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Numerical.Resources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Numerical.Resources.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Base.Resources.Designer.cs">
+      <Compile Update="Resources\Common.Resources.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Base.Resources.resx</DependentUpon>
@@ -51,11 +32,7 @@
 
     <ItemGroup>
       <PackageReference Include="NovoDwarf.Utilities" Version="1.0.0" />
-      <PackageReference Include="System.Drawing.Common" Version="11.0.0-rc.1.26425.128" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Interfaces\" />
+      <PackageReference Include="System.Drawing.Common" Version="11.0.0-rc.3.26522.148" />
     </ItemGroup>
     
 </Project>

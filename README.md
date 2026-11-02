@@ -20,22 +20,38 @@ MathForge is designed as a collection of independent modules that can be used se
 
 ## Modules
 
+### Core
+
 | Module | Description |
 |---|---|
-| `MathForge.Core` | Core mathematical abstractions and shared functionality. |
-| `MathForge.Ballistics` | Ballistics-related calculations and mathematical models. |
-| `MathForge.Compression` | Data compression utilities and algorithms. |
-| `MathForge.Cryptography` | Cryptographic algorithms and related functionality. |
-| `MathForge.DependencyInjection` | Dependency injection integration and utilities. |
-| `MathForge.Graphics` | Graphics, geometry, and computational visualization utilities. |
-| `MathForge.Graphs` | Graph structures and graph-related algorithms. |
-| `MathForge.MachineLearning` | Machine learning algorithms and supporting mathematical tools. |
-| `MathForge.Numerical` | Numerical methods and computational mathematics. |
-| `MathForge.Optimization` | Optimization algorithms and mathematical optimization tools. |
-| `MathForge.Probability` | Probability distributions, statistics, and probability-related functionality. |
-| `MathForge.Processing` | Data processing and computational utilities. |
-| `MathForge.SourceGenerators` | Source generators for improving development workflows. |
-| `MathForge.System` | System-level mathematical and computational utilities. |
+| [MathForge.Core](Sources/MathForge.Core/README.md) | Core abstractions and shared functionality. |
+| [MathForge.Mathematics](Sources/MathForge.Mathematics/README.md) | Main mathematical entities: vectors, geometry, . |
+
+### Submodules
+
+| Module                      | Description                                                                   |
+|----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| [MathForge.Ballistics](Sources/MathForge.Ballistics/README.md)     | Ballistics-related calculations and mathematical models.                      |
+| [MathForge.Compression](Sources/MathForge.Compression/README.md)    | Data compression utilities and algorithms.                                    |
+| [MathForge.Cryptography](Sources/MathForge.Cryptography/README.md)     | Cryptographic algorithms and related functionality.                           |
+| [MathForge.Graphics](Sources/MathForge.Graphics/README.md)        | Graphics, geometry, and computational visualization utilities.                |
+| [MathForge.Graphs](Sources/MathForge.Graphs/README.md)        | Graph structures and graph-related algorithms.                                |
+| [MathForge.MachineLearning](Sources/MathForge.MachineLearning/README.md)  | Machine learning algorithms and supporting mathematical tools.                |
+| [MathForge.Numerical](Sources/MathForge.Numerical/README.md)        | Numerical methods and computational mathematics.                              |
+| [MathForge.Optimization](Sources/MathForge.Optimization/README.md)     | Optimization algorithms and mathematical optimization tools.                  |
+| [MathForge.Physics](Sources/MathForge.Physics/README.md)   | Physics-related calculations and mathematical models.                 |
+| [MathForge.Probability](Sources/MathForge.Probability/README.md)      | Probability distributions, statistics, and probability-related functionality. |
+| [MathForge.Processing](Sources/MathForge.Processing/README.md)       | Data processing and computational utilities.                                  |
+| [MathForge.Random](Sources/MathForge.Random/README.md)       | Random number generators and etc.                                 |
+| [MathForge.StochasticProcesses](Sources/MathForge.StochasticProcesses/README.md)       | Stochastic processes and etc.                                  |
+| [MathForge.System](Sources/MathForge.System/README.md)           | System-level mathematical and computational utilities.                        |
+
+### Additional
+
+| Module | Description |
+|---|---|
+| [MathForge.SourceGenerators](Sources/MathForge.SourceGenerators/README.md)| Source generators for improving development workflows. |
+| [MathForge.DependencyInjection](Sources/MathForge.DependencyInjection/README.md) | Dependency injection integration and utilities. |
 
 ## MathForge.Maui
 

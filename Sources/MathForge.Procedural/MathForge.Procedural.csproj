@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
+        <RootNamespace>MathForge</RootNamespace>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\MathForge.Core\MathForge.Core.csproj" />
+      <ProjectReference Include="..\MathForge.Random\MathForge.Random.csproj" />
+    </ItemGroup>
+
+</Project>

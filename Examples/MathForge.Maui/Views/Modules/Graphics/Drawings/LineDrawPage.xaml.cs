@@ -1,5 +1,7 @@
 ﻿using MathForge.Maui.Views.Graphics;
 using SkiaSharp;
+using MathForge.Graphics.Drawings.Lines;
+using MathForge.LinearAlgebra.Vectors;
 
 namespace MathForge.Maui.Views.Modules.Graphics.Drawings;
 
@@ -59,13 +61,15 @@ public partial class LineDrawPage : DrawPageBase
         var y1 = (int)((SKPoint)_endPoint).Y;
 
         var algorithm = AlgorithmPicker.SelectedItem?.ToString() ?? "DDA";
+        var start = new Float2(x0, y0);
+        var end = new Float2(x1, y1);
 
         var linePoints = algorithm switch
         {
-            "Простейший пошаговый" => SimpleLineRasterizer.Default.Rasterize(x0, y0, x1, y1),
-            "DDA" => DdaLineRasterizer.Default.Rasterize(x0, y0, x1, y1),
-            "Брезенхем" => BresenhamLineRasterizer.Default.Rasterize(x0, y0, x1, y1),
-            "Ву" => WuLineRasterizer.Default.Rasterize(x0, y0, x1, y1),
+            "Простейший пошаговый" => SimpleLineRasterizer.Default.Rasterize(start, end),
+            "DDA" => DdaLineRasterizer.Default.Rasterize(start, end),
+            "Брезенхем" => BresenhamLineRasterizer.Default.Rasterize(start, end),
+            "Ву" => WuLineRasterizer.Default.Rasterize(start, end),
             _ => []
         };
 

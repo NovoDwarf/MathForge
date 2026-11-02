@@ -1,4 +1,4 @@
-﻿using MathForge.Core.Base.Entities;
+
 using MathForge.Maui.ViewModels.Probability.Distributions;
 
 namespace MathForge.Maui.Views.Modules.Probability.Distributions;

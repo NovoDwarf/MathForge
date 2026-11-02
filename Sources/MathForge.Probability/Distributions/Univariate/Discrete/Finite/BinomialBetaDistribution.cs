@@ -1,5 +1,4 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Utilities;
 using MathForge.Distributions.Univariate.Continuous.Bounded;
 using MathForge.Functions.Simple;
 using MathForge.Random.Generators;
@@ -38,7 +37,7 @@ public partial class BinomialBetaDistribution : Distribution
     [EntityParameter(nameof(Trials))]
     public int Trials { get; private set; } = 10;
 
-    private BetaDistribution _betaDist = new();
+    private readonly BetaDistribution _betaDist = new();
     
     protected override void Validate()
     {

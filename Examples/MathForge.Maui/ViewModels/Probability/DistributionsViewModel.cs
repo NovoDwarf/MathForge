@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using LocalizationResourceManager.Maui;
 using MathForge.Core.Attributes;
-using MathForge.Core.Base.Entities;
+
 using MathForge.Maui.Core.ViewModels;
 using MathForge.Maui.Systems.Algorithms.Services;
 using MathForge.Maui.Views.Common;

@@ -15,5 +15,21 @@
       <ProjectReference Include="..\MathForge.Mathematics\MathForge.Mathematics.csproj" />
       <ProjectReference Include="..\MathForge.Numerical\MathForge.Numerical.csproj" />
       <ProjectReference Include="..\MathForge.Random\MathForge.Random.csproj" />
+      <ProjectReference Include="..\MathForge.SourceGenerators\MathForge.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Probability.Resources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Probability.Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\Probability.Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Probability.Resources.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 </Project>

@@ -2,12 +2,6 @@
 
 namespace MathForge.Functions.Simple;
 
-public enum GammaAlgorithm
-{
-	Lanczos,
-	NumericalRecipes
-}
-
 public static class GammaFunction
 {
 	public static double Calculate(double x, GammaAlgorithm algorithm = GammaAlgorithm.Lanczos)

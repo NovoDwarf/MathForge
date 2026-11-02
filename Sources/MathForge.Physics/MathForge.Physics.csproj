@@ -4,4 +4,8 @@
         <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MathForge.Mathematics\MathForge.Mathematics.csproj" />
+    </ItemGroup>
+
 </Project>

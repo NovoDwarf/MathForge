@@ -1,5 +1,4 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Utilities;
 using MathForge.Functions.Simple;
 using MathForge.Random.Generators;
 
@@ -46,7 +45,7 @@ public partial class NormalLogDistribution : Distribution
 
     public override double Sample(IRandom random)
     {
-        var u = RandomUtils.NextNormal();
+        var u = random.Next();
         return Math.Exp(_mean + _standardDeviation * u);
     }
 

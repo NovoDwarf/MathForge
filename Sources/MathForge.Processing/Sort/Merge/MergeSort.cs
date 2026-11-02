@@ -1,14 +1,9 @@
-﻿using MathForge.Core.Entities;
+﻿namespace MathForge.Processing.Sort.Merge;
 
-namespace MathForge.Processing.Sort.Merge;
-
-public sealed class MergeSort<T> : Sorting<T>
-	where T : IComparable<T>
+public sealed class MergeSort<T> : Sorting<T> where T : IComparable<T>
 {
 	public override void Sort(T[] array)
 	{
-		ArgumentNullException.ThrowIfNull(array);
-
 		if (array.Length < 2)
 			return;
 
@@ -37,12 +32,7 @@ public sealed class MergeSort<T> : Sorting<T>
 		Merge(array, buffer, left, middle, right);
 	}
 
-	private void Merge(
-		T[] array,
-		T[] buffer,
-		int left,
-		int middle,
-		int right)
+	private void Merge(T[] array, T[] buffer, int left, int middle, int right)
 	{
 		var leftIndex = left;
 		var rightIndex = middle + 1;

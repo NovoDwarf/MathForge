@@ -3,28 +3,35 @@
     <Project Path="Examples/MathForge.Maui/MathForge.Maui.csproj" />
   </Folder>
   <Folder Name="/Sources/">
-    <Project Path="Sources/MathForge.Ballistics/MathForge.Ballistics.csproj" />
     <Project Path="Sources/MathForge.Compression/MathForge.Compression.csproj" />
     <Project Path="Sources/MathForge.Cryptography/MathForge.Cryptography.csproj" />
     <Project Path="Sources/MathForge.Graphics/MathForge.Graphics.csproj" />
     <Project Path="Sources/MathForge.Graphs/MathForge.Graphs.csproj" />
     <Project Path="Sources/MathForge.MachineLearning/MathForge.MachineLearning.csproj" />
+    <Project Path="Sources/MathForge.Mathematics/MathForge.Mathematics.csproj" />
     <Project Path="Sources/MathForge.Numerical/MathForge.Numerical.csproj" />
     <Project Path="Sources/MathForge.Optimization/MathForge.Optimization.csproj" />
     <Project Path="Sources/MathForge.Physics/MathForge.Physics.csproj" />
     <Project Path="Sources/MathForge.Probability/MathForge.Probability.csproj" />
+    <Project Path="Sources/MathForge.Procedural/MathForge.Procedural.csproj" />
     <Project Path="Sources/MathForge.Processing/MathForge.Processing.csproj" />
     <Project Path="Sources/MathForge.Random/MathForge.Random.csproj" />
+    <Project Path="Sources/MathForge.Statistics/MathForge.Statistics.csproj" />
     <Project Path="Sources/MathForge.StochasticProcesses/MathForge.StochasticProcesses.csproj" />
     <Project Path="Sources/MathForge.System/MathForge.System.csproj" />
   </Folder>
   <Folder Name="/Sources/Main/">
+    <Project Path="Sources/MathForge.Analyzers/MathForge.Analyzers.csproj" />
+    <Project Path="Sources/MathForge.Analyzers.CodeFixes/MathForge.Analyzers.CodeFixes.csproj" />
     <Project Path="Sources/MathForge.Core/MathForge.Core.csproj" />
-    <Project Path="Sources/MathForge.Mathematics/MathForge.Mathematics.csproj" />
-  </Folder>
-  <Folder Name="/Sources/Utilities/">
-    <Project Path="Sources/MathForge.DependencyInjection/MathForge.DependencyInjection.csproj" />
     <Project Path="Sources/MathForge.SourceGenerators/MathForge.SourceGenerators.csproj" />
   </Folder>
-  <Folder Name="/Tests/" />
+  <Folder Name="/Tests/">
+    <Project Path="Tests/MathForge.Tests.Analyzers/MathForge.Tests.Analyzers.csproj" />
+    <Project Path="Tests/MathForge.Tests.Physics/MathForge.Tests.Physics.csproj" />
+    <Project Path="Tests/MathForge.Tests.Mathematics/MathForge.Tests.Mathematics.csproj" />
+    <Project Path="Tests/MathForge.Tests.Probability/MathForge.Tests.Probability.csproj" />
+    <Project Path="Tests/MathForge.Tests.Graphics/MathForge.Tests.Graphics.csproj" />
+    <Project Path="Tests/MathForge.Tests.Graphs/MathForge.Tests.Graphs.csproj" />
+  </Folder>
 </Solution>

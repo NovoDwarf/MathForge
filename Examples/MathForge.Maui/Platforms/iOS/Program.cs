@@ -1,4 +1,6 @@
-﻿namespace MathForge.Maui;
+﻿using UIKit;
+
+namespace MathForge.Maui;
 
 public class Program
 {

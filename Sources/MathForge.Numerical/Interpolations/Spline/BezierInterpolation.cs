@@ -1,4 +1,8 @@
-using MathForge.Vectors.Float;
+using MathForge.LinearAlgebra.Vectors;
+
+
+
+
 
 namespace MathForge.Interpolations.Spline;
 

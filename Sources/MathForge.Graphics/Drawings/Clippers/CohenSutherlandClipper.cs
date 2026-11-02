@@ -1,106 +1,113 @@
-﻿using MathForge.Graphics.Drawings.Abstractions.Clippers;
+using MathForge.Geometry.Primitives;
+using MathForge.Graphics.Drawings.Abstractions.Clippers;
 using MathForge.Graphics.Drawings.Entities;
-using MathForge.Vectors.Float;
 
 namespace MathForge.Graphics.Drawings.Clippers;
 
 public sealed class CohenSutherlandClipper : ILineClipper
 {
-	public CohenSutherlandClipper(Rect rect)
-	{
-		Rect = rect;
-	}
+    public CohenSutherlandClipper(Rect2 rect)
+    {
+        Rect = rect;
+    }
 
-	public Rect Rect { get; }
+    public Rect2 Rect { get; }
 
-	public bool TryClip(LineSegment line, out LineSegment clipped)
-	{
-		var x0 = line.Start.X;
-		var y0 = line.Start.Y;
-		var x1 = line.End.X;
-		var y1 = line.End.Y;
+    public bool TryClip(Segment2 line, out Segment2 clipped)
+    {
+        var start = line.Start;
+        var end = line.End;
+        if (!Clip(ref start, ref end))
+        {
+            clipped = default;
+            return false;
+        }
 
-		if (!Clip(ref x0, ref y0, ref x1, ref y1))
-		{
-			clipped = default;
-			return false;
-		}
+        clipped = new Segment2(start, end);
 
-		clipped = new LineSegment(new Float2(x0, y0), new Float2(x1, y1));
+        return true;
+    }
 
-		return true;
-	}
+    private bool Clip(ref Point2 point0, ref Point2 point1)
+    {
+        var code0 = ComputeOutCode(point0.X, point0.Y);
+        var code1 = ComputeOutCode(point1.X, point1.Y);
 
-	private bool Clip(ref float x0, ref float y0, ref float x1, ref float y1)
-	{
-		var code0 = ComputeOutCode(x0, y0);
-		var code1 = ComputeOutCode(x1, y1);
+        while (true)
+        {
+            if ((code0 | code1) == 0)
+            {
+                return true;
+            }
 
-		while (true)
-		{
-			if ((code0 | code1) == 0)
-				return true;
+            if ((code0 & code1) != 0)
+            {
+                return false;
+            }
 
-			if ((code0 & code1) != 0)
-				return false;
+            var outCode = code0 != OutCode.Inside
+                ? code0
+                : code1;
 
-			var outCode = code0 != OutCode.Inside
-				? code0
-				: code1;
+            float x;
+            float y;
 
-			float x;
-			float y;
+            if (outCode.HasFlag(OutCode.Top))
+            {
+                x = point0.X + (point1.X - point0.X) * (Rect.MaxY - point0.Y) / (point1.Y - point0.Y);
+                y = Rect.MaxY;
+            }
+            else if (outCode.HasFlag(OutCode.Bottom))
+            {
+                x = point0.X + (point1.X - point0.X) * (Rect.MinY - point0.Y) / (point1.Y - point0.Y);
+                y = Rect.MinY;
+            }
+            else if (outCode.HasFlag(OutCode.Right))
+            {
+                y = point0.Y + (point1.Y - point0.Y) * (Rect.MaxX - point0.X) / (point1.X - point0.X);
+                x = Rect.MaxX;
+            }
+            else
+            {
+                y = point0.Y + (point1.Y - point0.Y) * (Rect.MinX - point0.X) / (point1.X - point0.X);
+                x = Rect.MinX;
+            }
 
-			if (outCode.HasFlag(OutCode.Top))
-			{
-				x = x0 + (x1 - x0) * (Rect.MaxY - y0) / (y1 - y0);
-				y = Rect.MaxY;
-			}
-			else if (outCode.HasFlag(OutCode.Bottom))
-			{
-				x = x0 + (x1 - x0) * (Rect.MinY - y0) / (y1 - y0);
-				y = Rect.MinY;
-			}
-			else if (outCode.HasFlag(OutCode.Right))
-			{
-				y = y0 + (y1 - y0) * (Rect.MaxX - x0) / (x1 - x0);
-				x = Rect.MaxX;
-			}
-			else
-			{
-				y = y0 + (y1 - y0) * (Rect.MinX - x0) / (x1 - x0);
-				x = Rect.MinX;
-			}
+            if (outCode == code0)
+            {
+                point0 = new Point2(x, y);
+                code0 = ComputeOutCode(x, y);
+            }
+            else
+            {
+                point1 = new Point2(x, y);
+                code1 = ComputeOutCode(x, y);
+            }
+        }
+    }
 
-			if (outCode == code0)
-			{
-				x0 = x;
-				y0 = y;
-				code0 = ComputeOutCode(x0, y0);
-			}
-			else
-			{
-				x1 = x;
-				y1 = y;
-				code1 = ComputeOutCode(x1, y1);
-			}
-		}
-	}
+    private OutCode ComputeOutCode(float x, float y)
+    {
+        var code = OutCode.Inside;
 
-	private OutCode ComputeOutCode(float x, float y)
-	{
-		var code = OutCode.Inside;
+        if (x < Rect.MinX)
+        {
+            code |= OutCode.Left;
+        }
+        else if (x > Rect.MaxX)
+        {
+            code |= OutCode.Right;
+        }
 
-		if (x < Rect.MinX)
-			code |= OutCode.Left;
-		else if (x > Rect.MaxX)
-			code |= OutCode.Right;
+        if (y < Rect.MinY)
+        {
+            code |= OutCode.Bottom;
+        }
+        else if (y > Rect.MaxY)
+        {
+            code |= OutCode.Top;
+        }
 
-		if (y < Rect.MinY)
-			code |= OutCode.Bottom;
-		else if (y > Rect.MaxY)
-			code |= OutCode.Top;
-
-		return code;
-	}
+        return code;
+    }
 }

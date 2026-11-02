@@ -1,4 +1,4 @@
-﻿using MathForge.Maui.Core.ViewModels;
+using MathForge.Maui.Core.ViewModels;
 using SkiaSharp;
 using SKPaintSurfaceEventArgs = SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs;
 
@@ -17,7 +17,7 @@ public partial class SlidingTilePuzzleViewModel : BaseViewModel
             }
         }
 
-        private readonly Random _rand = new();
+        private readonly System.Random _rand = new();
 
         public SlidingTilePuzzleViewModel()
         {

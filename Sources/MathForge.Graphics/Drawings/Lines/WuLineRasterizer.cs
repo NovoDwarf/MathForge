@@ -1,6 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+using MathForge.LinearAlgebra.Vectors;
+using System.Runtime.CompilerServices;
 using MathForge.Graphics.Drawings.Abstractions.Rasterizers;
-using MathForge.Vectors.Float;
+using Float3 = MathForge.LinearAlgebra.Vectors.Float3;
 
 namespace MathForge.Graphics.Drawings.Lines;
 

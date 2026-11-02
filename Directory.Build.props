@@ -40,9 +40,9 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(MSBuildProjectName)' == 'MathForge.Probability'">
-        <Version>1.0.1-dev1</Version>
-        <AssemblyVersion>1.0.1.1</AssemblyVersion>
-        <FileVersion>1.0.1.1</FileVersion>
+        <Version>1.0.1-dev3</Version>
+        <AssemblyVersion>1.0.1.3</AssemblyVersion>
+        <FileVersion>1.0.1.3</FileVersion>
         <Description>Probability module from MathForge</Description>
     </PropertyGroup>
 
@@ -89,9 +89,9 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(MSBuildProjectName)' == 'MathForge.Numerical'">
-        <Version>1.0.1-dev2</Version>
-        <AssemblyVersion>1.0.1.2</AssemblyVersion>
-        <FileVersion>1.0.1.2</FileVersion>
+        <Version>1.0.1-dev3</Version>
+        <AssemblyVersion>1.0.1.3</AssemblyVersion>
+        <FileVersion>1.0.1.3</FileVersion>
         <Description>Numerical module from MathForge</Description>
     </PropertyGroup>
 
@@ -122,4 +122,10 @@
         <FileVersion>1.0.0.0</FileVersion>
         <Description>System module from MathForge</Description>
     </PropertyGroup>
+    
+    <ItemGroup Condition="'$(MSBuildProjectName)' != 'MathForge.Analyzers.CodeFixes' and '$(MSBuildProjectName)' != 'MathForge.Analyzers' and '$(MSBuildProjectName)' != 'MathForge.SourceGenerators' and '$(MSBuildProjectName)' != 'MathForge.Tests.Analyzers'">
+        <ProjectReference Include="$(MSBuildThisFileDirectory)Sources/MathForge.Analyzers/MathForge.Analyzers.csproj"
+                          OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="$(MSBuildThisFileDirectory)Sources/MathForge.Analyzers.CodeFixes/MathForge.Analyzers.CodeFixes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
 </Project>

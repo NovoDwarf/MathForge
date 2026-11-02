@@ -1,5 +1,4 @@
 ﻿using MathForge.Core.Attributes;
-using MathForge.Core.Utilities;
 using MathForge.Random.Generators;
 
 namespace MathForge.Distributions.Univariate.Discrete.Finite;
@@ -184,18 +183,4 @@ public partial class BinomialPoissonDistribution : Distribution
 
         return fourthCentralMoment / (variance * variance) - 3;
     }
-}
-
-public struct Complex
-{
-    public double Real { get; }
-    public double Imaginary { get; }
-    
-    public Complex(double real, double imaginary = 0)
-    {
-        Real = real;
-        Imaginary = imaginary;
-    }
-    
-    public static implicit operator Complex(double real) => new Complex(real);
 }

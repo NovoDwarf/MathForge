@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
+using MathForge.Graphics.Fractals.Geometric;
 
 namespace MathForge.Maui.Views.Modules.Graphics.Fractals;
 
