@@ -122,4 +122,10 @@
         <FileVersion>1.0.0.0</FileVersion>
         <Description>System module from MathForge</Description>
     </PropertyGroup>
+    
+    <ItemGroup Condition="'$(MSBuildProjectName)' != 'MathForge.Analyzers.CodeFixes' and '$(MSBuildProjectName)' != 'MathForge.Analyzers' and '$(MSBuildProjectName)' != 'MathForge.SourceGenerators' and '$(MSBuildProjectName)' != 'MathForge.Tests.Analyzers'">
+        <ProjectReference Include="$(MSBuildThisFileDirectory)Sources/MathForge.Analyzers/MathForge.Analyzers.csproj"
+                          OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="$(MSBuildThisFileDirectory)Sources/MathForge.Analyzers.CodeFixes/MathForge.Analyzers.CodeFixes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
 </Project>
